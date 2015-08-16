@@ -1,0 +1,142 @@
+/*-----------------------------------\
+| Hoja de Estilo Plantilla           | 
+|------------------------------------|
+| Autor : Félix Medina               | 
+| Ultima Actualización : 23/08/2013  |
+\-----------------------------------*/
+
+
+body{
+    background: #FFFFFF !important;
+    font-family : Tahoma, Verdana, Arial, sans-serif !important;
+    font-size :8pt !important;
+    font-style :normal !important;
+    font-weight :normal !important;
+} 
+
+.contenedor_header {
+    margin:0 auto;
+    height: 135px;
+    margin-bottom:10px; 
+} 
+
+.contenedor {
+    margin:0 auto;
+    padding:5px;
+    min-height: 400px;
+    background-color: #FFFFFF;
+    border: 1px solid #cccccc;
+}
+
+.valorRequerido{
+    color: #B11414;
+    margin-left:2px;
+} 
+
+.lblSubTitleHeader {
+    color: #006FA8;
+    font-family: Tahoma,Verdana,Arial,sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: bolder;
+    text-align: left;
+    margin-left:20px;
+}
+
+.lblTitle {
+    color: #29405B;
+    font-family: Tahoma,Verdana,Arial,sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: bold;
+    padding-left: 5px;
+    text-align: left;
+}
+
+.ui-menuitem-text {
+    padding: .2em .2em !important;
+}
+
+.ui-menu-child {
+    width: 180px !important;
+}
+
+.ui-menubar {
+    width:99.9% !important;
+    padding: 0em 0em !important;
+}
+
+.ui-menuitem-link {
+    width:98% !important;
+    padding: 0em .2em !important;
+}
+
+.ui-menu .ui-menuitem-link {
+    line-height: 14px !important;
+    font-weight: normal !important;
+}
+
+.divButton{
+  padding-top:10px; 
+}
+
+.divButton button{
+      width: 100px !important;
+      font-size: 11px !important;
+      font-weight: bold !important;
+      height: 24px !important;
+      width: 100px !important;
+}
+
+.attach {
+    background-image: url('../../resources/imagenes/attach.png') 
+        !important; background-repeat: no-repeat !important;
+}
+
+.print {
+    background-image: url('../../resources/imagenes/printer.png') 
+        !important; background-repeat: no-repeat !important;
+}
+
+.custom-menu-bar {
+    border: 1px solid #4297D7 !important;
+    border-radius: 0 0 0 0 !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+    padding: 0.1em 0.3em !important;
+}
+.ui-menubar {
+    padding: 2px 3px !important;
+    width: 975px !important;
+}
+.ui-menubar {
+    padding: 0 !important;
+    width: 99.9% !important;
+}
+
+.ui-widget {
+    font-family: Tahoma, Verdana, Arial, sans-serif !important;
+    font-size: 8pt !important;
+    
+}
+
+.ui-corner-all {
+    border-radius:3px !important;
+}
+
+.wijmo-wijmenu { 
+    padding: 0 !important;
+}
+
+.wijmo-wijmenu-list{
+    border: 1px solid #C5DBEC !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    color: #2E6E9E !important;font-weight: bold !important;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child {
+    width: 250px !important;
+}
+    

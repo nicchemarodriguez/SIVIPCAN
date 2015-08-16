@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <managed-bean>
+        <managed-bean-name>examenMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.ExamenMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>personaMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.PersonaMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>catalogoMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.CatalogoMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sectorMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.SectorMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>entidadAdtvaMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.EntidadAdtvaMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>categoriaMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.CategoriaMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>subCategoriaMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.SubCategoriaMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>valoresMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.ValoresMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+</faces-config>

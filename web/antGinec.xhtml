@@ -1,0 +1,85 @@
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+  
+    
+        
+        
+        
+   
+      <p:panel id="panel2">
+                                    <p:messages autoUpdate="true" closable="true"/>
+                                    <h:panelGrid columns="10" cellpadding="10">
+
+                                        <h:outputText value="Gestas:"/>
+                                        <p:spinner id="basic" disabled="true" min="0" size="5" value="#{examenMB.gestasi}" />
+
+                                        <h:outputText value="Partos Naturales:"/>
+                                        <p:spinner id="basic1" size="5" value="#{examenMB.partosi}" min="0">
+                                            <p:ajax update="basic" listener="#{examenMB.IncrementarValorGestas()}" />
+                                        </p:spinner>
+
+                                        <h:outputText value="Abortos:"/>
+                                        <p:spinner id="basic2" size="5" value="#{examenMB.abortosi}" min="0">
+                                            <p:ajax update="basic" listener="#{examenMB.IncrementarValorGestas()}" />
+                                        </p:spinner>
+
+                                        <h:outputText value="Cesáreas:"/>
+                                        <p:spinner id="basic3" size="5" value="#{examenMB.cesareasi}" min="0">
+                                            <p:ajax update="basic" listener="#{examenMB.IncrementarValorGestas()}" />
+                                        </p:spinner>
+
+                                        <h:outputText value="IVSA:"/>
+                                        <p:spinner id="basic4" size="5" value="#{examenMB.IVSAi}" min="9"/>
+
+                                        <h:outputText value="Embarazo Actual:"/>
+                                        <p:selectOneMenu id="Nombres" value="#{examenMB.valorEmbarazoActual}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Embarazo" 
+                                                         style="width:100px"  editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.embarazoActual.valoresList}" var="embarazo"
+                                                           itemLabel="#{embarazo.valor}" itemValue="#{embarazo}" />
+                                            <p:ajax update="basic5 basic" listener="#{examenMB.HabilitaandoCampos()}" />
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Semanas de Gestación:"/>
+                                        <p:spinner id="basic5" size="5" value="#{examenMB.semanaDeGestasi}"
+                                                   disabled="#{!examenMB.habilitarSemanasGestacion}" min="1" max="42"/>
+
+                                        <h:outputText value="Fuma:"/>
+                                        <p:selectOneMenu id="Nombr" value="#{examenMB.valorFuma}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Si Fuma"
+                                                         style="width:100px" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.fuma.valoresList}" var="fuma"
+                                                           itemLabel="#{fuma.valor}" itemValue="#{fuma}"/>
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Alcohol:"/>
+                                        <p:selectOneMenu id="Nomb" value="#{examenMB.valorToma}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Si Toma"
+                                                         style="width:100px" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.toma.valoresList}" var="toma"
+                                                           itemLabel="#{toma.valor}" itemValue="#{toma}" />
+                                        </p:selectOneMenu>
+                                        <h:outputText value="Menarca:"/>
+                                        <p:spinner id="basic6" size="5" value="#{examenMB.menarcai}"
+                                                   min="1" max="42"/>
+
+                                        <p:outputLabel for="german" value="FUR:" />
+                                        <p:calendar id="german" value="#{examenMB.FUR}" navigator="true" pattern="dd/MM/yyyy" effect="fold"
+                                                    style=" width: 50px"/>
+
+                                        <h:outputText value="Metodo Anticonceptivo:"/>
+                                        <p:selectOneMenu id="Nomb2" value="#{examenMB.metodoAnticonceptivo}" converter="myObjectConverter" required="true" requiredMessage="Debe Seleccionar Si Toma"
+                                                         style="width:100px" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{catalogoMB.listaTipoMetodo}" var="metodo"
+                                                           itemLabel="#{metodo.valor}" itemValue="#{metodo}" />
+                                        </p:selectOneMenu>
+                                    </h:panelGrid>
+                                </p:panel>
+
+        
+</ui:composition>
+

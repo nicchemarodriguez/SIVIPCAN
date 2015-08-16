@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <h:outputStylesheet name="css/contenedor.css"/>
+        <h:outputStylesheet name="css/jquery.dateentry.css"/>
+        <h:outputScript name="scripts/jquery.dateentry.min.js"/>
+        <h:outputScript name="scripts/jquery.format.1.05.js"/>
+        <link  rel="icon" type="image/png" href="/imagenes/florSIVIPCANweb.png" />
+        <title>SIVIPCAN</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputStylesheet name="css/contenedor.css"/>
+            <h:outputStylesheet name="css/jquery.dateentry.css"/>
+            <h:outputScript name="scripts/jquery.dateentry.min.js"/>
+            <h:outputScript name="scripts/general.js"/>
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                    jQuery(this).keypress(function(e){
+                          var code = (e.keyCode ? e.keyCode : e.which);
+                          if(code===13){
+                              return false;
+                          }
+                          return true;
+                    });
+                 });
+            </script>
+            <p:ajaxStatus onstart="statusDialog.show();"
+                          onsuccess="statusDialog.hide();" 
+                          onerror="statusDialog.hide();
+                          alert('Ha occurrido un error en el sitio. Verifique que tenga conexión a Internet o bien refresque la página.');"/>
+
+            <p:dialog modal="true" 
+                      widgetVar="statusDialog"
+                      header="Transacción en progreso..." 
+                      draggable="false" 
+                      closable="false" 
+                      resizable="false">
+                <center>
+                    <h:graphicImage name="/imagenes/ajax-loader.gif"/>
+                </center>
+            </p:dialog>
+        </h:form>
+        <div id="header" class="contenedor_header">
+            <ui:include src="header.xhtml"/>
+        </div>
+        <div id="content" class="contenedor">
+            <ui:insert name="content"/>
+        </div>
+    </h:body>
+</html>

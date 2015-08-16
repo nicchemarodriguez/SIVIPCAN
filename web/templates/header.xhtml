@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <ui:composition>
+        <h:form id="frmHeader">
+            <p:growl id="grwMensaje" showDetail="true" life="4000" />    
+            <h:panelGrid columns="4" style="margin-left:70%">
+                <h:graphicImage height="16" value="/resources/imagenes/calendar_icon.png" />
+                <h:outputText styleClass="lblTitle" value="#{headerController.fechaYHora}"/> 
+                <h:graphicImage style="margin-left:20px" height="16" value="/resources/imagenes/user.png" />
+                <h:outputText styleClass="lblTitle"  value="#{headerController.nombreUsrActual}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">  
+                <h:graphicImage  value="/resources/imagenes/logo_minsa.png" height="60"/>
+                <!--<h:outputText value="SIVIPCAN 4.0" styleClass="lblSubTitleHeader"/>-->
+                <h:graphicImage value="/resources/imagenes/LogoSIVIPCAN4.png" height="60" style="margin-left: 200%; margin-top: -25%"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3" style="margin-left:68%;margin-bottom:2px;">
+                <p:button id="btnCambiarApp" value="cambiar aplicación"
+                          onclick="return false;"
+                          style="width: 140px;height:20px;font-size:10px;font-weight: bold;"/>
+                <p:commandButton value="cambiar clave" 
+                                 update=""
+                                 actionListener="#{headerController.onClickCambiarClave}"
+                                 oncomplete="dlgCambioClave.show();"
+                                 style="width: 140px;height:20px;font-size:10px;font-weight: bold;"/>
+                <p:button value="cerrar sesion" 
+                          onclick="cfdSesion.show();
+                return false;"
+                          style="width: 140px;height:20px;font-size:10px;font-weight: bold;"/>
+            </h:panelGrid>
+
+            <p:menubar  
+                autoDisplay="true" 
+                model="#{headerController.menuModel}"/>
+
+            <!-- Modal para finalizar sesión de trabajo -->
+            <p:confirmDialog  header="Aviso" 
+                              severity="alert" 
+                              widgetVar="cfdSesion"
+                              message="¿Desea finalizar la sesion de trabajo?" 
+                              showEffect="fade">
+                <p:commandButton value="Si" 
+                                 type="submit"
+                                 ajax="false"
+                                 actionListener="#{seguridadController.borrarSesiones}"/>
+                <p:button value="No" 
+                          onclick="cfdSesion.hide();
+                return false;"/>
+            </p:confirmDialog>
+
+            <!-- Modal para cambiar clave -->
+            <p:dialog id="dlgCambioClave" header="Cambio de Clave de Acceso" modal="true"
+                      widgetVar="dlgCambioClave" height="170" width="370" closable="false"
+                      resizable="false">
+
+                <h:panelGrid id="panCambioClave" columns="2" width="100%" 
+                             style="margin-bottom:20px;margin-top:10px;text-align:left;">
+
+                    <h:outputLabel for="txbClaveActual" value="Clave Actual:" 
+                                   styleClass="lblDefault" />
+                    <h:inputSecret id="txbClaveActual" style="width:230px;" 
+                                   value="#{headerController.claveActual}" 
+                                   styleClass="txtDefault"  
+                                   label="Clave Actual" />
+                    <h:outputLabel for="txbClaveNueva" value="Nueva Clave:" 
+                                   styleClass="lblDefault" />
+                    <h:inputSecret id="txbClaveNueva" 
+                                   value="#{headerController.claveNueva}" 
+                                   maxlength="30" styleClass="txtDefault"
+                                   style="width:230px;" label="Clave Nueva" />
+                    <h:outputLabel for="txbClaveRepite" value="Repita Nueva Clave:" 
+                                   styleClass="lblDefault" />
+                    <h:inputSecret id="txbClaveRepite" 
+                                   value="#{headerController.claveRepite}" 
+                                   maxlength="30" styleClass="txtDefault" 
+                                   style="width:230px;" label="Repetición de Clave" />
+
+                </h:panelGrid>
+
+                <h:panelGrid id="panButtonClave" style="text-align:left;" columns="2">  					
+                    <p:commandButton value="Aceptar" styleClass="btnDefault"
+                                     process="@this,
+                                     :frmHeader:panCambioClave" 
+                                     update=":frmHeader:panCambioClave,
+                                     :frmHeader:grwMensaje" 
+                                     actionListener="#{headerController.onClickAceptarCambio}" 
+                                     oncomplete="handleChangePassRequest(xhr, status, args);"/>
+
+                    <p:button value="Cancelar" styleClass="btnDefault"
+                              onclick="dlgCambioClave.hide();
+                return false;" />
+                </h:panelGrid>
+
+            </p:dialog>
+
+
+            <p:overlayPanel id="oPanCambiarAplicacion" for="btnCambiarApp" hideEffect="fade">
+                <p:dataTable id="dtSistemas" var="sistema"
+                             rowKey="#{sistema.key}" 
+                             value="#{headerController.sistemas}" 
+                             emptyMessage="No existen más sistemas autorizados"
+                             rows="6" paginator="true" paginatorPosition="top"
+                             selectionMode="single" 
+                             selection="#{headerController.sistemaSelected}">
+                    <p:ajax event="rowSelect" listener="#{headerController.onSelectSistema}"/>  
+                    <p:column headerText="Sistema">  
+                        <h:outputText value="#{sistema.value}" />  
+                    </p:column>
+                </p:dataTable>    	
+            </p:overlayPanel>
+
+            <h:outputScript name="" target="frmHeader">
+                function handleChangePassRequest(xhr, status, args) {
+                /* <![CDATA[ */
+                if (!args.validationFailed && args.logOK) {
+                dlgCambioClave.hide();
+                }
+                /* ]]> */
+                }
+
+            </h:outputScript>
+        </h:form>
+    </ui:composition>
+</html>
+

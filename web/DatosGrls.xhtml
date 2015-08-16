@@ -1,0 +1,142 @@
+
+   
+   <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+                                
+                                <p:panel>
+                                    <p:commandButton process="@this" value="Busqueda de Paciente" actionListener="#{examenMB.limpiarObjetoExamen()}" 
+                                                     oncomplete="TABDIALOG.show()" update=":frm:TAB"/>
+                                </p:panel>
+
+                                <p:panel id="panel">
+                                    <p:messages />
+                                    <h:panelGrid id="G1" columns="8" cellpadding="10">
+                                        <p:outputLabel for="PrimerNombre" value="1er Nombre:" />
+                                        <p:inputText id="PrimerNombre" value="#{examenMB.examenSelect.primerNombre}" required="true" requiredMessage="Debe Ingresar Primer Nombre" 
+                                                     label="PrimerNombre" readonly="#{facesContext.renderResponse}"/>
+
+                                        <p:outputLabel for="SegundoNombre" value="2do Nombre:" />
+                                        <p:inputText id="SegundoNombre" value="#{examenMB.examenSelect.segundoNombre}" label="SegundoNombre"
+                                                     readonly="#{facesContext.renderResponse}"/>
+
+                                        <p:outputLabel for="PrimerApellido" value="1er Apellido:" />
+                                        <p:inputText id="PrimerApellido" value="#{examenMB.examenSelect.primerApellido}" required="true" requiredMessage="Debe Ingresar Primer Apellido"
+                                                     readonly="#{facesContext.renderResponse}"/>
+
+                                        <p:outputLabel for="SegundoApellido" value="2do Apellido:" />
+                                        <p:inputText id="SegundoApellido" value="#{examenMB.examenSelect.segundoApellido}"
+                                                     readonly="#{facesContext.renderResponse}"/>
+
+                                        <p:outputLabel for="Telefono" value="Teléfono:" />
+                                        <p:inputText id="Telefono" />
+
+                                        <p:outputLabel for="Celular" value="Celular:" />
+                                        <p:inputText id="Celular" />
+
+                                        <p:outputLabel for="Cedula" value="Cédula:" />
+                                        <p:inputText id="Cedula" value="#{examenMB.examenSelect.cedula}"
+                                                     readonly="#{facesContext.renderResponse}"/>
+
+                                        <p:outputLabel for="Fecha_Nac" value="Fecha de Nacimiento:" />
+                                        <p:calendar id="Fecha_Nac" value="#{examenMB.examenSelect.fechaNacimiento}" required="true" requiredMessage="Debe Ingresar Fecha De Nacimiento"
+                                                    readonly="#{facesContext.renderResponse}" pattern="dd/MM/yyyy">
+                                            <!-- <f:convertDateTime pattern="dd-MM-yyyy" />-->
+                                        </p:calendar>
+
+                                        <h:outputText value="Nivel Académico:"/>
+                                        <p:selectOneMenu id="Escolaridad" value="#{examenMB.cat_esc}" converter="myObjectConverter" style="width:160px"
+                                                         required="true" requiredMessage="Debe Seleccionar La Escolaridad" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{catalogoMB.listaEscolaridad}" var="escolaridad" 
+                                                           itemLabel="#{escolaridad.valor}"
+                                                           itemValue="#{escolaridad}"/>
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Ocupación:"/>
+                                        <p:selectOneMenu id="Ocupacion" value="#{examenMB.catalogos}" converter="myObjectConverter" style="width:160px"
+                                                         required="true" requiredMessage="Debe Seleccionar La Ocupación" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{catalogoMB.listaOcupaciones}" var="ocupacion" 
+                                                           itemLabel="#{ocupacion.valor}"
+                                                           itemValue="#{ocupacion}" />
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Etnia:"/>
+                                        <p:selectOneMenu id="Etnia" panelStyle="width:180px" 
+                                                         effect="fade" value="#{examenMB.valor_Etnia}" converter="myObjectConverter" style="width:160px"
+                                                         required="true" requiredMessage="Debe Seleccionar La Etnia" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{catalogoMB.listaEtnias}" var="etnia"  itemLabel="#{etnia.valor}" 
+                                                           itemValue="#{etnia}" />
+
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Procedencia:"/>
+                                        <p:selectOneMenu id="Procedencia" value="#{examenMB.valor_Procedencia}" converter="myObjectConverter" style="width:160px" 
+                                                         required="true" requiredMessage="Debe Seleccionar La Procedencia" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{catalogoMB.listaProcedencia}" var="procedencia" itemLabel="#{procedencia.valor}"
+                                                           itemValue="#{procedencia}" />
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Departamento:"/>
+                                        <p:selectOneMenu id="Departamento" value="#{examenMB.departamentoSelect}" converter="DivisionPolConverter" style="width:160px" 
+                                                         required="true" requiredMessage="Debe Seleccionar La Procedencia" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.listaDepartamentos}" var="departamentos" itemLabel="#{departamentos.nombre}"
+                                                           itemValue="#{departamentos}" />
+                                            <p:ajax  update="Municipios" listener="#{examenMB.pasarvaloresnull()}"/>
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Municipios:"/>
+                                        <p:selectOneMenu id="Municipios" value="#{examenMB.municipioSelect}" converter="DivisionPolConverter" style="width:160px" 
+                                                         required="true" requiredMessage="Debe Seleccionar La Procedencia" filter="true" 
+                                                         filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.listaMunicipios}" var="municipios" itemLabel="#{municipios.nombre}"
+                                                           itemValue="#{municipios}" />
+                                            <p:ajax  update="Comarca" listener="#{examenMB.pasarvaloresnull2()}"/>
+                                        </p:selectOneMenu>
+
+                                        <h:outputText value="Barrio/Comarca:"/>
+                                        <p:selectOneMenu id="Comarca" value="#{examenMB.examenSelect.idComunidadResidencia}" converter="converterComunidad" style="width:160px" 
+                                                         filter="true" filterMatchMode="startsWith" editable="false">
+                                            <f:selectItem itemLabel="Escoje"/>
+                                            <f:selectItems value="#{examenMB.comunidades}" var="comunidades" 
+                                                           itemLabel="#{comunidades.nombre}" itemValue="#{comunidades}" />
+                                            <p:ajax  update="Comarca" listener="#{examenMB.put()}"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel for="num_exp" value="# Expediente:" />
+                                        <p:inputText id="num_exp" value="#{examenMB.examenSelect.numeroExpediente}" disabled="#{!examenMB.habilitarNumExpediente}"/>
+
+                                        <p:outputLabel for="num_expT" value="Expediente Temporal:" />
+                                        <p:inputText id="num_expT" value="#{examenMB.examenSelect.numeroExpedienteTemp}" disabled="#{!examenMB.habilitarExpedienteTemp}"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="4" cellpadding="10">
+                                        <p:outputLabel for="Direccion" value="Dirección:" />
+                                        <p:inputTextarea cols="100" rows="3" maxlength="300"  id="Direccion" 
+                                                         value="#{examenMB.examenSelect.direccionActual}"
+                                                         disabled="#{!examenMB.habilitarDireccion}" style="width: 700px; text-transform:uppercase;" 
+                                                         onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+
+                                        <p:selectBooleanCheckbox value="#{examenMB.valordeChecbox}">
+                                            <p:ajax update="Direccion" listener="#{examenMB.HabilitaDireccion()}"/>
+                                        </p:selectBooleanCheckbox>
+                                        <h:outputText value="Nueva Dirección" />
+                                    </h:panelGrid>
+
+
+                                </p:panel>
+                                
+
+
+</ui:composition>

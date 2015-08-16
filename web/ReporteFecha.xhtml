@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/main_template.xhtml">
+            <ui:define name="content"> 
+                <h:form>  
+                    <p:growl id="messages"/>
+                    <p:menubar>
+                        <p:submenu label="Realizar Examenes" icon="ui-icon-contact">
+                            <p:menuitem value="Papanicoloau" url="inicio.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Catalogos" icon="ui-icon-contact">
+                            <p:menuitem value="Categorias" url="Categorias.xhtml" icon="ui-icon-newwin" />
+                            <p:separator />
+                            <p:menuitem value="Sub Categorias" url="SubCategoria.xhtml" icon="ui-icon-newwin" />
+                            <p:separator />
+                            <p:menuitem value="Valores" url="Valores.xhtml" icon="ui-icon-newwin" />
+                        </p:submenu>
+                        <p:submenu label="Reportes" icon="ui-icon-contact">
+                            <p:menuitem value="Reporte fecha Muestra" url="ReporteFecha.xhtml"/>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>  
+
+                <h:form id="form">
+                    <p:tab title="Reporte" titleStyle="">
+                        <p:panel id="panel">
+                            <p:outputLabel for="fechaI" value="Fecha Inicio" />
+                            <p:calendar id="fechaI" value="#{controladorReporte.fechaReporteRango1}" required="true"
+                                        requiredMessage="Debe Ingresar rango de fechas para generar reportes"
+                                        pattern="dd/MM/yyyy">
+                                <!-- <f:convertDateTime pattern="dd-MM-yyyy" />-->
+                            </p:calendar>  
+                            <p:outputLabel for="fechaF" value="Fecha Final" />
+                            <p:calendar id="fechaF" value="#{controladorReporte.fechaReporteRango2}"
+                                        required="true" requiredMessage="Debe Ingresar rango de fechas para generar reportes"
+                                        pattern="dd/MM/yyyy">
+                                <!-- <f:convertDateTime pattern="dd-MM-yyyy" />-->
+                            </p:calendar>  
+                            <p:commandButton id="buscar" value="Generar Reporte" actionListener="#{controladorReporte.reporte()}" update="tbPersona"/>    
+                            <h:commandLink>
+                                <h:graphicImage value="/resources/imagenes/excelmvc.png" height="30"/>
+
+                                <p:dataExporter type="xls" target="tbPersona" fileName="cars"/>
+                            </h:commandLink>
+                        </p:panel>
+
+                        <p:dataTable id="tbPersona" style="width: 400"  var="reporte" value="#{controladorReporte.lista}" paginator="true" rows="10"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                     rowsPerPageTemplate="5,10,15" lazy="true" emptyMessage="No hay Datos en La Base de Datos" selectionMode="single"  rowKey="#{reporte.fxexuPK}">
+
+                            <p:column headerText="AQUI COMIENZA">
+
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id examen" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.idExamen}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fuma" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(15).getIdValor().getValor()}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Toma" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(9).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aspercto Clinico" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(24).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Secrecion" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(5).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="SubCategoria Frotis" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(28).getIdSubcategoria().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Procedencia de la muestra" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(27).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Recomendaciones" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(29).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha toma muestra" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getFxexuList().get(0).getValor()}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha Lectura" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getFxexuList().get(1).getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha entrega resultado" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getFxexuList().get(2).getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sucategoria Resultado" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(30).getIdSubcategoria().getValor()}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Resultado" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(30).getIdValor().getValor()}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Metodo Anticonceptivo" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getCatalogoList().get(3).getValor()}" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Calidad Frotis" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(28).getIdValor().getValor()}" />
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="OCUPACION" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getCatalogoList().get(0).getValor()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ETNIA" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getCatalogoList().get(4).getValor()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="PROCEDENCIA" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.catalogoList.get(2).getValor()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FECHA_NACIMIENTO" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.fechaNacimiento}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="EDAD" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.edad}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nivel ACADEMICO" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getCatalogoList().get(1).getValor()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Comunidad Residencia" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getIdComunidadResidencia().getNombre()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="TipoExamen" />
+                                </f:facet>
+                                <h:outputText value="PAP"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cesarias" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(12).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="IVSA" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(10).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FUR" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(13).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Abortos" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(16).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Gestas" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(17).getDescripcion()}"/>
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Partos" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(17).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Unidad Ocurrencia" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getUnidadesXExamenList().get(0).getUnidadId().getNombre()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Unidad Residencia" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getUnidadesXExamenList().get(1).getUnidadId().getNombre()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Orden" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.triaje}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Semana Gestacion" />
+                                </f:facet>
+                                <h:outputText value="#{reporte.examen.getResultadoExamenList().get(11).getDescripcion()}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Silais Residencia"/>
+                                </f:facet>
+                                <h:outputText value="#{controladorReporte.listaSilaisResidencia.get(0).getNombre()}"/>
+                            </p:column>
+
+                            <p:column headerText="AQUI TERMINA"/>
+                            <p:column headerText="AQUI TERMINA">
+
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>  
+                </h:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

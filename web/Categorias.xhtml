@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+   <body>
+        <ui:composition template="./templates/main_template.xhtml">
+            <ui:define name="content"> 
+                <h:form>  
+                    <p:growl id="messages"/>
+                    <p:menubar>
+                        <p:submenu label="Realizar Examenes" icon="ui-icon-contact">
+                            <p:menuitem value="Papanicoloau" url="inicio.xhtml"/>
+                        </p:submenu>
+
+                        <p:submenu label="Catalogos" icon="ui-icon-contact">
+                            <p:menuitem value="Categorias" url="Categorias.xhtml" icon="ui-icon-newwin" />
+                            <p:separator />
+                            <p:menuitem value="Sub Categorias" url="SubCategoria.xhtml" icon="ui-icon-newwin" />
+                            <p:separator />
+                            <p:menuitem value="Valores" url="Valores.xhtml" icon="ui-icon-newwin" />
+                        </p:submenu>
+                         <p:submenu label="Reportes" icon="ui-icon-contact">
+                            <p:menuitem value="Reporte fecha Muestra" url="ReporteFecha.xhtml"/>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>  
+                <h:form id="form">
+                    <p:tabView id="vista">
+                        <p:tab id="c" title="Categoria">
+
+                        </p:tab>
+
+                    </p:tabView>
+
+                    <p:growl id="RegionGrowl" showDetail="false" autoUpdate="true" life="4000"/>
+                    <p:dataTable id="regionesTables" var="subcategoria" value="#{categoriaMB.listaCategoria}" rowKey="#{subcategoria.idCategoria}"
+                                 selection="#{categoriaMB.seleccion}" selectionMode="single"
+                                 paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:ajax id="onRowSelected" event="rowSelect" listener="#{categoriaMB.onRowSelect}"   
+                                update=":form:regionesTables :form:cmbModificar :form:regionesTables:cmbModificar1"/>
+                        <p:ajax id="onRowUnSelected" event="rowUnselect"/>
+
+                        <p:column headerText="cod" style="width: 20px">
+                            #{subcategoria.idCategoria}
+                        </p:column>
+                        <p:column headerText="Subcategoria" filterBy="#{subcategoria.descripcion}">
+                            #{subcategoria.descripcion}
+                        </p:column>
+                        <p:column style="width: 20px">
+                            <p:commandButton id="cmbModificar1" process="@this"  update=":form:regionDlg" icon="ui-icon-pencil" oncomplete="regionDialog.show()" disabled="#{categoriaMB.seleccion==null}">
+                                <f:setPropertyActionListener value="#{subcategoria}" target="#{categoriaMB.seleccion}" />
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+
+
+                    <p:panel id="regionesBotonPanel">
+                        <p:commandButton id="cmbnuevo" value="Agregar" process="@this" icon="ui-icon-document" title="Agregar"  oncomplete="regionDialog.show()" actionListener="#{categoriaMB.nueva()}" update=":form:regionDlg"/>
+                        <p:commandButton id="cmbModificar" value="Modificar" process="@this"  update=":form:regionDlg" icon="ui-icon-pencil" oncomplete="regionDialog.show()" disabled="#{categoriaMB.seleccion==null}"/>
+                   </p:panel>
+
+                    <p:dialog id="regionDlg" header="Categorias" widgetVar="regionDialog" resizable="false" modal="true" closable="false">
+                        <p:panel>
+                             <p:messages id="messages2" showDetail="true" autoUpdate="true" closable="true" />
+                            <h:panelGrid columns="2" style="width: 450px ; height: 50px" >
+                                <p:outputLabel for="IdCategoria" value="cod Categoria" />
+                                <p:inputText id="IdCategoria" title="RegionName" value="#{categoriaMB.e.idCategoria}"  size="60" />
+
+                                <p:outputLabel for="Categoria" value="Nombre Categoria" />
+                                <p:inputText id="Categoria" title="RegionName" value="#{categoriaMB.e.descripcion}"  size="60" />
+                                
+                                <p:outputLabel for="cmbVal" value="Tipo de Examen " />
+                                <p:selectOneMenu id="cmbVal" value="#{categoriaMB.catalogos}" converter="myObjectConverter" style="width:250px"
+                                                 filter="true" filterMatchMode="startsWith" editable="false">
+                                    <f:selectItem itemLabel="Escoje"/>
+                                    <f:selectItems value="#{catalogoMB.listaTiposExamen}" var="catalogo" itemLabel="#{catalogo.valor}" itemValue="#{catalogo}" />
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:panel>
+                            <p:commandButton value="Guardar" icon="ui-icon-document" actionListener="#{categoriaMB.guardarOactualizar()}" update=":form:regionesTables :form:cmbModificar"/>
+                            <p:commandButton value="Salir" process="@this" icon="ui-icon ui-icon-pencil" actionListener="#{categoriaMB.onClickSalir()}" oncomplete="regionDialog.hide();" update=":form:regionesTables :form:cmbModificar :form:regionesTables:cmbModificar1"/>
+                        </p:panel>
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
