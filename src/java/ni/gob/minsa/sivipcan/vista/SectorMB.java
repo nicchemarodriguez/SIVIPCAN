@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import ni.gob.minsa.modelo.poblacion.DivisionPolitica;
 import ni.gob.minsa.modelo.poblacion.Sector;
 import ni.gob.minsa.sivipcan.controlador.SectorEJB;
 
@@ -55,6 +56,10 @@ public class SectorMB implements Serializable {
 
     public void setListaSector(List<Sector> listaSector) {
         this.listaSector = listaSector;
+    }
+    
+    public void buscarSectores(String nunicipioSelect){
+    listaSector = sectorEJB.buscarSectoresXmunicipio(nunicipioSelect);
     }
     
 }

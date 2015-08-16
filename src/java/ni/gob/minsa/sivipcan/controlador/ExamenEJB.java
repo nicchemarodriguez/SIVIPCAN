@@ -1761,15 +1761,6 @@ public class ExamenEJB {
      
      
      
-     
-     public List<DivisionPolitica>buscardepartamentos(Long id) {
-        Query query = em.createNamedQuery("DivisionPolitica.findByDivisionpoliticaId");
-        query.setParameter("divisionpoliticaId", id);
-        return query.getResultList();
-    }
-     
-     
-     
      public Sector BuscarSectorPorComunidad(String codigosector){
      
           Query query = em.createNamedQuery("Sector.findByCodigo");
