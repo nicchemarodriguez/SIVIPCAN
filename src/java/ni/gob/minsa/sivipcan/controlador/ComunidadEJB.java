@@ -27,5 +27,12 @@ public class ComunidadEJB {
         return query.getResultList();
 
     }
+    
+    public List<Comunidad> buscarComunidades(long codSector) {
+        Query query = em.createNamedQuery("Comunidad.findBySector");
+        query.setParameter("sector", codSector);
+        return query.getResultList();
+
+    }
 
 }

@@ -113,8 +113,8 @@ public class ExamenMB implements Serializable {
     private DivisionPolitica municipioTomaDm;
 
     //codigo angelo residencia
-    private List<DivisionPolitica> listaDepartamentos = new ArrayList<DivisionPolitica>();
-    private List<DivisionPolitica> listaMunicipios = new ArrayList<DivisionPolitica>();
+    //private List<DivisionPolitica> listaDepartamentos = new ArrayList<DivisionPolitica>();
+//    private List<DivisionPolitica> listaMunicipios = new ArrayList<DivisionPolitica>();
     private DivisionPolitica departamentoSelect;
     private DivisionPolitica municipioSelect;
     private List<Sector> sectores = new ArrayList<Sector>();
@@ -221,6 +221,16 @@ public class ExamenMB implements Serializable {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{catalogoMB}", CatalogoMB.class);
+    
+    private DivisionPoliticaMB DivisionPoliticaMB = (DivisionPoliticaMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{divisionPoliticaMB}", DivisionPoliticaMB.class);
+    
+    private ComunidadMB ComunidadMB = (ComunidadMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{comunidadMB}", ComunidadMB.class);
 
     //------
     private EntidadAdtvaMB entidadAdtvaMB = (EntidadAdtvaMB) FacesContext.getCurrentInstance()
@@ -547,81 +557,41 @@ public class ExamenMB implements Serializable {
         this.sectorSelect = sectorSelect;
     }
 
-    public List<DivisionPolitica> getListaMunicipios() {
-
-        if (departamentoSelect != null) {
-            if (departamentoSelect.getDivisionPoliticaList() != null) {
-                listaMunicipios.clear();
-                listaMunicipios.addAll(this.departamentoSelect.getDivisionPoliticaList());
-
-            }
-        }
-        return listaMunicipios;
-    }
-
-    public void setListaMunicipios(List<DivisionPolitica> listaMunicipios) {
-        this.listaMunicipios = listaMunicipios;
-    }
-
-    public List<DivisionPolitica> getListaDepartamentos() {
-
-        for (int i = 1; i <= 17; i++) {
-            Long m = new Long(i);
-            listaDepartamentos.add((DivisionPolitica) ExamenEJB.buscardepartamentos(m).get(0));
-        }
-        return listaDepartamentos;
-    }
-
-    public void setListaDepartamentos(List<DivisionPolitica> listaDepartamentos) {
-        this.listaDepartamentos = listaDepartamentos;
-    }
-
     public DivisionPolitica getDepartamentoSelect() {
 
         if (this.getMunicipioSelect() != null) {
-
             departamentoSelect = this.municipioSelect.getDependencia();
-
         }
 
         return departamentoSelect;
     }
 
     public void setDepartamentoSelect(DivisionPolitica departamentoSelect) {
+        DivisionPoliticaMB.setDepartametoSelect(departamentoSelect);
         this.departamentoSelect = departamentoSelect;
     }
 
     public DivisionPolitica getMunicipioSelect() {
 
         if (this.getSectorSelect() != null) {
-
             municipioSelect = ExamenEJB.BuscarMunicipioPorSector(this.sectorSelect.getMunicipio());
         }
-
         return municipioSelect;
     }
 
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
+        ComunidadMB.setMunicipioSelect(municipioSelect);
         this.municipioSelect = municipioSelect;
     }
 
-    public void put() {
-        System.out.println(this.ExamenSelect.getIdComunidadResidencia().getNombre());
 
-    }
-
-    public void pasarvaloresnull2() {
-        Comunidad co = new Comunidad();
-        this.ExamenSelect.setIdComunidadResidencia(co);
-    }
-
-    public void pasarvaloresnull() {
-
-        DivisionPolitica m = new DivisionPolitica();
-
-        this.setMunicipioSelect(m);
-
-    }
+//    public void cargarBarrioComarca() {
+//
+//        DivisionPolitica m = new DivisionPolitica();
+//
+//        this.setMunicipioSelect(m);
+//
+//    }
 
     public List<Comunidad> getComunidades() {
 
@@ -3213,9 +3183,9 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             this.Valor_Etnia = null;
             this.valor_Procedencia = null;
             this.departamentoSelect = null;
-            listaDepartamentos.clear();
+            //listaDepartamentos.clear();
             this.municipioSelect = null;
-            listaMunicipios.clear();
+//            listaMunicipios.clear();
             sectores.clear();
             this.sectorSelect = null;
 

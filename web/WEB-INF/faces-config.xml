@@ -43,4 +43,9 @@
         <managed-bean-class>ni.gob.minsa.sivipcan.vista.ValoresMB</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>divisionPoliticaMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.DivisionPoliticaMB</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
