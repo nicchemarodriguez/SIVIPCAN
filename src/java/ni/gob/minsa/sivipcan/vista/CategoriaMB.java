@@ -11,21 +11,27 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import ni.gob.minsa.modelo.poblacion.Catalogos;
 import ni.gob.minsa.sivipcan.controlador.CategoriaEJB;
 import ni.gob.minsa.sivipcan.modelo.Categoria;
 import ni.gob.minsa.sivipcan.modelo.SubCategoria;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.model.DualListModel;
+
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class CategoriaMB implements Serializable {
 
+    
+    /**
+     * agregar, Actualizar,Buscar,Eliminar categorias
+     *
+     */
+    
     @EJB
-    private CategoriaEJB categEJB;
+    private CategoriaEJB CategoriaEJB;
     private List<Categoria> listaCategoria = new ArrayList<Categoria>();
     private Categoria e = new Categoria();
     private Categoria catego;
@@ -39,20 +45,178 @@ public class CategoriaMB implements Serializable {
                     "#{suBcategoriaMB}", SubCategoriaMB.class);
 
     private Catalogos catalogos;
-    private DualListModel<SubCategoria> modeloLista;
+    
+    
+    
+    /**
+     *Cargar,Buscar, Asignar categorias para todos los examenes 
+     */
+    
+    
+    
+      private List<Categoria> Categorias = new ArrayList<Categoria>();
+      private Categoria Antecedentes;
+         private List<Categoria> listacategoriasObservacion = new ArrayList<Categoria>();
+           private Categoria categoriaObservacion;
+        private Categoria categoria;
+     private Categoria categoriaResultado;
+    
+ 
 
     public CategoriaMB() {
     }
 
-    public CategoriaMB(CategoriaEJB categEJB, Categoria Seleccion) {
-        this.categEJB = categEJB;
+    public CategoriaMB(CategoriaEJB CategoriaEJB, Categoria catego, SubCategoria subcate, Categoria Seleccion, Catalogos catalogos, Categoria Antecedentes, Categoria categoriaObservacion, Categoria categoria, Categoria categoriaResultado) {
+        this.CategoriaEJB = CategoriaEJB;
+        this.catego = catego;
+        this.subcate = subcate;
         this.Seleccion = Seleccion;
-
+        this.catalogos = catalogos;
+        this.Antecedentes = Antecedentes;
+        this.categoriaObservacion = categoriaObservacion;
+        this.categoria = categoria;
+        this.categoriaResultado = categoriaResultado;
+        
     }
 
-    public void setModeloLista(DualListModel<SubCategoria> modeloLista) {
-        this.modeloLista = modeloLista;
+  
+   
+    
+    
+    
+    
+    /**
+     * 
+     * get y set 
+     * @return 
+     */
+    
+    
+    
+       public List<Categoria> getCategorias() {
+        return Categorias;
     }
+
+    public void setCategorias(List<Categoria> Categorias) {
+        this.Categorias = Categorias;
+    }
+
+    
+    public Categoria getAntecedentes() {
+        return Antecedentes;
+    }
+
+    public void setAntecedentes(Categoria Antecedentes) {
+        this.Antecedentes = Antecedentes;
+    }
+
+    
+    
+    public Categoria getCategoriaObservacion() {
+        
+      
+        return categoriaObservacion;
+    }
+
+    public void setCategoriaObservacion(Categoria categoriaObservacion) {
+        this.categoriaObservacion = categoriaObservacion;
+    }
+
+    
+    
+    
+    
+     public List<Categoria> getListacategoriasObservacion() {
+      
+        return listacategoriasObservacion;
+    }
+
+    public void setListacategoriasObservacion(List<Categoria> listacategoriasObservacion) {
+        this.listacategoriasObservacion = listacategoriasObservacion;
+    }
+
+    
+      public Categoria getCategoria() {
+        
+        if (!CategoriaEJB.buscarSubCategoriaFrotis().isEmpty()) {
+            categoria = CategoriaEJB.buscarSubCategoriaFrotis().get(0);
+        }
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Categoria getCategoriaResultado() {
+        categoriaResultado = CategoriaEJB.buscarSubCategoriaResultado().get(0);
+        return categoriaResultado;
+    }
+      public void setCategoriaResultado(Categoria categoriaResultado) {
+        this.categoriaResultado = categoriaResultado;
+    }
+
+    
+    
+    
+    
+    
+    
+    /**
+     * Cargar todas las variables
+     * 
+     */
+    public void cargarVariablesCategorias(){
+        //categorias
+      Categorias = CategoriaEJB.CargarTodasLasCategorias();
+    //lista de categorias Observacion
+        listacategoriasObservacion = CategoriaEJB.buscarSubCategoriaObservacion();
+    // AntGinec
+            for (int i = 0; this.getCategorias().size() > i; i++) {
+
+                if (this.getCategorias().get(i).getIdCategoria() == 3) {
+                    Antecedentes = this.getCategorias().get(i);
+                   
+                }
+            }
+        //categorias observaciones
+              for (int i = 0; this.getListacategoriasObservacion().size() > i; i++) {
+
+            if (this.getListacategoriasObservacion().get(i).getIdCategoria() == 8) {
+                categoriaObservacion = this.getListacategoriasObservacion().get(i);
+            }
+        }
+            
+    
+              
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 
     public Categoria getCatego() {
         return catego;
@@ -80,16 +244,18 @@ public class CategoriaMB implements Serializable {
         this.listacmbSubcatego = listacmbSubcatego;
     }
 
-    public CategoriaEJB getSubcategEJB() {
-        return categEJB;
+    public CategoriaEJB getCategoriaEJB() {
+        return CategoriaEJB;
     }
 
-    public void setCategEJB(CategoriaEJB subcategEJB) {
-        this.categEJB = subcategEJB;
+    public void setCategoriaEJB(CategoriaEJB CategoriaEJB) {
+        this.CategoriaEJB = CategoriaEJB;
     }
+
+   
 
     public List<Categoria> getListaCategoria() {
-        listaCategoria = categEJB.buscarTodasLasSubcategorias();
+        listaCategoria = CategoriaEJB.buscarTodasLasSubcategorias();
         return listaCategoria;
     }
 
@@ -131,11 +297,11 @@ public class CategoriaMB implements Serializable {
 
             try {
                 if (e == null) {
-                    e = categEJB.guardar(e);
+                    e = CategoriaEJB.guardar(e);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "El Registro ha Sido Guardado Exitosamente.", ""));
                 } else if (e != null) {
-                    e = categEJB.actualizar(e);
+                    e = CategoriaEJB.actualizar(e);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "El Registro ha Sido Actualizado Exitosamente.", ""));
                 }
@@ -151,7 +317,7 @@ public class CategoriaMB implements Serializable {
 
     public void Elminiar() {
         try {
-            categEJB.eliminar(e);
+            CategoriaEJB.eliminar(e);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "El registro ha sido eliminado exitosamente.", ""));
             Seleccion = null;
@@ -193,5 +359,68 @@ public class CategoriaMB implements Serializable {
         e.setCatalogos(catalogos);
         this.catalogos = catalogos;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

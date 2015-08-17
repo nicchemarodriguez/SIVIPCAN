@@ -45,4 +45,29 @@ public class CategoriaEJB {
     public void guardarIntermedia(Categoria cate) {
         em.persist(cate);
     }
+
+   
+    public List<Categoria> CargarTodasLasCategorias() {
+        Query query = em.createNamedQuery("Categoria.findAll");
+        return query.getResultList();
+
+    }
+
+    public List<Categoria> buscarSubCategoriaFrotis() {
+        Query query = em.createNamedQuery("Categoria.findByIdCategoria");
+        query.setParameter("idCategoria", 5);
+        return query.getResultList();
+    }
+
+    public List<Categoria> buscarSubCategoriaObservacion() {
+        Query query = em.createNamedQuery("Categoria.findAll");
+        return query.getResultList();
+    }
+
+    public List<Categoria> buscarSubCategoriaResultado() {
+        Query query = em.createNamedQuery("Categoria.findByIdCategoria");
+        query.setParameter("idCategoria", 6);
+        return query.getResultList();
+    }
+
 }

@@ -60,7 +60,7 @@ public class ExamenMB implements Serializable {
     private boolean skip;
 
     int n = 0;
-    
+
     private String Estado;
     private Date Fecha_Toma_Muestra_mostrar;
     private String ResultadoFinal;
@@ -77,31 +77,15 @@ public class ExamenMB implements Serializable {
     private Catalogos valor_Procedencia;
     private List<Catalogos> catlista = new ArrayList<Catalogos>();
     private Examen ExamenSelect = new Examen();
-    
+
     private List<Examen> listaExamen = new ArrayList<Examen>();
     private List<Examen> listaExamenPendiente = new ArrayList<Examen>();
     private List<Examen> listaExamenCompleto = new ArrayList<Examen>();
     private List<Examen> listaSRExamen = new ArrayList<Examen>();
-    
-    private Categoria categoria = new Categoria();
-    private Categoria categoriaResultado;
-    private SubCategoria subCategoriaFrotis = new SubCategoria();
-    private SubCategoria subCategoriaResultado = new SubCategoria();
-    private List<SubCategoria> listaSubCategoria = new ArrayList<SubCategoria>();
-    private Valores valor = new Valores();
-    private List<Valores> listaValores = new ArrayList<Valores>();
-    private SubCategoria SubCategoriaFuma;
-    private SubCategoria SubCategoriaToma;
-    private SubCategoria SubCategoriaEmbarazoActual;
-    private Valores valorFuma = new Valores();
-    private Valores valorToma = new Valores();
-    private Valores valorEmbarazoActual = new Valores();
-    private List<Valores> listaValoresFrotis = new ArrayList<Valores>();
-    private List<Valores> listaValoresResultado = new ArrayList<Valores>();
-    private Valores valorFrotis;
-    private Valores valorResultado;
-//codigo angelo unidades
 
+    private Categoria categoria = new Categoria();
+
+//codigo angelo unidades
     private List<UnidadesXExamen> unidadesExamen = new ArrayList<UnidadesXExamen>();
     private Unidad unidadTomaMuestra;
     private UnidadesXExamen unidadOcurrencia = new UnidadesXExamen();
@@ -121,7 +105,7 @@ public class ExamenMB implements Serializable {
     private List<Comunidad> comunidades = new ArrayList<Comunidad>();
     private Comunidad comunidadSelect;
     private Sector sectorSelect;
-    
+
     /**
      * Obtener unidades de salud y municipio en la pestaña resultado
      */
@@ -132,25 +116,13 @@ public class ExamenMB implements Serializable {
     private DivisionPolitica municipioTomaResultado;
 
 //Codigo Angelo
-    private List<Categoria> Categorias = new ArrayList<Categoria>();
     private List<ResultadoExamen> resultadoExamen = new ArrayList<ResultadoExamen>();
     private List<ResultadoExamen> listaresultadosExamen = new ArrayList<ResultadoExamen>();
-    private Categoria Antecedentes;
-    private SubCategoria AntecedentesAbiertos;
-    private SubCategoria Fuma;
-    private SubCategoria Toma;
-    private SubCategoria EmbarazoActual;
-    private Valores VarFuma;
-    private Valores VarToma;
-    private Valores VarEmbarazoActual;
-    private Valores Gestas;
-    private Valores Partos;
-    private Valores Cesareaa;
-    private Valores IVSA;
-    private Valores semanaGestas;
-    private Valores menarca;
-    private Valores abortos;
-    private Valores FURV;
+
+    //--
+    private Valores valorFuma = new Valores();
+    private Valores valorToma = new Valores();
+    private Valores valorEmbarazoActual = new Valores();
     private int Gestasi;
     private int Abortosi;
     private int Cesareasi;
@@ -159,9 +131,50 @@ public class ExamenMB implements Serializable {
     private int semanaDeGestasi;
     private int partosi;
     private Date FUR;
+    private Valores valorProcedencia;
+    private Valores valorAspecto;
+    private Valores valorSecrecion;
+    private SubCategoria subCategoriaFrotis = new SubCategoria();
+    private Valores valorFrotis;
+    private SubCategoria subCategoriaResultado = new SubCategoria();
+    private Valores valorResultado;
+   private CategoriaMB CategoriaMB = (CategoriaMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{categoriaMB}", CategoriaMB.class);
+  private SubCategoriaMB SubCategoriaMB= (SubCategoriaMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{subCategoriaMB}", SubCategoriaMB.class);
+    private ValoresMB ValoresMB= (ValoresMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{valoresMB}", ValoresMB.class);;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//--
 
-  private SisMedicos medicoSelect = new SisMedicos();
-  
+    private SisMedicos medicoSelect = new SisMedicos();
+
     private ResultadoExamen resultadExamen1 = new ResultadoExamen();
     private ResultadoExamen resultadExamen2 = new ResultadoExamen();
     private ResultadoExamen resultadExamen3 = new ResultadoExamen();
@@ -204,12 +217,6 @@ public class ExamenMB implements Serializable {
     private boolean ValordeChecbox;
     private boolean nuevoPaciente;
 
-    private SubCategoria Procedencia;
-    private SubCategoria AspectoClinico;
-    private SubCategoria Secrecion;
-    private Valores valorProcedencia;
-    private Valores valorAspecto;
-    private Valores valorSecrecion;
     //declaraciones para fecha
     private List<Fxexu> fechalista = new ArrayList<Fxexu>();
     private FechaMB FechaMB = (FechaMB) FacesContext.getCurrentInstance()
@@ -246,10 +253,8 @@ public class ExamenMB implements Serializable {
     private SisPersonas Persona;
     private List<SisPersonas> listaPersonas = new ArrayList<SisPersonas>();
 
-    private List<Categoria> listacategoriasObservacion = new ArrayList<Categoria>();
     private String datosAbiertos_Recomendaciones;
-    private Categoria categoriaObservacion;
-    private SubCategoria observacion;
+
     private Valores valorObservacion;
 
     public ExamenMB() {
@@ -263,7 +268,6 @@ public class ExamenMB implements Serializable {
         this.medicoSelect = medicoSelect;
     }
 
-    
     public ExamenMB(ExamenEJB ExamenEJB, Date fechaNac, boolean skip, String numeroCel, String cedula, Examen examen2, Catalogos catalogos, Catalogos cat_esc, Catalogos Valor_Etnia, Catalogos valor_Procedencia, Categoria categoriaResultado, SubCategoria SubCategoriaFuma, SubCategoria SubCategoriaToma, SubCategoria SubCategoriaEmbarazoActual, Valores valorFuma, Valores valorToma, Valores valorEmbarazoActual, Valores valorFrotis, Valores valorResultado, Categoria Antecedentes, SubCategoria AntecedentesAbiertos, SubCategoria Fuma, SubCategoria Toma, SubCategoria EmbarazoActual, Valores VarFuma, Valores VarToma, Valores VarEmbarazoActual, Valores Gestas, Valores Partos, Valores Cesareaa, Valores IVSA, Valores semanaGestas, Valores menarca, Valores abortos, Valores FURV, int Gestasi, int Abortosi, int Cesareasi, int IVSAi, int Menarcai, int semanaDeGestasi, int partosi, Date FUR, boolean ValordeChecbox, SubCategoria Procedencia, SubCategoria AspectoClinico, SubCategoria Secrecion, Valores valorProcedencia, Valores valorAspecto, Valores valorSecrecion, String nombreCompleto, String[] a, Date fecha, Date Fecha_Metodo_Anticonceptivo, Date Fecha_VPH, Date Fecha_Biopsia, Date fecha_Lectura, Date fecha_Entrega_Usuario, Date Fecha_PosTratamiento, Date Fecha_Seguimiento, Date fecha_IVAA, SisPersonas Persona, SubCategoria observacion, Valores valorObservacion) {
         this.ExamenEJB = ExamenEJB;
         this.fechaNac = fechaNac;
@@ -275,31 +279,7 @@ public class ExamenMB implements Serializable {
         this.cat_esc = cat_esc;
         this.Valor_Etnia = Valor_Etnia;
         this.valor_Procedencia = valor_Procedencia;
-        this.categoriaResultado = categoriaResultado;
-        this.SubCategoriaFuma = SubCategoriaFuma;
-        this.SubCategoriaToma = SubCategoriaToma;
-        this.SubCategoriaEmbarazoActual = SubCategoriaEmbarazoActual;
-        this.valorFuma = valorFuma;
-        this.valorToma = valorToma;
-        this.valorEmbarazoActual = valorEmbarazoActual;
-        this.valorFrotis = valorFrotis;
-        this.valorResultado = valorResultado;
-        this.Antecedentes = Antecedentes;
-        this.AntecedentesAbiertos = AntecedentesAbiertos;
-        this.Fuma = Fuma;
-        this.Toma = Toma;
-        this.EmbarazoActual = EmbarazoActual;
-        this.VarFuma = VarFuma;
-        this.VarToma = VarToma;
-        this.VarEmbarazoActual = VarEmbarazoActual;
-        this.Gestas = Gestas;
-        this.Partos = Partos;
-        this.Cesareaa = Cesareaa;
-        this.IVSA = IVSA;
-        this.semanaGestas = semanaGestas;
-        this.menarca = menarca;
-        this.abortos = abortos;
-        this.FURV = FURV;
+
         this.Gestasi = Gestasi;
         this.Abortosi = Abortosi;
         this.Cesareasi = Cesareasi;
@@ -309,12 +289,7 @@ public class ExamenMB implements Serializable {
         this.partosi = partosi;
         this.FUR = FUR;
         this.ValordeChecbox = ValordeChecbox;
-        this.Procedencia = Procedencia;
-        this.AspectoClinico = AspectoClinico;
-        this.Secrecion = Secrecion;
-        this.valorProcedencia = valorProcedencia;
-        this.valorAspecto = valorAspecto;
-        this.valorSecrecion = valorSecrecion;
+
         this.nombreCompleto = nombreCompleto;
         this.a = a;
         this.fecha = fecha;
@@ -328,11 +303,116 @@ public class ExamenMB implements Serializable {
         this.fecha_IVAA = fecha_IVAA;
         this.Persona = Persona;
 
-        this.observacion = observacion;
         this.valorObservacion = valorObservacion;
     }
 
-   public Catalogos getMetodoAnticonceptivo() {
+    //--
+    public Valores getValorFuma() {
+        return valorFuma;
+    }
+
+    public void setValorFuma(Valores valorFuma) {
+        this.valorFuma = valorFuma;
+    }
+
+    public Valores getValorToma() {
+        return valorToma;
+    }
+
+    public void setValorToma(Valores valorToma) {
+        this.valorToma = valorToma;
+    }
+
+    public Valores getValorEmbarazoActual() {
+        return valorEmbarazoActual;
+    }
+
+    public void setValorEmbarazoActual(Valores valorEmbarazoActual) {
+        this.valorEmbarazoActual = valorEmbarazoActual;
+    }
+
+    public Valores getValorProcedencia() {
+        return valorProcedencia;
+    }
+
+    public void setValorProcedencia(Valores valorProcedencia) {
+        this.valorProcedencia = valorProcedencia;
+    }
+
+    public Valores getValorAspecto() {
+        return valorAspecto;
+    }
+
+    public void setValorAspecto(Valores valorAspecto) {
+        this.valorAspecto = valorAspecto;
+    }
+
+    public Valores getValorSecrecion() {
+        return valorSecrecion;
+    }
+
+    public void setValorSecrecion(Valores valorSecrecion) {
+        this.valorSecrecion = valorSecrecion;
+    }
+
+    public SubCategoria getSubCategoriaFrotis() {
+        return subCategoriaFrotis;
+    }
+
+    public void setSubCategoriaFrotis(SubCategoria subCategoriaFrotis) {
+        this.subCategoriaFrotis = subCategoriaFrotis;
+    }
+
+    public SubCategoria getSubCategoriaResultado() {
+        return subCategoriaResultado;
+    }
+
+    public void setSubCategoriaResultado(SubCategoria subCategoriaResultado) {
+        this.subCategoriaResultado = subCategoriaResultado;
+    }
+
+    public Valores getValorFrotis() {
+        return valorFrotis;
+    }
+
+    public void setValorFrotis(Valores valorFrotis) {
+        this.valorFrotis = valorFrotis;
+    }
+
+    public Valores getValorResultado() {
+        return valorResultado;
+    }
+
+    public void setValorResultado(Valores valorResultado) {
+        this.valorResultado = valorResultado;
+    }
+
+    public CategoriaMB getCategoriaMB() {
+        return CategoriaMB;
+    }
+
+    public void setCategoriaMB(CategoriaMB CategoriaMB) {
+        this.CategoriaMB = CategoriaMB;
+    }
+
+    public SubCategoriaMB getSubCategoriaMB() {
+        return SubCategoriaMB;
+    }
+
+    public void setSubCategoriaMB(SubCategoriaMB SubCategoriaMB) {
+        this.SubCategoriaMB = SubCategoriaMB;
+    }
+
+    public ValoresMB getValoresMB() {
+        return ValoresMB;
+    }
+
+    public void setValoresMB(ValoresMB ValoresMB) {
+        this.ValoresMB = ValoresMB;
+    }
+
+    //--
+    public Catalogos getMetodoAnticonceptivo() {
         return metodoAnticonceptivo;
     }
 
@@ -340,9 +420,8 @@ public class ExamenMB implements Serializable {
         catlista.add(metodoAnticonceptivo);
         this.metodoAnticonceptivo = metodoAnticonceptivo;
     }
-    
-    public void cargarMetodoAnticonceptivo()
-    {
+
+    public void cargarMetodoAnticonceptivo() {
         if (this.ExamenSelect != null) {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
@@ -487,7 +566,7 @@ public class ExamenMB implements Serializable {
     public void setSilaisTomaDM(EntidadAdtva silaisTomaDM) {
         this.silaisTomaDM = silaisTomaDM;
     }
-    
+
     public void cargarSilaisTomaDM() {
         if (this.unidadOcurrencia.getUnidadId() != null) {
 
@@ -503,7 +582,7 @@ public class ExamenMB implements Serializable {
     public void setUnidadTomaDm(Unidad unidadTomaDm) {
         this.unidadTomaDm = unidadTomaDm;
     }
-    
+
     public void cargarUnidadTomaDM() {
         if (this.unidadOcurrencia.getUnidadId() != null) {
 
@@ -662,13 +741,11 @@ public class ExamenMB implements Serializable {
     public void setSectores(List<Sector> sectores) {
         this.sectores = sectores;
     }
-    
-    
-    /**
-     * 
-     * @return 
-     */
 
+    /**
+     *
+     * @return
+     */
     public EntidadAdtva getSilaisTomaResultado() {
         return silaisTomaResultado;
     }
@@ -684,7 +761,7 @@ public class ExamenMB implements Serializable {
             this.rellenoUnidadesResultado();
         }
     }
-    
+
     public List<EntidadAdtva> getListaEntidadAdtvaResultado() {
         listaEntidadAdtvaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarTodasLasEntidades();
         return listaEntidadAdtvaResultado;
@@ -697,7 +774,7 @@ public class ExamenMB implements Serializable {
     public void rellenoUnidadesResultado() {
         listaUnidadesTomaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarPorUnidades(silaisTomaResultado.getEntidadAdtvaId());
     }
-    
+
     public Unidad getUnidadTomaResultado() {
         return unidadTomaResultado;
     }
@@ -714,7 +791,7 @@ public class ExamenMB implements Serializable {
             // System.out.println(unidadTomaDm.getNombre());
         }
     }
-    
+
     public List<Unidad> getListaUnidadesTomaResultado() {
         return listaUnidadesTomaResultado;
     }
@@ -726,7 +803,7 @@ public class ExamenMB implements Serializable {
     public void rellenoMunicipioResultado() {
         municipioTomaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarPorMunicipios(unidadTomaResultado.getMunicipio()).get(0);
     }
-    
+
     public DivisionPolitica getMunicipioTomaResultado() {
         return municipioTomaResultado;
     }
@@ -799,25 +876,9 @@ public class ExamenMB implements Serializable {
     }
 
     public void asignarResutados() {
-        
         if (this.ExamenSelect.getResultadoExamenList() != null) {
-         //   this.resultadoExamen= this.ExamenSelect.getResultadoExamenList();
             System.out.println("Cantidad de datos en lista resultado: " + this.ExamenSelect.getResultadoExamenList().size());
-//            this.resultadoExamen.clear();
-//        this.re1=null;
-//        this.re2=null;
-//        this.re3=null;
-//        this.re4=null;
-//        this.re5=null;
-//        this.re6=null;
-//        this.re7=null;
-//        this.re8=null;
-//        this.re9=null;
-//        this.re10=null;
-//        this.re11=null;
-//        this.re12=null;
-//        this.re13=null;
-//        this.re14=null;
+
             System.out.println("Soy el examen #... " + ExamenSelect.getIdExamen());
             System.out.println("existe todos los resultados");
             java.math.BigDecimal g = new java.math.BigDecimal(String.valueOf(1));
@@ -882,8 +943,7 @@ public class ExamenMB implements Serializable {
 
                 }
 
-                
-                System.out.println("Termine con antecedentes..." + i );
+                System.out.println("Termine con antecedentes..." + i);
             }
 
         } else {
@@ -892,78 +952,78 @@ public class ExamenMB implements Serializable {
 
             // pk1.setIdSubcategoria(this.getAntecedentesAbiertos().getIdSubcategoria().toBigInteger());
             // pk1.setIdValor(this.getGestas().getIdValor().toBigInteger());
-            re1.setIdCategoria(this.getAntecedentes());
-            re1.setIdSubcategoria(this.getAntecedentesAbiertos());
-            re1.setIdValor(this.getGestas());
+            re1.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re1.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re1.setIdValor(this.ValoresMB.getGestas());
             System.out.println("g");
             //Partos---------------------------------
             re2 = new ResultadoExamen();
 
             // pk2.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             // pk2.setIdValor(this.getPartos().getIdValor().toBigInteger());
-            re2.setIdCategoria(this.Antecedentes);
-            re2.setIdSubcategoria(this.AntecedentesAbiertos);
-            re2.setIdValor(this.getPartos());
+            re2.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re2.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re2.setIdValor(this.ValoresMB.getPartos());
             System.out.println("p");
             //Abortos------------------------------------
             re3 = new ResultadoExamen();
 
             //  pk3.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             //  pk3.setIdValor(this.getAbortos().getIdValor().toBigInteger());
-            re3.setIdCategoria(this.Antecedentes);
-            re3.setIdSubcategoria(this.AntecedentesAbiertos);
-            re3.setIdValor(this.getAbortos());
+            re3.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re3.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re3.setIdValor(this.ValoresMB.getAbortos());
             System.out.println("a");
             //Cesareas-----------------------------
             re4 = new ResultadoExamen();
 
             // pk4.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             // pk4.setIdValor(this.getCesareaa().getIdValor().toBigInteger());
-            re4.setIdCategoria(this.Antecedentes);
-            re4.setIdSubcategoria(this.AntecedentesAbiertos);
-            re4.setIdValor(this.getCesareaa());
+            re4.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re4.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re4.setIdValor(this.ValoresMB.getCesareaa());
 
             //Ivsa-----------------------------------
             re5 = new ResultadoExamen();
 
             //  pk5.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             // pk5.setIdValor(this.getIVSA().getIdValor().toBigInteger());
-            re5.setIdCategoria(this.Antecedentes);
-            re5.setIdSubcategoria(this.AntecedentesAbiertos);
-            re5.setIdValor(this.getIVSA());
+            re5.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re5.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re5.setIdValor(this.ValoresMB.getIVSA());
             System.out.println("I");
             //Fur----------------------------------
             re6 = new ResultadoExamen();
 
             // pk6.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             //  pk6.setIdValor(this.getFURV().getIdValor().toBigInteger());
-            re6.setIdCategoria(this.Antecedentes);
-            re6.setIdSubcategoria(this.AntecedentesAbiertos);
-            re6.setIdValor(this.getFURV());
+            re6.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re6.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re6.setIdValor(this.ValoresMB.getFURV());
             System.out.println("fur");
             //SemanaGestas----------------------------------------
             re7 = new ResultadoExamen();
 
             // pk7.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             //  pk7.setIdValor(this.getSemanaGestas().getIdValor().toBigInteger());
-            re7.setIdCategoria(this.Antecedentes);
-            re7.setIdSubcategoria(this.AntecedentesAbiertos);
-            re7.setIdValor(this.getSemanaGestas());
+            re7.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re7.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re7.setIdValor(this.ValoresMB.getSemanaGestas());
             //menarca-----------------------------
             re8 = new ResultadoExamen();
 
             //  pk8.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
             // pk8.setIdValor(this.getMenarca().getIdValor().toBigInteger());
-            re8.setIdCategoria(this.Antecedentes);
-            re8.setIdSubcategoria(this.AntecedentesAbiertos);
-            re8.setIdValor(this.getMenarca());
+            re8.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re8.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            re8.setIdValor(this.ValoresMB.getMenarca());
             //fuma--------------------------
             re9 = new ResultadoExamen();
 
             // pk9.setIdSubcategoria(this.getFuma().getIdSubcategoria().toBigInteger());
             //pk9.setIdValor(this.valorFuma.getIdValor().toBigInteger());
-            re9.setIdCategoria(this.Antecedentes);
-            re9.setIdSubcategoria(this.getFuma());
+            re9.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re9.setIdSubcategoria(this.SubCategoriaMB.getFuma());
             System.out.println("FUMA");
             //re9.setValores(this.valorFuma);
 
@@ -972,8 +1032,8 @@ public class ExamenMB implements Serializable {
 
             // pk10.setIdSubcategoria(this.getToma().getIdSubcategoria().toBigInteger());
             //pk10.setIdValor(this.valorToma.getIdValor().toBigInteger());
-            re10.setIdCategoria(this.Antecedentes);
-            re10.setIdSubcategoria(this.getToma());
+            re10.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re10.setIdSubcategoria(this.SubCategoriaMB.getToma());
             //re10.setValores(this.valorToma);
             System.out.println();
             //embarazo actual------------------------------
@@ -981,29 +1041,28 @@ public class ExamenMB implements Serializable {
 
             //pk11.setIdSubcategoria(this.getEmbarazoActual().getIdSubcategoria().toBigInteger());
             //pk11.setIdValor(this.VarEmbarazoActual.getIdValor().toBigInteger());
-            re11.setIdCategoria(this.Antecedentes);
-            re11.setIdSubcategoria(this.getEmbarazoActual());
+            re11.setIdCategoria(this.CategoriaMB.getAntecedentes());
+            re11.setIdSubcategoria(this.SubCategoriaMB.getEmbarazoActual());
             // re11.setValores(this.valorEmbarazoActual);
             System.out.println("LISTO EMBARAZO");
-            //------------------------------------------------------------   
 
+            //------------------------------------------------------------   
             re12 = new ResultadoExamen();
-            re12.setIdCategoria(this.getProcedencia().getIdCategoria());
-            re12.setIdSubcategoria(this.Procedencia);
+            re12.setIdCategoria(this.SubCategoriaMB.getProcedencia().getIdCategoria());
+            re12.setIdSubcategoria(this.SubCategoriaMB.getProcedencia());
 
             re13 = new ResultadoExamen();
-            re13.setIdCategoria(this.getAspectoClinico().getIdCategoria());
-            re13.setIdSubcategoria(this.AspectoClinico);
+            re13.setIdCategoria(this.SubCategoriaMB.getAspectoClinico().getIdCategoria());
+            re13.setIdSubcategoria(this.SubCategoriaMB.getAspectoClinico());
 
             re14 = new ResultadoExamen();
-            re14.setIdCategoria(this.getSecrecion().getIdCategoria());
-            re14.setIdSubcategoria(this.Secrecion);
-System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
+            re14.setIdCategoria(this.SubCategoriaMB.getSecrecion().getIdCategoria());
+            re14.setIdSubcategoria(this.SubCategoriaMB.getSecrecion());
+            System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 //            re15 = new ResultadoExamen();
 //            re15.setIdCategoria(this.Antecedentes);
 //            re15.setIdSubcategoria(this.getEmbarazoActual());
         }
-        
 
     }
 
@@ -1038,22 +1097,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     public void setResultadoExamen(List<ResultadoExamen> resultadoExamen) {
         this.resultadoExamen = resultadoExamen;
-    }
-
-    public Valores getGestas() {
-
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("1")) {
-                Gestas = this.AntecedentesAbiertos.getValoresList().get(i);
-                System.out.println("gestas");
-            }
-        }
-
-        return Gestas;
-    }
-
-    public void setGestas(Valores Gestas) {
-        this.Gestas = Gestas;
     }
 
     public ResultadoExamen getRe1() {
@@ -1120,22 +1163,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         this.re8 = re8;
     }
 
-    public Valores getFURV() {
-
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("6")) {
-                FURV = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-
-        return FURV;
-    }
-
-    public void setFURV(Valores FURV) {
-        this.FURV = FURV;
-    }
-
     public int getPartosi() {
         return partosi;
     }
@@ -1143,13 +1170,12 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setPartosi(int partosi) {
         this.partosi = partosi;
     }
-    
+
     public void cargarDatosPartos() {
         if (this.re2.getDescripcion() != null) {
             partosi = Integer.parseInt(this.re2.getDescripcion());
         }
     }
-
 
     public Date getFUR() throws ParseException {
         return FUR;
@@ -1166,95 +1192,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
     }
 
-    public Valores getPartos() {
-
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("2")) {
-                Partos = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-
-        return Partos;
-    }
-
-    public void setPartos(Valores Partos) {
-        this.Partos = Partos;
-    }
-
-    public Valores getCesareaa() {
-
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("4")) {
-                Cesareaa = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-        return Cesareaa;
-    }
-
-    public void setCesareaa(Valores Cesareaa) {
-        this.Cesareaa = Cesareaa;
-    }
-
-    public Valores getIVSA() {
-
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("5")) {
-                IVSA = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-        return IVSA;
-    }
-
-    public void setIVSA(Valores IVSA) {
-        this.IVSA = IVSA;
-    }
-
-    public Valores getSemanaGestas() {
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("7")) {
-                semanaGestas = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-
-        return semanaGestas;
-    }
-
-    public void setSemanaGestas(Valores semanaGestas) {
-        this.semanaGestas = semanaGestas;
-    }
-
-    public Valores getMenarca() {
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("8")) {
-                menarca = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-        return menarca;
-    }
-
-    public void setMenarca(Valores menarca) {
-        this.menarca = menarca;
-    }
-
-    public Valores getAbortos() {
-        for (int i = 0; this.AntecedentesAbiertos.getValoresList().size() > i; i++) {
-            if (this.AntecedentesAbiertos.getValoresList().get(i).getIdValor().toString().equals("3")) {
-                abortos = this.AntecedentesAbiertos.getValoresList().get(i);
-
-            }
-        }
-        return abortos;
-    }
-
-    public void setAbortos(Valores abortos) {
-        this.abortos = abortos;
-    }
-
     public int getAbortosi() {
         return Abortosi;
     }
@@ -1262,7 +1199,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setAbortosi(int Abortosi) {
         this.Abortosi = Abortosi;
     }
-    
+
     public void cargarDatosAbortos() {
         if (this.re3.getDescripcion() != null) {
             Abortosi = Integer.parseInt(this.re3.getDescripcion());
@@ -1276,7 +1213,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setCesareasi(int Cesareasi) {
         this.Cesareasi = Cesareasi;
     }
-    
+
     public void cargarDatosCesarias() {
         if (this.re4.getDescripcion() != null) {
             Cesareasi = Integer.parseInt(this.re4.getDescripcion());
@@ -1290,7 +1227,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setIVSAi(int IVSAi) {
         this.IVSAi = IVSAi;
     }
-    
+
     public void cargarDatosIVSA() {
         if (this.re5.getDescripcion() != null) {
             IVSAi = Integer.parseInt(this.re5.getDescripcion());
@@ -1305,7 +1242,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setMenarcai(int Menarcai) {
         this.Menarcai = Menarcai;
     }
-    
+
     public void cargarDatosMenarca() {
         if (this.re8.getDescripcion() != null) {
             Menarcai = Integer.parseInt(this.re8.getDescripcion());
@@ -1319,7 +1256,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setSemanaDeGestasi(int semanaDeGestasi) {
         this.semanaDeGestasi = semanaDeGestasi;
     }
-    
+
     public void cargarDatosSemanasGestas() {
         if (this.re7.getDescripcion() != null) {
             semanaDeGestasi = Integer.parseInt(this.re7.getDescripcion());
@@ -1337,133 +1274,12 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void cargarDatosGestas() {
         if (this.Gestasi == 0) {
             System.out.println("cargue Gestas...");
-            System.out.println(re1.getIdValor() +" " + re1.getDescripcion());
+            System.out.println(re1.getIdValor() + " " + re1.getDescripcion());
             if (this.re1.getDescripcion() != null) {
                 System.out.println("cargue Gestas... " + re1.getDescripcion());
                 Gestasi = Integer.parseInt(this.re1.getDescripcion());
             }
         }
-    }
-
-    public Valores getVarFuma() {
-
-        return VarFuma;
-    }
-
-    public void setVarFuma(Valores VarFuma) {
-        this.VarFuma = VarFuma;
-    }
-
-    public Valores getVarToma() {
-        return VarToma;
-    }
-
-    public void setVarToma(Valores VarToma) {
-        this.VarToma = VarToma;
-    }
-
-    public Valores getVarEmbarazoActual() {
-        return VarEmbarazoActual;
-    }
-
-    public void setVarEmbarazoActual(Valores VarEmbarazoActual) {
-        this.VarEmbarazoActual = VarEmbarazoActual;
-    }
-
-    public List<Categoria> getCategorias() {
-        Categorias = ExamenEJB.CargarTodasLasCategorias();
-        return Categorias;
-    }
-
-    public void setCategorias(List<Categoria> Categorias) {
-        this.Categorias = Categorias;
-    }
-
-    public Categoria getAntecedentes() {
-        if (Antecedentes == null) {
-            for (int i = 0; this.getCategorias().size() > i; i++) {
-
-                if (this.getCategorias().get(i).getIdCategoria() == 3) {
-                    Antecedentes = this.getCategorias().get(i);
-                    System.out.println("categoria");
-                }
-            }
-        }
-        return Antecedentes;
-    }
-
-    public void setAntecedentes(Categoria Antecedentes) {
-        this.Antecedentes = Antecedentes;
-    }
-
-    public SubCategoria getAntecedentesAbiertos() {
-        int oja = 6;
-        java.math.BigDecimal bd = new java.math.BigDecimal(String.valueOf(oja));
-        for (int i = 0; this.Antecedentes.getSubCategoriaList().size() > i; i++) {
-            if (this.Antecedentes.getSubCategoriaList().get(i).getIdSubcategoria().equals(bd)) {
-                AntecedentesAbiertos = this.Antecedentes.getSubCategoriaList().get(i);
-                System.out.println("anteabiertos");
-            }
-        }
-
-        return AntecedentesAbiertos;
-    }
-
-    public void setAntecedentesAbiertos(SubCategoria AntecedentesAbiertos) {
-        this.AntecedentesAbiertos = AntecedentesAbiertos;
-    }
-
-    public SubCategoria getFuma() {
-        int jo = 7;
-        java.math.BigDecimal bd = new java.math.BigDecimal(String.valueOf(jo));
-
-        for (int i = 0; this.getAntecedentes().getSubCategoriaList().size() > i; i++) {
-
-            if (this.Antecedentes.getSubCategoriaList().get(i).getIdSubcategoria().equals(bd)) {
-
-                Fuma = this.Antecedentes.getSubCategoriaList().get(i);
-            }
-        }
-        return Fuma;
-    }
-
-    public void setFuma(SubCategoria Fuma) {
-        this.Fuma = Fuma;
-    }
-
-    public SubCategoria getToma() {
-        int joa = 8;
-        java.math.BigDecimal bd = new java.math.BigDecimal(String.valueOf(joa));
-        for (int i = 0; this.getAntecedentes().getSubCategoriaList().size() > i; i++) {
-            if (this.Antecedentes.getSubCategoriaList().get(i).getIdSubcategoria().equals(bd)) {
-
-                Toma = this.Antecedentes.getSubCategoriaList().get(i);
-
-            }
-        }
-
-        return Toma;
-    }
-
-    public void setToma(SubCategoria Toma) {
-        this.Toma = Toma;
-    }
-
-    public SubCategoria getEmbarazoActual() {
-
-        java.math.BigDecimal bd = new java.math.BigDecimal(String.valueOf(9));
-        for (int i = 0; this.getAntecedentes().getSubCategoriaList().size() > i; i++) {
-            if (this.Antecedentes.getSubCategoriaList().get(i).getIdSubcategoria().equals(bd)) {
-                EmbarazoActual = this.Antecedentes.getSubCategoriaList().get(i);
-
-            }
-        }
-
-        return EmbarazoActual;
-    }
-
-    public void setEmbarazoActual(SubCategoria EmbarazoActual) {
-        this.EmbarazoActual = EmbarazoActual;
     }
 
     //------------------------------------
@@ -1602,7 +1418,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setNuevoPaciente(boolean nuevoPaciente) {
         this.nuevoPaciente = nuevoPaciente;
     }
-    
+
     public void HabilitaandoCampos() {
 
         if (this.valorEmbarazoActual.getValor().equals("Si")) {
@@ -1897,7 +1713,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setListaExamenPendiente(List<Examen> listaExamenPendiente) {
         this.listaExamenPendiente = listaExamenPendiente;
     }
-    
+
     public List<Examen> getListaExamen() {
         HashSet st = new HashSet();
         st.addAll(listaExamen);
@@ -1911,22 +1727,22 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     /**
-     * Esta lista se encargara de filtrar a las personas que tienen mas de 1 examen en la base de datos para que
-     * no muestre mas de una vez a la misma persona
-     * 
+     * Esta lista se encargara de filtrar a las personas que tienen mas de 1
+     * examen en la base de datos para que no muestre mas de una vez a la misma
+     * persona
+     *
      * listaSRExamen = lista Sin Repeticiones de Examen
-     * @return 
+     *
+     * @return
      */
     public List<Examen> getListaSRExamen() {
         Map<String, Examen> limpiarLista = new HashMap<String, Examen>(listaExamen.size());
-        
-        for(Examen examen : listaExamen) 
-        {
+
+        for (Examen examen : listaExamen) {
             limpiarLista.put(examen.getCedula(), examen);
         }
-        
-        for(Entry<String, Examen> examen1 : limpiarLista.entrySet()) 
-        {
+
+        for (Entry<String, Examen> examen1 : limpiarLista.entrySet()) {
             listaSRExamen.add(examen1.getValue());
         }
 //        listaSRExamen.addAll(listaExamen);
@@ -1942,19 +1758,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     /**
-     * Lista que se encarga de mostrar en un datatable cierta información de una persona
-     * cuando ya ha finalizado el registro de su examen
-     * @return 
+     * Lista que se encarga de mostrar en un datatable cierta información de una
+     * persona cuando ya ha finalizado el registro de su examen
+     *
+     * @return
      */
     public List<Examen> getListaExamenCompleto() {
         return listaExamenCompleto;
     }
 
-    public void mostrarExamenCompleto()
-    {
+    public void mostrarExamenCompleto() {
         listaExamenCompleto = ExamenEJB.buscarExamenCompleto(ExamenSelect.getIdExamen());
     }
-    
+
     public void setListaExamenCompleto(List<Examen> listaExamenCompleto) {
         this.listaExamenCompleto = listaExamenCompleto;
     }
@@ -1974,7 +1790,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setListaresultadosExamen(List<ResultadoExamen> listaresultadosExamen) {
         this.listaresultadosExamen = listaresultadosExamen;
     }
-    
+
     public Date getFecha() {
 //        /**
 //         * El número 1 representa el id de Fecha referente a la Toma de Muestra
@@ -2087,7 +1903,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
         listaExamen.clear();
         listaSRExamen.clear();
-        
+
         if (nombreCompleto.isEmpty()) {
             if (!cedula.isEmpty() && fechaNac != null && !numeroCel.isEmpty()) {
 
@@ -2798,31 +2614,8 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         return datosAbiertos_Recomendaciones;
     }
 
-    public Categoria getCategoriaObservacion() {
-        for (int i = 0; this.getListacategoriasObservacion().size() > i; i++) {
-
-            if (this.getListacategoriasObservacion().get(i).getIdCategoria() == 8) {
-                categoriaObservacion = this.getListacategoriasObservacion().get(i);
-            }
-        }
-        return categoriaObservacion;
-    }
-
-    public void setCategoriaObservacion(Categoria categoriaObservacion) {
-        this.categoriaObservacion = categoriaObservacion;
-    }
-
     public void setDatosAbiertos_Recomendaciones(String datosAbiertos_Recomendaciones) {
         this.datosAbiertos_Recomendaciones = datosAbiertos_Recomendaciones;
-    }
-
-    public List<Categoria> getListacategoriasObservacion() {
-        listacategoriasObservacion = ExamenEJB.buscarSubCategoriaObservacion();
-        return listacategoriasObservacion;
-    }
-
-    public void setListacategoriasObservacion(List<Categoria> listacategoriasObservacion) {
-        this.listacategoriasObservacion = listacategoriasObservacion;
     }
 
     public void guardarOactualizar() {
@@ -2835,6 +2628,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
         HashSet st1 = new HashSet();
         st1.addAll(resultadoExamen);
+
         resultadoExamen.clear();
         resultadoExamen.addAll(st1);
 
@@ -2844,14 +2638,16 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 ExamenSelect.setEstado(BigInteger.valueOf(1));
 
                 this.ExamenSelect = ExamenEJB.crearNuevo(this.ExamenSelect);
+
                 this.pasarValorResutado();
                 this.PasarValoresUnidades();
+
                 this.ExamenSelect.setResultadoExamenList(resultadoExamen);
-                
+
                 //bloque que agrega la fecha toma
                 System.out.println(this.ExamenSelect.getIdExamen() + " " + FechaMB.getFechaList().get(0).getIdFecha() + " " + fecha);
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(0).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha,medicoSelect);
+                Fxexu nf = new Fxexu(nfpk, fecha, medicoSelect);
                 fechalista.add(nf);
                 ExamenSelect.setFxexuList(fechalista);
 
@@ -2871,7 +2667,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 //bloque que agrega la fecha
                 System.out.println(this.ExamenSelect.getIdExamen() + " " + FechaMB.getFechaList().get(0).getIdFecha() + " " + fecha);
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(0).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha,medicoSelect);
+                Fxexu nf = new Fxexu(nfpk, fecha, medicoSelect);
                 fechalista.add(nf);
 
 //                List<Fxexu> fds = new ArrayList<Fxexu>();
@@ -2910,20 +2706,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     public void guardarResultadoExamen() {
 
-        List<ResultadoExamen> listaTemporal = new ArrayList<ResultadoExamen>(); 
-        
+        List<ResultadoExamen> listaTemporal = new ArrayList<ResultadoExamen>();
+
         try {
             System.out.println(" Numero de Registros por Examen " + this.ExamenSelect.getResultadoExamenList().size());
             if (this.ExamenSelect.getResultadoExamenList() != null) {
                 System.out.println("Valor del Estado " + ExamenSelect.getEstado());
-                
+
                 HashSet st1 = new HashSet();
                 st1.addAll(listaresultadosExamen);
                 listaresultadosExamen.clear();
                 listaresultadosExamen.addAll(st1);
-                
-                if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) 
-                {
+
+                if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) {
                     resultadExamen1.setIdExamen(ExamenSelect);
                     resultadExamen1.setIdCategoria(categoria);
                     resultadExamen1.setIdSubcategoria(subCategoriaFrotis);
@@ -2932,30 +2727,30 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                     this.listaresultadosExamen.add(resultadExamen1);
 
                     resultadExamen2.setIdExamen(ExamenSelect);
-                    resultadExamen2.setIdCategoria(categoriaResultado);
+                    resultadExamen2.setIdCategoria(this.CategoriaMB.getCategoriaResultado());
                     resultadExamen2.setIdSubcategoria(subCategoriaResultado);
                     resultadExamen2.setIdValor(valorResultado);
 
                     this.listaresultadosExamen.add(resultadExamen2);
 
                     resultadExamen3.setIdExamen(ExamenSelect);
-                    resultadExamen3.setIdCategoria(categoriaObservacion);
-                    resultadExamen3.setIdSubcategoria(observacion);
+                    resultadExamen3.setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
+                    resultadExamen3.setIdSubcategoria(this.SubCategoriaMB.getObservacion());
                     resultadExamen3.setIdValor(valorObservacion);
                     resultadExamen3.setDescripcion(this.datosAbiertos_Recomendaciones);
 
                     this.listaresultadosExamen.add(resultadExamen3);
 
                     ExamenSelect.setEstado(BigInteger.valueOf(2));
-                    
+
                     listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
 
                     FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(1).getIdFecha());
-                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura,null);
+                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura, null);
 
                     FxexuPK nfpk2 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(3).getIdFecha());
-                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento,null);
+                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento, null);
 
                     if (tipoExSegui != null) {
                         nf2.setTipoSeguimiento(tipoExSegui.getCatalogoId());
@@ -2965,7 +2760,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     if (Fecha_PosTratamiento != null) {
                         FxexuPK nfpk3 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(4).getIdFecha());
-                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento,null);
+                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento, null);
                         fechalista.add(nf3);
                     }
 
@@ -2976,21 +2771,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                     ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
-                    
+
                     this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
                     listaTemporal.clear();
-                    
+
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
                     System.out.println("Guardando....");
-                } 
-                else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) 
-                {
+                } else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                     System.out.println("Adentro");
 
                     for (int i = 0; i < ExamenSelect.getResultadoExamenList().size(); i++) {
                         if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 5) {
                             System.out.println("Mas Adentro");
-                             this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
+                            this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(categoria);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(subCategoriaFrotis);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorFrotis);
@@ -2999,7 +2792,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                         } else if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
                             System.out.println("Mas Adentro Resultado");
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(categoriaResultado);
+                            this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(this.CategoriaMB.getCategoriaResultado());
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(subCategoriaResultado);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorResultado);
                             this.resultadoExamen.add(this.ExamenSelect.getResultadoExamenList().get(i));
@@ -3007,8 +2800,8 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                         } else if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 8) {
                             System.out.println("Mas Adentro Observacion");
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(categoriaObservacion);
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(observacion);
+                            this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
+                            this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(this.SubCategoriaMB.getObservacion());
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorObservacion);
                             this.ExamenSelect.getResultadoExamenList().get(i).setDescripcion(datosAbiertos_Recomendaciones);
                             this.resultadoExamen.add(this.ExamenSelect.getResultadoExamenList().get(i));
@@ -3017,15 +2810,15 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                     }
 
                     System.out.println("Vivo " + this.ExamenSelect.getResultadoExamenList().size());
-                    
+
                     listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
-                    
+
                     FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(1).getIdFecha());
-                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura,null);
+                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura, null);
 
                     FxexuPK nfpk2 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(3).getIdFecha());
-                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento,null);
+                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento, null);
                     if (tipoExSegui != null) {
                         nf2.setTipoSeguimiento(tipoExSegui.getCatalogoId());
                     } else {
@@ -3034,7 +2827,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     if (Fecha_PosTratamiento != null) {
                         FxexuPK nfpk3 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(4).getIdFecha());
-                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento,null);
+                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento, null);
                         fechalista.add(nf3);
                     }
 
@@ -3045,7 +2838,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                     ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
-                    
+
                     this.ExamenSelect.getResultadoExamenList().addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
                     listaTemporal.clear();
@@ -3058,7 +2851,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
 
         fechalista.clear();
-        
+
         this.asignarResutados();
         this.AsignarUnidades();
         cargar();
@@ -3075,7 +2868,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                 this.ExamenSelect.getResultadoExamenList().clear();
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(2).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario,null);
+                Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario, null);
                 fechalista.add(nf);
 
                 ExamenSelect.setFxexuList(fechalista);
@@ -3104,9 +2897,8 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     public void expedienteNuevo() {
-        
-        if (ExamenSelect.getEstado() != null) 
-        {
+
+        if (ExamenSelect.getEstado() != null) {
             System.out.println("Examen # " + ExamenSelect.getIdExamen());
             System.out.println("Esty Aqui");
 
@@ -3139,9 +2931,9 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             this.HabilitarTelefono1 = true;
             this.HabilitarTelefono2 = true;
             this.HabilitarExpedienteTemp = true;
-            
+
             cargarCatalogos();
-            
+
             /**
              * Hacemos nulos los campos de Antecedentes Ginecobstetricos
              */
@@ -3152,7 +2944,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             Menarcai = 0;
             semanaDeGestasi = 0;
 
-            Categorias.clear();
+
 
             valorEmbarazoActual = null;
             valorFuma = null;
@@ -3171,11 +2963,11 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             listaUnidadesTomaDm.clear();
             municipioTomaDm = null;
             listaUnidadesTomaDm.clear();
-            Procedencia = null;
+          //  Procedencia = null;
             valorProcedencia = null;
-            AspectoClinico = null;
+            //AspectoClinico = null;
             valorAspecto = null;
-            Secrecion = null;
+            //Secrecion = null;
             valorSecrecion = null;
             fecha = null;
 
@@ -3185,29 +2977,27 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             fecha_Lectura = null;
             subCategoriaFrotis = new SubCategoria();
             valorFrotis = null;
-            listaValoresFrotis.clear();
+            this.ValoresMB.getListaValoresFrotis().clear();
             subCategoriaResultado = new SubCategoria();
             valorResultado = null;
-            listaValoresResultado.clear();
+             this.ValoresMB.getListaValoresResultado().clear();
             valorObservacion = new Valores();
-            listaValoresResultado.clear();
+            this.ValoresMB.getListaValoresResultado().clear();
             Fecha_PosTratamiento = null;
             Fecha_Seguimiento = null;
-            
+
             this.asignarResutados();
             this.AsignarUnidades();
 
-        }
-        /**
+        } /**
          * Aqui el codigo se repite para limpiar los campos cuando se estan
          * ingresando los examenes uno por uno ingresando
          */
-        else if (ExamenSelect.getEstado() == null) 
-        {
+        else if (ExamenSelect.getEstado() == null) {
             System.out.println("Examen Nulo " + ExamenSelect.getEstado());
-            
+
             ExamenSelect.setIdExamen(null);
-            
+
             this.cat_esc = null;
             this.catalogos = null;
             this.Valor_Etnia = null;
@@ -3226,7 +3016,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             Menarcai = 0;
             semanaDeGestasi = 0;
 
-            Categorias.clear();
+          //  Categorias.clear();
 
             valorEmbarazoActual = null;
             valorFuma = null;
@@ -3241,33 +3031,32 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             listaUnidadesTomaDm.clear();
             municipioTomaDm = null;
             listaUnidadesTomaDm.clear();
-            Procedencia = null;
+            //Procedencia = null;
             valorProcedencia = null;
-            AspectoClinico = null;
+            //AspectoClinico = null;
             valorAspecto = null;
-            Secrecion = null;
+            //Secrecion = null;
             valorSecrecion = null;
             fecha = null;
 
             fecha_Lectura = null;
             subCategoriaFrotis = new SubCategoria();
             valorFrotis = null;
-            listaValoresFrotis.clear();
+          //  listaValoresFrotis.clear();
             subCategoriaResultado = new SubCategoria();
             valorResultado = null;
-            listaValoresResultado.clear();
+            //listaValoresResultado.clear();
             valorObservacion = new Valores();
-            listaValoresResultado.clear();
+            //listaValoresResultado.clear();
             Fecha_PosTratamiento = null;
             Fecha_Seguimiento = null;
 
             this.asignarResutados();
             this.AsignarUnidades();
-            
+
 //            this.cargarSubCategoriaFuma();
 //            this.cargarSubCategoriaToma();
 //            this.cargarSubCategoriaEmbarazoActual();
-
             SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
             String codigo = null;
             String Nombres = null;
@@ -3302,8 +3091,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 switch (op) {
 
                     case 0:
-                        
-                        
+
                         System.out.println("case 0 del wihe numero 2");
                         if (sis.getSegundoNombre() != null && sis.getSegundoApellido() != null) {
 
@@ -3377,9 +3165,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                         } else if (sis.getSegundoNombre() != null) {
 
                             if (sis.getSegundoNombre().equals(" ")) {
-                                
-                                
-                                
+
                                 System.out.println("pura mierda");
                                 Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
                             } else {
@@ -3509,18 +3295,17 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
-   public void expediente() {
+
+    public void expediente() {
 
         /**
          * cargar datos respectivos cuando una persona ya tiene un examen
          */
-       
-       System.out.println(ExamenSelect.getPrimerNombre());
-       
+        System.out.println(ExamenSelect.getPrimerNombre());
+
         this.asignarResutados();
         this.AsignarUnidades();
-        
+
         cargar();
         cargarCatalogos();
         cargarDatosGestas();
@@ -3544,10 +3329,10 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         cargarValorProcedencia();
         cargarValorAspecto();
         cargarValorSecrecion();
-        
+
         cargarSilaisTomaResultado();
         cargarUnidadTomaResultado();
-        
+
         cargarValoresFrotis();
         cargarValoresResultado();
         cargarSubCategoriaFrotis();
@@ -3555,9 +3340,9 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-   /**
-    * Metodo que calcula la edad de la mujer segun la fecha del examen
-    */
+    /**
+     * Metodo que calcula la edad de la mujer segun la fecha del examen
+     */
     public void calcularEdad(SelectEvent event) {
         SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
 
@@ -3589,77 +3374,23 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
+
     /**
      * Este metodo verifica atraves de estas variables si una persona ya tiene
      * un examen si lo tiene el boton de continuar examen se habilita, si no
      * este se deshabilitara
      */
-   public void verificarPaciente() {
-        for(int i = 0; i < listaSRExamen.size(); i++)
-        {
-            if(listaSRExamen.get(i).getEstado() == BigInteger.valueOf(1) || listaSRExamen.get(i).getEstado() == BigInteger.valueOf(2))
-            {
+    public void verificarPaciente() {
+        for (int i = 0; i < listaSRExamen.size(); i++) {
+            if (listaSRExamen.get(i).getEstado() == BigInteger.valueOf(1) || listaSRExamen.get(i).getEstado() == BigInteger.valueOf(2)) {
                 nuevoPaciente = true;
-            }
-            else 
-            {
+            } else {
                 nuevoPaciente = false;
             }
         }
     }
 
-    public SubCategoria getSubCategoriaFrotis() {
-        return subCategoriaFrotis;
-    }
-
-    public void setSubCategoriaFrotis(SubCategoria subCategoriaFrotis) {
-        this.subCategoriaFrotis = subCategoriaFrotis;
-    }
-
-    public Valores getValor() {
-        return valor;
-    }
-
-    public void setValor(Valores valor) {
-        this.valor = valor;
-    }
-
-    public Categoria getCategoria() {
-        if (!ExamenEJB.buscarSubCategoriaFrotis().isEmpty()) {
-            categoria = ExamenEJB.buscarSubCategoriaFrotis().get(0);
-        }
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Categoria getCategoriaResultado() {
-        categoriaResultado = ExamenEJB.buscarSubCategoriaResultado().get(0);
-        return categoriaResultado;
-    }
-
-    public void setCategoriaResultado(Categoria categoriaResultado) {
-        this.categoriaResultado = categoriaResultado;
-    }
-
-    public List<SubCategoria> getListaSubCategoria() {
-        return listaSubCategoria;
-    }
-
-    public void setListaSubCategoria(List<SubCategoria> listaSubCategoria) {
-        this.listaSubCategoria = listaSubCategoria;
-    }
-
-    public List<Valores> getListaValores() {
-        return listaValores;
-    }
-
-    public void setListaValores(List<Valores> listaValores) {
-        this.listaValores = listaValores;
-    }
+  
 
     public Catalogos getTipoExSegui() {
         return tipoExSegui;
@@ -3669,47 +3400,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         this.tipoExSegui = tipoExSegui;
     }
 
-    public SubCategoria getSubCategoriaFuma() {
-        if (!ExamenEJB.buscarValorFuma().isEmpty()) {
-            SubCategoriaFuma = ExamenEJB.buscarValorFuma().get(0);
-        }
-        return SubCategoriaFuma;
-    }
-
-    public void setSubCategoriaFuma(SubCategoria SubCategoriaFuma) {
-        this.SubCategoriaFuma = SubCategoriaFuma;
-    }
-
-    public SubCategoria getSubCategoriaToma() {
-        if (!ExamenEJB.buscarValorToma().isEmpty()) {
-            SubCategoriaToma = ExamenEJB.buscarValorToma().get(0);
-        }
-        return SubCategoriaToma;
-    }
-
-    public void setSubCategoriaToma(SubCategoria SubCategoriaToma) {
-        this.SubCategoriaToma = SubCategoriaToma;
-    }
-
-    public SubCategoria getSubCategoriaEmbarazoActual() {
-        if (!ExamenEJB.buscarValorEmbarazoActual().isEmpty()) {
-            SubCategoriaEmbarazoActual = ExamenEJB.buscarValorEmbarazoActual().get(0);
-        }
-        return SubCategoriaEmbarazoActual;
-    }
-
-    public void setSubCategoriaEmbarazoActual(SubCategoria SubCategoriaEmbarazoActual) {
-        this.SubCategoriaEmbarazoActual = SubCategoriaEmbarazoActual;
-    }
-
-    public Valores getValorFuma() {
-        return valorFuma;
-    }
-
-    public void setValorFuma(Valores valorFuma) {
-        this.valorFuma = valorFuma;
-    }
-    
     /**
      * Metodo para cargar valor fuma
      */
@@ -3722,14 +3412,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-    public Valores getValorToma() {
-        return valorToma;
-    }
-
-    public void setValorToma(Valores valorToma) {
-        this.valorToma = valorToma;
-    }
-    
     /**
      * Metodo para cargar valor toma
      */
@@ -3740,14 +3422,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-    public Valores getValorEmbarazoActual() {
-        return valorEmbarazoActual;
-    }
-
-    public void setValorEmbarazoActual(Valores valorEmbarazoActual) {
-        this.valorEmbarazoActual = valorEmbarazoActual;
-    }
-    
     /**
      * Metodo para cargar valor embarazo actual
      */
@@ -3756,22 +3430,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             valorEmbarazoActual = this.re11.getIdValor();
         }
 
-    }
-
-
-    public SubCategoria getObservacion() {
-        int oja = 23;
-        BigDecimal bd = new BigDecimal(oja);
-        for (int i = 0; this.getCategoriaObservacion().getSubCategoriaList().size() > i; i++) {
-            if (this.getCategoriaObservacion().getSubCategoriaList().get(i).getIdSubcategoria().equals(bd)) {
-                observacion = this.getCategoriaObservacion().getSubCategoriaList().get(i);
-            }
-        }
-        return observacion;
-    }
-
-    public void setObservacion(SubCategoria observacion) {
-        this.observacion = observacion;
     }
 
     public Valores getValorObservacion() {
@@ -3791,33 +3449,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         this.valorObservacion = valorObservacion;
     }
 
-    public List<Valores> getListaValoresFrotis() {
-        if (subCategoriaFrotis.getValoresList() != null) {
-            listaValoresFrotis = subCategoriaFrotis.getValoresList();
-        }
-        return listaValoresFrotis;
-    }
-
-    public void setListaValoresFrotis(List<Valores> listaValoresFrotis) {
-        this.listaValoresFrotis = listaValoresFrotis;
-    }
-
-    public void razonFrotis() {
-        if (!ExamenEJB.buscarValoresFrotis(subCategoriaFrotis.getIdSubcategoria()).isEmpty()) {
-            subCategoriaFrotis = ExamenEJB.buscarValoresFrotis(subCategoriaFrotis.getIdSubcategoria()).get(0);
-        }
-    }
-
-    public List<Valores> getListaValoresResultado() {
-        if (subCategoriaResultado.getValoresList() != null) {
-            listaValoresResultado = subCategoriaResultado.getValoresList();
-        }
-        return listaValoresResultado;
-    }
-
-    public void setListaValoresResultado(List<Valores> listaValoresResultado) {
-        this.listaValoresResultado = listaValoresResultado;
-    }
+   
 
     public void cargarValoresFrotis() {
         if (this.ExamenSelect.getResultadoExamenList() != null) {
@@ -3829,14 +3461,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
             }
         }
-    }
-
-    public Valores getValorFrotis() {
-        return valorFrotis;
-    }
-
-    public void setValorFrotis(Valores valorFrotis) {
-        this.valorFrotis = valorFrotis;
     }
 
     public void cargarValoresResultado() {
@@ -3851,14 +3475,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
     }
 
-    public Valores getValorResultado() {
-        return valorResultado;
-    }
-
-    public void setValorResultado(Valores valorResultado) {
-        this.valorResultado = valorResultado;
-    }
-
     public void cargarSubCategoriaResultado() {
         if (this.ExamenSelect.getResultadoExamenList() != null) {
             for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
@@ -3869,53 +3485,8 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
     }
 
-    public SubCategoria getSubCategoriaResultado() {
-        return subCategoriaResultado;
-    }
+  
 
-    public void setSubCategoriaResultado(SubCategoria subCategoriaResultado) {
-        this.subCategoriaResultado = subCategoriaResultado;
-    }
-
-    public void TiposResultado() {
-        subCategoriaResultado = ExamenEJB.buscarValoresResultado(subCategoriaResultado.getIdSubcategoria()).get(0);
-    }
-
-    public SubCategoria getProcedencia() {
-        Procedencia = ExamenEJB.buscarProcedencia().get(0);
-        return Procedencia;
-    }
-
-    public void setProcedencia(SubCategoria Procedencia) {
-        this.Procedencia = Procedencia;
-    }
-
-    public SubCategoria getAspectoClinico() {
-        AspectoClinico = ExamenEJB.buscarAspectoClinico().get(0);
-        return AspectoClinico;
-    }
-
-    public void setAspectoClinico(SubCategoria AspectoClinico) {
-        this.AspectoClinico = AspectoClinico;
-    }
-
-    public SubCategoria getSecrecion() {
-        Secrecion = ExamenEJB.buscarSecrecion().get(0);
-        return Secrecion;
-    }
-
-    public void setSecrecion(SubCategoria Secrecion) {
-        this.Secrecion = Secrecion;
-    }
-
-    public Valores getValorProcedencia() {
-        return valorProcedencia;
-    }
-
-    public void setValorProcedencia(Valores valorProcedencia) {
-        this.valorProcedencia = valorProcedencia;
-    }
-    
     /**
      * Metodo para cargar valor de procedencia de la muestra
      */
@@ -3925,14 +3496,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
     }
 
-    public Valores getValorAspecto() {
-        return valorAspecto;
-    }
-
-    public void setValorAspecto(Valores valorAspecto) {
-        this.valorAspecto = valorAspecto;
-    }
-    
     /**
      * Metodo para cargar valor aspecto clinico de la muestra
      */
@@ -3942,14 +3505,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
     }
 
-    public Valores getValorSecrecion() {
-        return valorSecrecion;
-    }
-
-    public void setValorSecrecion(Valores valorSecrecion) {
-        this.valorSecrecion = valorSecrecion;
-    }
-    
     /**
      * Metodo para cargar valor secrecion
      */
@@ -4007,8 +3562,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-    public void cargarCatalogos()
-    {
+    public void cargarCatalogos() {
         //carga cat. escolaridad
         if (this.ExamenSelect != null) {
 
@@ -4055,7 +3609,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
+
     public void cargar() {
 //carga fecha de toma
         if (ExamenSelect.getFxexuList() != null) {
@@ -4135,17 +3689,17 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
-    public void limpiarObjetoExamen(){
-       
-   ExamenSelect=null;
-   System.out.println(ExamenSelect);
-   
-   nombreCompleto = null;
-   listaExamen.clear();
-   listaSRExamen.clear();
-   
-   }
+
+    public void limpiarObjetoExamen() {
+
+        ExamenSelect = null;
+        System.out.println(ExamenSelect);
+
+        nombreCompleto = null;
+        listaExamen.clear();
+        listaSRExamen.clear();
+
+    }
 
     public boolean isSkip() {
         return skip;
@@ -4163,12 +3717,10 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             return event.getNewStep();
         }
     }
-    
+
     public String getEstado() {
-        for(int i = 0; i < listaExamenPendiente.size(); i++)
-        {
-            if(listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(1) || listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(2))
-            {
+        for (int i = 0; i < listaExamenPendiente.size(); i++) {
+            if (listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(1) || listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(2)) {
                 Estado = listaExamenPendiente.get(i).getEstado() + " /3";
             }
         }
@@ -4178,23 +3730,22 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
     /**
      * Metodo para mostrar la fecha en que se realizo el examen para mostarlo en
      * la interfaz 2do datatable
      */
     public Date getFecha_Toma_Muestra_mostrar() {
-        for(int j = 0; j < listaExamenPendiente.size(); j++)
-        {
+        for (int j = 0; j < listaExamenPendiente.size(); j++) {
             if (this.listaExamenPendiente.get(j).getFxexuList() != null) {
                 for (int i = 0; i < this.listaExamenPendiente.get(j).getFxexuList().size(); i++) {
                     if (listaExamenPendiente.get(j).getFxexuList().get(i).getFxexuPK().getIdFecha() == 1) {
                         Fecha_Toma_Muestra_mostrar = this.listaExamenPendiente.get(j).getFxexuList().get(i).getValor();
                     }
                 }
+            }
         }
-        }
-            
+
         return Fecha_Toma_Muestra_mostrar;
     }
 

@@ -27,6 +27,7 @@ public class SeguridadController implements java.io.Serializable {
 
     //*********************Métodos    
     public void verificarCredenciales() {
+        System.out.println("verificar credenciales");
         String bdSessionId = "s";  // dejar cadena vacía para activar seguridad, letra para desactivar
         HttpServletRequest httpServletRequest = Soporte.getHttpServletRequest();
         Cookie[] cookies = httpServletRequest.getCookies();

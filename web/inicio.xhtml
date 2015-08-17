@@ -5,10 +5,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html">
+   
     <body>
+        
+        
         <ui:composition template="./templates/main_template.xhtml">
+           
             <ui:define name="content"> 
+                  <f:event listener="#{valoresMB.cargarVariablesValores()}" type="preRenderView"/>
                 <f:view>
+                    
                     <h:form id="pr">
                         <p:menubar>
                             <p:submenu label="Registrar Examenes" icon="ui-icon-contact">
@@ -107,7 +113,7 @@
                                         <p:selectOneMenu id="procedenciaMuestra" value="#{examenMB.valorProcedencia}" converter="converterValores" panelStyle="width:180px" required="true" requiredMessage="Debe Seleccionar La Procedencia De La Muestra"
                                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoge" itemValue="" />
-                                            <f:selectItems value="#{examenMB.procedencia.valoresList}" var="procedencia" itemLabel="#{procedencia.valor}" 
+                                            <f:selectItems value="#{subCategoriaMB.procedencia.valoresList}" var="procedencia" itemLabel="#{procedencia.valor}" 
                                                            itemValue="#{procedencia}"/>
                                         </p:selectOneMenu>
 
@@ -115,7 +121,7 @@
                                         <p:selectOneMenu id="aspectoClinico"  panelStyle="width:180px" value="#{examenMB.valorAspecto}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Aspecto Clínico"
                                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoge" itemValue="" />
-                                            <f:selectItems value="#{examenMB.aspectoClinico.valoresList}" var="aspectoClinico" itemLabel="#{aspectoClinico.valor}" 
+                                            <f:selectItems value="#{subCategoriaMB.aspectoClinico.valoresList}" var="aspectoClinico" itemLabel="#{aspectoClinico.valor}" 
                                                            itemValue="#{aspectoClinico}" />
                                         </p:selectOneMenu>
 
@@ -123,7 +129,7 @@
                                         <p:selectOneMenu id="secrecion"  panelStyle="width:180px" value="#{examenMB.valorSecrecion}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Secreción"
                                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoge" itemValue="" />
-                                            <f:selectItems value="#{examenMB.secrecion.valoresList}" var="secrecion" itemLabel="#{secrecion.valor}" 
+                                            <f:selectItems value="#{subCategoriaMB.secrecion.valoresList}" var="secrecion" itemLabel="#{secrecion.valor}" 
                                                            itemValue="#{secrecion}" />
                                         </p:selectOneMenu>
 
@@ -200,14 +206,14 @@
                                                 <p:selectOneMenu id="Frotis" value="#{examenMB.subCategoriaFrotis}" converter="converterSub" editable="false"
                                                                  style="width:160px; text-align: justify" required="true" requiredMessage="Debe Seleccionar Frotis" filter="true" filterMatchMode="startsWith">
                                                     <f:selectItem itemLabel="Escoje"/>
-                                                    <f:selectItems value="#{examenMB.categoria.subCategoriaList}" var="subCategoria"
+                                                    <f:selectItems value="#{subCategoriaMB.categoria.subCategoriaList}" var="subCategoria"
                                                                    itemLabel="#{subCategoria.valor}" itemValue="#{subCategoria}"/>
-                                                    <p:ajax update="RazonFrotis" listener="#{examenMB.razonFrotis()}"/>
+                                                    <p:ajax listener="#{valoresMB.cargarlistaValoresFrotis(examenMB.subCategoriaFrotis)}" update=":form:RazonFrotis"/>
                                                 </p:selectOneMenu>
 
                                                 <p:selectOneListbox id="RazonFrotis" value="#{examenMB.valorFrotis}" converter="converterValores" var="valor"
                                                                     required="true" requiredMessage="Debe Seleccionar Tipo De Frotis" style="height: 200px; width: 200px; text-align: justify">
-                                                    <f:selectItems value="#{examenMB.listaValoresFrotis}" var="valores" 
+                                                    <f:selectItems value="#{valoresMB.listaValoresFrotis}" var="valores" 
                                                                    itemLabel="#{valores.valor}" itemValue="#{valores}"/>
                                                     <p:column>
                                                         <h:outputText value="#{valor.valor}" />
@@ -224,14 +230,14 @@
                                                 <p:selectOneMenu id="Resultado" value="#{examenMB.subCategoriaResultado}" converter="converterSub" editable="false"
                                                                  required="true" requiredMessage="Debe Seleccionar El Resultado" style="width:160px; text-align: justify" filter="true" filterMatchMode="startsWith">
                                                     <f:selectItem itemLabel="Escoje"/>
-                                                    <f:selectItems  value="#{examenMB.categoriaResultado.subCategoriaList}" var="subCategoria1"
+                                                    <f:selectItems  value="#{categoriaMB.categoriaResultado.subCategoriaList}" var="subCategoria1"
                                                                     itemLabel="#{subCategoria1.valor}" itemValue="#{subCategoria1}"/>
-                                                    <p:ajax update="Tipo_Resultado" listener="#{examenMB.TiposResultado()}"/>
+                                                    <p:ajax listener="#{valoresMB.cargarListaValoresResultados(examenMB.subCategoriaResultado)}" update=":form:Tipo_Resultado"/>
                                                 </p:selectOneMenu>
 
                                                 <p:selectOneListbox id="Tipo_Resultado" value="#{examenMB.valorResultado}" converter="converterValores" var="valor"
                                                                     required="true" requiredMessage="Debe Seleccionar El Tipo de Resultado" style="height: 200px; width: 200px; text-align: justify">
-                                                    <f:selectItems value="#{examenMB.listaValoresResultado}" var="valores" 
+                                                    <f:selectItems value="#{valoresMB.listaValoresResultado}" var="valores" 
                                                                    itemLabel="#{valores.valor}" itemValue="#{valores}"/>
                                                     <p:column>
                                                         <h:outputText value="#{valor.valor}" />
@@ -252,7 +258,7 @@
                                         <p:selectOneMenu id="observacionesReco" value="#{examenMB.valorObservacion}" converter="converterValores" panelStyle="width:180px" 
                                                          required="true" requiredMessage="Debe Seleccionar La Observación" effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoge" noSelectionOption="true" />
-                                            <f:selectItems value="#{examenMB.observacion.valoresList}"  var="observaciones" itemLabel="#{observaciones.valor}" 
+                                            <f:selectItems value="#{subCategoriaMB.observacion.valoresList}"  var="observaciones" itemLabel="#{observaciones.valor}" 
                                                            itemValue="#{observaciones}"/>
                                             <p:ajax update="Seguimiento" listener="#{examenMB.calcularFechaSeguiniento()}"/>
                                         </p:selectOneMenu>
@@ -334,7 +340,7 @@
 
                             <p:panel>
 
-                                <p:dataTable id="tbPersona" style="width: 400"  var="persona" value="#{examenMB.listaSRExamen}" paginator="true" rows="10"
+                                <p:dataTable id="tbPersona"   var="persona" value="#{examenMB.listaSRExamen}" paginator="true" rows="10"
                                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                              rowsPerPageTemplate="5,10,15" lazy="true" emptyMessage="No hay Datos en La Base de Datos" selectionMode="single" selection="#{examenMB.examenSelect}" 
                                              rowKey="#{persona.idExamen}">
@@ -381,7 +387,7 @@
 
                         <p:dialog id="TAB2" header="Pacientes"   widgetVar="TABDIALOG2" resizable="false" modal="true" closable="true">
 
-                            <p:dataTable id="tbPersonaPendiente" style="width: 550"  var="examen" value="#{examenMB.getListaExamenPendiente(examenMB.examenSelect.idPersona)}" 
+                            <p:dataTable id="tbPersonaPendiente"   var="examen" value="#{examenMB.getListaExamenPendiente(examenMB.examenSelect.idPersona)}" 
                                          paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Este Paciente No Tiene Examenes"
                                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                          lazy="true" selectionMode="single" selection="#{examenMB.examenSelect}" rowKey="#{examen.idExamen}">
@@ -415,7 +421,7 @@
 
                         <p:confirmDialog id="confirmacion" header="Pacientes / Finalizar" widgetVar="confirmation" message="¿Esta Seguro que desea guardar el examen?"
                                          severity="alert" closable="false">
-                            <p:dataTable id="finalizar" style="width: 550"  var="examenCompleto" value="#{examenMB.listaExamenCompleto}">
+                            <p:dataTable id="finalizar"  var="examenCompleto" value="#{examenMB.listaExamenCompleto}">
                                 <p:column headerText="Examen # ">
                                     <h:outputText value="#{examenCompleto.idExamen}"/>
                                 </p:column>

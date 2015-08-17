@@ -38,7 +38,7 @@
                                         <p:selectOneMenu id="Nombres" value="#{examenMB.valorEmbarazoActual}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Embarazo" 
                                                          style="width:100px"  editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.embarazoActual.valoresList}" var="embarazo"
+                                            <f:selectItems value="#{subCategoriaMB.embarazoActual.valoresList}" var="embarazo"
                                                            itemLabel="#{embarazo.valor}" itemValue="#{embarazo}" />
                                             <p:ajax update="basic5 basic" listener="#{examenMB.HabilitaandoCampos()}" />
                                         </p:selectOneMenu>
@@ -51,7 +51,7 @@
                                         <p:selectOneMenu id="Nombr" value="#{examenMB.valorFuma}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Si Fuma"
                                                          style="width:100px" editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.fuma.valoresList}" var="fuma"
+                                            <f:selectItems value="#{subCategoriaMB.fuma.valoresList}" var="fuma"
                                                            itemLabel="#{fuma.valor}" itemValue="#{fuma}"/>
                                         </p:selectOneMenu>
 
@@ -59,7 +59,7 @@
                                         <p:selectOneMenu id="Nomb" value="#{examenMB.valorToma}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Si Toma"
                                                          style="width:100px" editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.toma.valoresList}" var="toma"
+                                            <f:selectItems value="#{subCategoriaMB.toma.valoresList}" var="toma"
                                                            itemLabel="#{toma.valor}" itemValue="#{toma}" />
                                         </p:selectOneMenu>
                                         <h:outputText value="Menarca:"/>

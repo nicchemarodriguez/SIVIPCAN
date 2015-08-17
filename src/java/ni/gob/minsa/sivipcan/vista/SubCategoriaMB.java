@@ -6,15 +6,14 @@
 package ni.gob.minsa.sivipcan.vista;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import ni.gob.minsa.modelo.poblacion.Catalogos;
-import ni.gob.minsa.sivipcan.controlador.CatalogoEJB;
 import ni.gob.minsa.sivipcan.controlador.SubCategoriaEJB;
 import ni.gob.minsa.sivipcan.modelo.Categoria;
 import ni.gob.minsa.sivipcan.modelo.SubCategoria;
@@ -22,11 +21,10 @@ import ni.gob.minsa.sivipcan.modelo.Valores;
 import org.primefaces.event.SelectEvent;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class SubCategoriaMB implements Serializable {
 
     @EJB
-
     private SubCategoriaEJB subcategEJB;
     private List<SubCategoria> listaSubcategoria = new ArrayList<SubCategoria>();
     private List<Categoria> listaCategoria = new ArrayList<Categoria>();
@@ -36,15 +34,200 @@ public class SubCategoriaMB implements Serializable {
     private Valores valor;
     private Categoria categoria;
 
+    /**
+     * Cargar,Buscar, Asignar Subcategorias para todos los examenes
+     */
   
-    
+  
+    private List<SubCategoria> listaSubCategoria = new ArrayList<SubCategoria>();
+    private SubCategoria AntecedentesAbiertos;
+    private SubCategoria Fuma;
+    private SubCategoria Toma;
+    private SubCategoria EmbarazoActual;
+    private SubCategoria Procedencia;
+    private SubCategoria AspectoClinico;
+    private SubCategoria Secrecion;
+    private SubCategoria observacion;
+    private CategoriaMB CategoriaMB = (CategoriaMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{categoriaMB}", CategoriaMB.class);
 
     public SubCategoriaMB() {
     }
 
-    public SubCategoriaMB(SubCategoriaEJB subcategEJB, SubCategoria Seleccion) {
+    public SubCategoriaMB(SubCategoriaEJB subcategEJB, SubCategoriaEJB subCategEJB, SubCategoria Seleccion, Valores valor, Categoria categoria, SubCategoria AntecedentesAbiertos, SubCategoria Fuma, SubCategoria Toma, SubCategoria EmbarazoActual, SubCategoria Procedencia, SubCategoria AspectoClinico, SubCategoria Secrecion, SubCategoria observacion) {
         this.subcategEJB = subcategEJB;
+        this.subCategEJB = subCategEJB;
         this.Seleccion = Seleccion;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.AntecedentesAbiertos = AntecedentesAbiertos;
+        this.Fuma = Fuma;
+        this.Toma = Toma;
+        this.EmbarazoActual = EmbarazoActual;
+        this.Procedencia = Procedencia;
+        this.AspectoClinico = AspectoClinico;
+        this.Secrecion = Secrecion;
+        this.observacion = observacion;
+    }
+
+ 
+
+    /**
+     * get y set
+     *
+     * @return
+     */
+    public CategoriaMB getCategoriaMB() {
+        return CategoriaMB;
+    }
+
+    public void setCategoriaMB(CategoriaMB CategoriaMB) {
+        this.CategoriaMB = CategoriaMB;
+    }
+
+    public SubCategoria getAntecedentesAbiertos() {
+
+        return AntecedentesAbiertos;
+    }
+
+    public void setAntecedentesAbiertos(SubCategoria AntecedentesAbiertos) {
+        this.AntecedentesAbiertos = AntecedentesAbiertos;
+    }
+
+    public SubCategoria getFuma() {
+
+        return Fuma;
+    }
+
+    public void setFuma(SubCategoria Fuma) {
+        this.Fuma = Fuma;
+    }
+
+    public SubCategoria getToma() {
+
+        return Toma;
+    }
+
+    public void setToma(SubCategoria Toma) {
+        this.Toma = Toma;
+    }
+
+    public SubCategoria getEmbarazoActual() {
+
+        return EmbarazoActual;
+    }
+
+    public void setEmbarazoActual(SubCategoria EmbarazoActual) {
+        this.EmbarazoActual = EmbarazoActual;
+    }
+
+   
+    public List<SubCategoria> getListaSubCategoria() {
+        return listaSubCategoria;
+    }
+
+    public void setListaSubCategoria(List<SubCategoria> listaSubCategoria) {
+        this.listaSubCategoria = listaSubCategoria;
+    }
+
+    public SubCategoria getObservacion() {
+
+        return observacion;
+    }
+
+    public void setObservacion(SubCategoria observacion) {
+        this.observacion = observacion;
+    }
+
+    public SubCategoria getProcedencia() {
+
+        return Procedencia;
+    }
+
+    public void setProcedencia(SubCategoria Procedencia) {
+        this.Procedencia = Procedencia;
+    }
+
+    public SubCategoria getAspectoClinico() {
+
+        return AspectoClinico;
+    }
+
+    public void setAspectoClinico(SubCategoria AspectoClinico) {
+        this.AspectoClinico = AspectoClinico;
+    }
+
+    public SubCategoria getSecrecion() {
+
+        return Secrecion;
+    }
+
+    public void setSecrecion(SubCategoria Secrecion) {
+        this.Secrecion = Secrecion;
+    }
+
+  
+
+    //cargar variables de subcategorias con los datos de las categorias
+    public void cargarVariablesSubCategorias() {
+
+        this.CategoriaMB.cargarVariablesCategorias();
+
+        java.math.BigDecimal idAnteAbiertos = new java.math.BigDecimal(String.valueOf(6));
+
+        for (int i = 0; this.CategoriaMB.getAntecedentes().getSubCategoriaList().size() > i; i++) {
+            if (this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i).getIdSubcategoria().equals(idAnteAbiertos)) {
+                AntecedentesAbiertos = this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i);
+                System.out.println("anteabiertos");
+            }
+        }
+
+        //--
+        java.math.BigDecimal idFuma = new java.math.BigDecimal(String.valueOf(7));
+
+        for (int i = 0; this.CategoriaMB.getAntecedentes().getSubCategoriaList().size() > i; i++) {
+
+            if (this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i).getIdSubcategoria().equals(idFuma)) {
+
+                Fuma = this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i);
+            }
+        }
+        //--
+
+        java.math.BigDecimal idToma = new java.math.BigDecimal(String.valueOf(8));
+        for (int i = 0; this.CategoriaMB.getAntecedentes().getSubCategoriaList().size() > i; i++) {
+            if (this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i).getIdSubcategoria().equals(idToma)) {
+
+                Toma = this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i);
+
+            }
+        }
+        //--
+
+        java.math.BigDecimal idEmbarazo = new java.math.BigDecimal(String.valueOf(9));
+        for (int i = 0; this.CategoriaMB.getAntecedentes().getSubCategoriaList().size() > i; i++) {
+            if (this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i).getIdSubcategoria().equals(idEmbarazo)) {
+                EmbarazoActual = this.CategoriaMB.getAntecedentes().getSubCategoriaList().get(i);
+
+            }
+        }
+    //--
+
+        BigDecimal idObservaciones = new BigDecimal(23);
+        for (int i = 0; this.CategoriaMB.getCategoriaObservacion().getSubCategoriaList().size() > i; i++) {
+            if (this.CategoriaMB.getCategoriaObservacion().getSubCategoriaList().get(i).getIdSubcategoria().equals(idObservaciones)) {
+                observacion = this.CategoriaMB.getCategoriaObservacion().getSubCategoriaList().get(i);
+            }
+        }
+        //--
+
+        Procedencia = subcategEJB.buscarProcedencia().get(0);
+        //--
+        AspectoClinico = subcategEJB.buscarAspectoClinico().get(0);
+        //--
+        Secrecion = subcategEJB.buscarSecrecion().get(0);
     }
 
     public SubCategoriaEJB getSubcategEJB() {
@@ -98,7 +281,7 @@ public class SubCategoriaMB implements Serializable {
 
     public void guardarOactualizar() {
 
-      this.listaCategoria.clear();
+        this.listaCategoria.clear();
         this.categoria = null;
 
         if (!(e.getValor()).matches("([a-z]|[A-Z]|[0-9]|\\s|Ñ|ñ)+")) {
@@ -167,7 +350,5 @@ public class SubCategoriaMB implements Serializable {
     public void setListaCategoria(List<Categoria> listaCategoria) {
         this.listaCategoria = listaCategoria;
     }
-
-  
 
 }
