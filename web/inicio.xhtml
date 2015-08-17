@@ -331,7 +331,7 @@
 
                             <p:panel>
 
-                                <p:dataTable id="tbPersona" style="width: 400"  var="persona" value="#{examenMB.listaSRExamen}" paginator="true" rows="10"
+                                <p:dataTable id="tbPersona" style="width: 400px"  var="persona" value="#{examenMB.listaSRExamen}" paginator="true" rows="10"
                                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                              rowsPerPageTemplate="5,10,15" lazy="true" emptyMessage="No hay Datos en La Base de Datos" selectionMode="single" selection="#{examenMB.examenSelect}" 
                                              rowKey="#{persona.idExamen}">
@@ -378,7 +378,7 @@
 
                         <p:dialog id="TAB2" header="Pacientes"   widgetVar="TABDIALOG2" resizable="false" modal="true" closable="true">
 
-                            <p:dataTable id="tbPersonaPendiente" style="width: 550"  var="examen" value="#{examenMB.getListaExamenPendiente(examenMB.examenSelect.idPersona)}" 
+                            <p:dataTable id="tbPersonaPendiente" style="width: 550px"  var="examen" value="#{examenMB.getListaExamenPendiente(examenMB.examenSelect.idPersona)}" 
                                          paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Este Paciente No Tiene Examenes"
                                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                          lazy="true" selectionMode="single" selection="#{examenMB.examenSelect}" rowKey="#{examen.idExamen}">
@@ -412,7 +412,7 @@
 
                         <p:confirmDialog id="confirmacion" header="Pacientes / Finalizar" widgetVar="confirmation" message="¿Esta Seguro que desea guardar el examen?"
                                          severity="alert" closable="false">
-                            <p:dataTable id="finalizar" style="width: 550"  var="examenCompleto" value="#{examenMB.listaExamenCompleto}">
+                            <p:dataTable id="finalizar" style="width: 550px"  var="examenCompleto" value="#{examenMB.listaExamenCompleto}">
                                 <p:column headerText="Examen # ">
                                     <h:outputText value="#{examenCompleto.idExamen}"/>
                                 </p:column>
