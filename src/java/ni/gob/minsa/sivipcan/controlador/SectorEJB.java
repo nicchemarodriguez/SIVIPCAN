@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import ni.gob.minsa.modelo.poblacion.Sector;
 
+
 /**
  *
  * @author WIN 7
@@ -22,9 +23,11 @@ public class SectorEJB {
 
     @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
-    
+
     public List<Sector> buscarTodosLosSectores( ) {
         Query query = em.createNamedQuery("Sector.findAll");
         return query.getResultList();
+        
+       
     }
 }

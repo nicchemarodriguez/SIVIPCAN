@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ni.gob.minsa.sivipcan.vista;
 
 import java.io.Serializable;
@@ -54,8 +55,12 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ExamenMB implements Serializable {
 
+    
+    
+    
     @EJB
     private ExamenEJB ExamenEJB;
+    
     private Date fechaNac;
     private boolean skip;
 
@@ -169,11 +174,15 @@ public class ExamenMB implements Serializable {
     
     
     
+    //--
     
+    private ResultadoExamen[] re;
     
 //--
 
     private SisMedicos medicoSelect = new SisMedicos();
+    
+    
 
     private ResultadoExamen resultadExamen1 = new ResultadoExamen();
     private ResultadoExamen resultadExamen2 = new ResultadoExamen();
@@ -814,6 +823,8 @@ public class ExamenMB implements Serializable {
 
     //Codigo Angelo para Antecedentes Ginecobtetrico
     public void pasarValorResutado() {
+        
+        
 
         System.out.println(this.ExamenSelect.getIdExamen());
 
@@ -876,70 +887,89 @@ public class ExamenMB implements Serializable {
     }
 
     public void asignarResutados() {
+        //--tamaño de arreglo solo para antecedentes y descripcion de la muestra
+        
+       
+
         if (this.ExamenSelect.getResultadoExamenList() != null) {
+            //--asignar tamaño de areglo para todos los resultados
+               re= new ResultadoExamen[this.ExamenSelect.getResultadoExamenList().size()];
+            //--
             System.out.println("Cantidad de datos en lista resultado: " + this.ExamenSelect.getResultadoExamenList().size());
 
             System.out.println("Soy el examen #... " + ExamenSelect.getIdExamen());
             System.out.println("existe todos los resultados");
-            java.math.BigDecimal g = new java.math.BigDecimal(String.valueOf(1));
-            java.math.BigDecimal p = new java.math.BigDecimal(String.valueOf(2));
-            java.math.BigDecimal ab = new java.math.BigDecimal(String.valueOf(3));
-            java.math.BigDecimal c = new java.math.BigDecimal(String.valueOf(4));
-            java.math.BigDecimal iv = new java.math.BigDecimal(String.valueOf(5));
-            java.math.BigDecimal fu = new java.math.BigDecimal(String.valueOf(6));
-            java.math.BigDecimal s = new java.math.BigDecimal(String.valueOf(7));
-            java.math.BigDecimal m = new java.math.BigDecimal(String.valueOf(8));
-            java.math.BigDecimal e = new java.math.BigDecimal(String.valueOf(9));
-            java.math.BigDecimal proc = new java.math.BigDecimal(String.valueOf(10));
-            java.math.BigDecimal asp = new java.math.BigDecimal(String.valueOf(11));
-            java.math.BigDecimal secre = new java.math.BigDecimal(String.valueOf(12));
-            java.math.BigDecimal aaaaa = new java.math.BigDecimal(String.valueOf(22));
+
+            java.math.BigDecimal v1 = new java.math.BigDecimal(String.valueOf(1));
+            java.math.BigDecimal v2 = new java.math.BigDecimal(String.valueOf(2));
+            java.math.BigDecimal v3 = new java.math.BigDecimal(String.valueOf(3));
+            java.math.BigDecimal v4 = new java.math.BigDecimal(String.valueOf(4));
+            java.math.BigDecimal v5 = new java.math.BigDecimal(String.valueOf(5));
+            java.math.BigDecimal v6 = new java.math.BigDecimal(String.valueOf(6));
+            java.math.BigDecimal v7 = new java.math.BigDecimal(String.valueOf(7));
+            java.math.BigDecimal v8 = new java.math.BigDecimal(String.valueOf(8));
+            java.math.BigDecimal v9 = new java.math.BigDecimal(String.valueOf(9));
+            java.math.BigDecimal v10 = new java.math.BigDecimal(String.valueOf(10));
+            java.math.BigDecimal v11 = new java.math.BigDecimal(String.valueOf(11));
+            java.math.BigDecimal v12 = new java.math.BigDecimal(String.valueOf(12));
+            java.math.BigDecimal v13 = new java.math.BigDecimal(String.valueOf(22));
+            
+            
             for (int i = 0; this.ExamenSelect.getResultadoExamenList().size() > i; i++) {
+                
+                
+                
+                
+                
+                
+           
+              
 
-                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(g)) {
-                    re1 = this.ExamenSelect.getResultadoExamenList().get(i);
+                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v1)) {
+                    re[0] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(p)) {
-                    re2 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v2)) {
+                   re[1] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(ab)) {
-                    re3 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v3)) {
+                    re[2] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(c)) {
-                    re4 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v4)) {
+                    re[3] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(iv)) {
-                    re5 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v5)) {
+                    re[4] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(fu)) {
-                    re6 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v6)) {
+                    re[5] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(s)) {
-                    re7 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v7)) {
+                    re[6] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(m)) {
-                    re8 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v8)) {
+                    re[7] = this.ExamenSelect.getResultadoExamenList().get(i);
+                    
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(s)) {
-                    re9 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v7)) {
+                    re[8] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(m)) {
-                    re10 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v8)) {
+                    re[9] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(e)) {
-                    re11 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v9)) {
+                    re[10] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(proc)) {
-                    re12 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v10)) {
+                    re[11] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(asp)) {
-                    re13 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v11)) {
+                    re[12] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(secre)) {
-                    re14 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v12)) {
+                    re[13] = this.ExamenSelect.getResultadoExamenList().get(i);
 
-                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(aaaaa)) {
-                    re15 = this.ExamenSelect.getResultadoExamenList().get(i);
+                } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v13)) {
+                    re[14] = this.ExamenSelect.getResultadoExamenList().get(i);
 
                 }
 
@@ -947,121 +977,49 @@ public class ExamenMB implements Serializable {
             }
 
         } else {
+              re= new ResultadoExamen[15];
+            //---------------
+            /**
+             * ciclo para asignar valores por defecto para los resutados de anteGinec y descripcion de la muestra
+             */
+            for(int i=0;i<8;i++){
+               re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
+               re[i].setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+                  }
+            for(int i=8;i<11;i++){   
+            re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
+                 }
+            for(int i=11;i<14;i++){
+                re[i].setIdCategoria(this.SubCategoriaMB.getSecrecion().getIdCategoria());
+                     }
+            //---------------       
             //Gestas----------------------
-            re1 = new ResultadoExamen();
-
-            // pk1.setIdSubcategoria(this.getAntecedentesAbiertos().getIdSubcategoria().toBigInteger());
-            // pk1.setIdValor(this.getGestas().getIdValor().toBigInteger());
-            re1.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re1.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re1.setIdValor(this.ValoresMB.getGestas());
-            System.out.println("g");
+            re[0].setIdValor(this.ValoresMB.getGestas());
             //Partos---------------------------------
-            re2 = new ResultadoExamen();
-
-            // pk2.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            // pk2.setIdValor(this.getPartos().getIdValor().toBigInteger());
-            re2.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re2.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re2.setIdValor(this.ValoresMB.getPartos());
-            System.out.println("p");
+            re[1].setIdValor(this.ValoresMB.getPartos());
             //Abortos------------------------------------
-            re3 = new ResultadoExamen();
-
-            //  pk3.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            //  pk3.setIdValor(this.getAbortos().getIdValor().toBigInteger());
-            re3.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re3.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re3.setIdValor(this.ValoresMB.getAbortos());
-            System.out.println("a");
+            re[2].setIdValor(this.ValoresMB.getAbortos());
             //Cesareas-----------------------------
-            re4 = new ResultadoExamen();
-
-            // pk4.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            // pk4.setIdValor(this.getCesareaa().getIdValor().toBigInteger());
-            re4.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re4.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re4.setIdValor(this.ValoresMB.getCesareaa());
-
+            re[3].setIdValor(this.ValoresMB.getCesareaa());
             //Ivsa-----------------------------------
-            re5 = new ResultadoExamen();
-
-            //  pk5.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            // pk5.setIdValor(this.getIVSA().getIdValor().toBigInteger());
-            re5.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re5.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re5.setIdValor(this.ValoresMB.getIVSA());
-            System.out.println("I");
+            re[4].setIdValor(this.ValoresMB.getIVSA());
             //Fur----------------------------------
-            re6 = new ResultadoExamen();
-
-            // pk6.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            //  pk6.setIdValor(this.getFURV().getIdValor().toBigInteger());
-            re6.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re6.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re6.setIdValor(this.ValoresMB.getFURV());
-            System.out.println("fur");
+            re[5].setIdValor(this.ValoresMB.getFURV());
             //SemanaGestas----------------------------------------
-            re7 = new ResultadoExamen();
-
-            // pk7.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            //  pk7.setIdValor(this.getSemanaGestas().getIdValor().toBigInteger());
-            re7.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re7.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re7.setIdValor(this.ValoresMB.getSemanaGestas());
+            re[6].setIdValor(this.ValoresMB.getSemanaGestas());
             //menarca-----------------------------
-            re8 = new ResultadoExamen();
-
-            //  pk8.setIdSubcategoria(this.AntecedentesAbiertos.getIdSubcategoria().toBigInteger());
-            // pk8.setIdValor(this.getMenarca().getIdValor().toBigInteger());
-            re8.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re8.setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-            re8.setIdValor(this.ValoresMB.getMenarca());
+            re[7].setIdValor(this.ValoresMB.getMenarca());
             //fuma--------------------------
-            re9 = new ResultadoExamen();
-
-            // pk9.setIdSubcategoria(this.getFuma().getIdSubcategoria().toBigInteger());
-            //pk9.setIdValor(this.valorFuma.getIdValor().toBigInteger());
-            re9.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re9.setIdSubcategoria(this.SubCategoriaMB.getFuma());
-            System.out.println("FUMA");
-            //re9.setValores(this.valorFuma);
-
+            re[8].setIdSubcategoria(this.SubCategoriaMB.getFuma());
             //toma--------------------------
-            re10 = new ResultadoExamen();
-
-            // pk10.setIdSubcategoria(this.getToma().getIdSubcategoria().toBigInteger());
-            //pk10.setIdValor(this.valorToma.getIdValor().toBigInteger());
-            re10.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re10.setIdSubcategoria(this.SubCategoriaMB.getToma());
-            //re10.setValores(this.valorToma);
-            System.out.println();
+            re[9].setIdSubcategoria(this.SubCategoriaMB.getToma());
             //embarazo actual------------------------------
-            re11 = new ResultadoExamen();
-
-            //pk11.setIdSubcategoria(this.getEmbarazoActual().getIdSubcategoria().toBigInteger());
-            //pk11.setIdValor(this.VarEmbarazoActual.getIdValor().toBigInteger());
-            re11.setIdCategoria(this.CategoriaMB.getAntecedentes());
-            re11.setIdSubcategoria(this.SubCategoriaMB.getEmbarazoActual());
-            // re11.setValores(this.valorEmbarazoActual);
-            System.out.println("LISTO EMBARAZO");
-
+            re[10].setIdSubcategoria(this.SubCategoriaMB.getEmbarazoActual());
             //------------------------------------------------------------   
-            re12 = new ResultadoExamen();
-            re12.setIdCategoria(this.SubCategoriaMB.getProcedencia().getIdCategoria());
-            re12.setIdSubcategoria(this.SubCategoriaMB.getProcedencia());
-
-            re13 = new ResultadoExamen();
-            re13.setIdCategoria(this.SubCategoriaMB.getAspectoClinico().getIdCategoria());
-            re13.setIdSubcategoria(this.SubCategoriaMB.getAspectoClinico());
-
-            re14 = new ResultadoExamen();
-            re14.setIdCategoria(this.SubCategoriaMB.getSecrecion().getIdCategoria());
-            re14.setIdSubcategoria(this.SubCategoriaMB.getSecrecion());
-            System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
-//            re15 = new ResultadoExamen();
-//            re15.setIdCategoria(this.Antecedentes);
-//            re15.setIdSubcategoria(this.getEmbarazoActual());
+            re[11].setIdSubcategoria(this.SubCategoriaMB.getProcedencia());
+            re[12].setIdSubcategoria(this.SubCategoriaMB.getAspectoClinico());
+            re[13].setIdSubcategoria(this.SubCategoriaMB.getSecrecion());
+            
         }
 
     }
