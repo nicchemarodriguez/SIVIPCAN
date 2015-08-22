@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import ni.gob.minsa.modelo.poblacion.DivisionPolitica;
 import ni.gob.minsa.modelo.poblacion.Sector;
 
 
@@ -29,5 +30,11 @@ public class SectorEJB {
         return query.getResultList();
         
        
+    }
+    
+    public List<Sector> buscarSectoresXmunicipio(String municipioSelect) {
+        Query query = em.createNamedQuery("Sector.findByMunicipio");
+        query.setParameter("municipio", municipioSelect);
+        return query.getResultList();
     }
 }

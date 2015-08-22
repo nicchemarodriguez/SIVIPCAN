@@ -6,9 +6,12 @@
 
 package ni.gob.minsa.sivipcan.controlador;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import ni.gob.minsa.modelo.poblacion.DivisionPolitica;
 
 /**
  *
@@ -20,5 +23,17 @@ public class DivisionpoliticaEJB {
     @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
     
+    public List<DivisionPolitica>buscardepartamentos() {
+        Query query = em.createNamedQuery("DivisionPolitica.findAll");       
+        return query.getResultList();
+    
+    }
+    
+    public List<DivisionPolitica>buscarMunicipios(long id) {
+        Query query = em.createNamedQuery("DivisionPolitica.findMunicipios"); 
+        query.setParameter("dependencia", id);
+        return query.getResultList();
+    
+    }
     
 }

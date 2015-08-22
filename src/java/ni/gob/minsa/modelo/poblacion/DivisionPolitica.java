@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @UniqueConstraint(columnNames = {"CODIGO_NACIONAL"})})
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DivisionPolitica.findAll", query = "SELECT d FROM DivisionPolitica d"),
+    @NamedQuery(name = "DivisionPolitica.findAll", query = "SELECT d FROM DivisionPolitica d WHERE d.dependencia is null"),
+    @NamedQuery(name = "DivisionPolitica.findMunicipios", query = "SELECT d FROM DivisionPolitica d WHERE d.dependencia = :id"),
     @NamedQuery(name = "DivisionPolitica.findByDivisionpoliticaId", query = "SELECT d FROM DivisionPolitica d WHERE d.divisionpoliticaId = :divisionpoliticaId"),
     @NamedQuery(name = "DivisionPolitica.findByNombre", query = "SELECT d FROM DivisionPolitica d WHERE d.nombre = :nombre"),
     @NamedQuery(name = "DivisionPolitica.findByAdministracion", query = "SELECT d FROM DivisionPolitica d WHERE d.administracion = :administracion"),

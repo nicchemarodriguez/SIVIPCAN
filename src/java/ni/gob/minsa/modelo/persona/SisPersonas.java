@@ -33,108 +33,108 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellido", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion AND e.fallecida= :fallecida"),
      
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
             + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.fallecida= :fallecida AND e.codigoSexo = :codigoSexo"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreDosApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     //N1,A1,A2
     @NamedQuery(name = "SisPersonas.findByNombre1DosApellido", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
       @NamedQuery(name = "SisPersonas.findByNombre1DosApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
       
       
       
     //N2,A1,A2
      @NamedQuery(name = "SisPersonas.findByNombre2DosApellido", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
      @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
       @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
       @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
       @NamedQuery(name = "SisPersonas.findByNombre2DosApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
     //N1,N2,A1
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1Celular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
@@ -146,71 +146,71 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido1FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
 
     //3N1,N2,A2
     @NamedQuery(name = "SisPersonas.findByDosNombreApellido2", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2Celular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2FechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
      @NamedQuery(name = "SisPersonas.findByDosNombreApellido2FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + " AND e.segundoNombre = :segundoNombre AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
     
     //N1,N2
     @NamedQuery(name = "SisPersonas.findByDosNombre", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre"),
+            + "AND e.segundoNombre = :segundoNombre  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByDosNombreFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByDosNombreFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -218,68 +218,68 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     //N1,A1
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido"),
+            + "AND e.primerApellido = :primerApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
 
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1Celular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1FechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido1FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     
     //N1,A2
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido"),
+            + "AND e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2Celular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2FechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre1Apellido2FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -291,67 +291,67 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     //N2,A1
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido"),
+            + " AND e.primerApellido = :primerApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1Celular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil"),
+            + " AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion"),
+            + " AND e.primerApellido = :primerApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + " AND e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1FechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido1FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + " AND e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     //N2,A2
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido"),
+            + "  AND e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2FechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2Celular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2Identificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2FechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2CelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2FechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     @NamedQuery(name = "SisPersonas.findByNombre2Apellido2FechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre "
-            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "  AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -359,77 +359,75 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     //A1,A2
     @NamedQuery(name = "SisPersonas.findByDosApellido", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido"),
+            + "AND e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
      @NamedQuery(name = "SisPersonas.findByDosApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
      @NamedQuery(name = "SisPersonas.findByDosApellidoCelula", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
             + "AND e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
     
      @NamedQuery(name = "SisPersonas.findByDosApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      @NamedQuery(name = "SisPersonas.findByDosApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      @NamedQuery(name = "SisPersonas.findByDosApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      @NamedQuery(name = "SisPersonas.findByDosApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  "
-            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+            + "AND e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
      
      
      
     //N1 
      
-    @NamedQuery(name = "SisPersonas.findByPrimerNombre", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombre", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.telefonoMovil = :telefonoMovil"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
-    
-    
+    @NamedQuery(name = "SisPersonas.findByPrimerNombreFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerNombre = :primerNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
     
     
     
-    @NamedQuery(name = "SisPersonas.findBySegundoNombre", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.identificacion = :identificacion"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
-    
-    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
     
     
+    @NamedQuery(name = "SisPersonas.findBySegundoNombre", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
+    
+    @NamedQuery(name = "SisPersonas.findBySegundoNombreFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoNombre = :segundoNombre AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -440,21 +438,23 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     
     
-    @NamedQuery(name = "SisPersonas.findByPrimerApellido", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido"), 
     
-     @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento"), 
     
-     @NamedQuery(name = "SisPersonas.findByPrimerApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil"), 
+    @NamedQuery(name = "SisPersonas.findByPrimerApellido", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"), 
     
-     @NamedQuery(name = "SisPersonas.findByPrimerApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.identificacion = :identificacion"), 
+     @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"), 
     
-     @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"), 
+     @NamedQuery(name = "SisPersonas.findByPrimerApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"), 
+    
+     @NamedQuery(name = "SisPersonas.findByPrimerApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"), 
+    
+     @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"), 
      
-      @NamedQuery(name = "SisPersonas.findByPrimerApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+      @NamedQuery(name = "SisPersonas.findByPrimerApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
-       @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+       @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
        
-        @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+        @NamedQuery(name = "SisPersonas.findByPrimerApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.primerApellido = :primerApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -463,22 +463,22 @@ import javax.xml.bind.annotation.XmlRootElement;
      
      
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellido", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellido", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNac", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
-    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+    @NamedQuery(name = "SisPersonas.findBySegundoApellidoFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.segundoApellido = :segundoApellido AND e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
     
     
     
@@ -486,9 +486,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     
     
      
-      @NamedQuery(name = "SisPersonas.findByFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion"),
+      @NamedQuery(name = "SisPersonas.findByFechaNacIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.fechaNacimiento = :fechaNacimiento AND e.identificacion = :identificacion  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
       
-       @NamedQuery(name = "SisPersonas.findByFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil"),
+       @NamedQuery(name = "SisPersonas.findByFechaNacCelular", query = "SELECT e FROM SisPersonas e WHERE e.fechaNacimiento = :fechaNacimiento AND e.telefonoMovil = :telefonoMovil  AND e.codigoSexo = :codigoSexo AND e.fallecida= :fallecida"),
        
         @NamedQuery(name = "SisPersonas.findByCelularIdentificacion", query = "SELECT e FROM SisPersonas e WHERE e.telefonoMovil = :telefonoMovil AND e.identificacion = :identificacion"),
      
@@ -499,8 +499,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SisPersonas.findAll", query = "SELECT s FROM SisPersonas s"),
     @NamedQuery(name = "SisPersonas.findByPersonaId", query = "SELECT s FROM SisPersonas s WHERE s.personaId = :personaId"),
     @NamedQuery(name = "SisPersonas.findByIdentificacionHse", query = "SELECT s FROM SisPersonas s WHERE s.identificacionHse = :identificacionHse"),
-    @NamedQuery(name = "SisPersonas.findByIdentificacion", query = "SELECT s FROM SisPersonas s WHERE s.identificacion = :identificacion"),
-    @NamedQuery(name = "SisPersonas.findByFechaNacimiento", query = "SELECT s FROM SisPersonas s WHERE s.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "SisPersonas.findByIdentificacion", query = "SELECT s FROM SisPersonas s WHERE s.identificacion = :identificacion AND s.codigoSexo = :codigoSexo AND s.fallecida= :fallecida"),
+    @NamedQuery(name = "SisPersonas.findByFechaNacimiento", query = "SELECT s FROM SisPersonas s WHERE s.fechaNacimiento = :fechaNacimiento AND s.codigoSexo = :codigoSexo AND s.fallecida= :fallecida"),
     @NamedQuery(name = "SisPersonas.findByDireccionResidencia", query = "SELECT s FROM SisPersonas s WHERE s.direccionResidencia = :direccionResidencia"),
     @NamedQuery(name = "SisPersonas.findByTelefonoResidencia", query = "SELECT s FROM SisPersonas s WHERE s.telefonoResidencia = :telefonoResidencia"),
     @NamedQuery(name = "SisPersonas.findByTelefonoMovil", query = "SELECT s FROM SisPersonas s WHERE s.telefonoMovil = :telefonoMovil"),

@@ -90,9 +90,9 @@
                                                          required="true" requiredMessage="Debe Seleccionar La Procedencia" filter="true" 
                                                          filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.listaDepartamentos}" var="departamentos" itemLabel="#{departamentos.nombre}"
+                                            <f:selectItems value="#{divisionPoliticaMB.listaDivisionpolitica}" var="departamentos" itemLabel="#{departamentos.nombre}"
                                                            itemValue="#{departamentos}" />
-                                            <p:ajax  update="Municipios" listener="#{examenMB.pasarvaloresnull()}"/>
+                                            <p:ajax  update="Municipios"/>
                                         </p:selectOneMenu>
 
                                         <h:outputText value="Municipios:"/>
@@ -100,18 +100,18 @@
                                                          required="true" requiredMessage="Debe Seleccionar La Procedencia" filter="true" 
                                                          filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.listaMunicipios}" var="municipios" itemLabel="#{municipios.nombre}"
+                                            <f:selectItems value="#{divisionPoliticaMB.listaMunicipios}" var="municipios" itemLabel="#{municipios.nombre}"
                                                            itemValue="#{municipios}" />
-                                            <p:ajax  update="Comarca" listener="#{examenMB.pasarvaloresnull2()}"/>
+                                            <p:ajax  update="Comarca"/>
                                         </p:selectOneMenu>
 
                                         <h:outputText value="Barrio/Comarca:"/>
                                         <p:selectOneMenu id="Comarca" value="#{examenMB.examenSelect.idComunidadResidencia}" converter="converterComunidad" style="width:160px" 
                                                          filter="true" filterMatchMode="startsWith" editable="false">
                                             <f:selectItem itemLabel="Escoje"/>
-                                            <f:selectItems value="#{examenMB.comunidades}" var="comunidades" 
+                                            <f:selectItems value="#{comunidadMB.listaSector}" var="comunidades" 
                                                            itemLabel="#{comunidades.nombre}" itemValue="#{comunidades}" />
-                                            <p:ajax  update="Comarca" listener="#{examenMB.put()}"/>
+                                            <p:ajax  update="Comarca" />
                                         </p:selectOneMenu>
 
                                         <p:outputLabel for="num_exp" value="# Expediente:" />
