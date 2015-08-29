@@ -355,11 +355,11 @@ public class ExamenMB implements Serializable {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
                 for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-
+                    if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
                     if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("METELGANT")) {
                         metodoAnticonceptivo = this.ExamenSelect.getCatalogoList().get(i);
                     }
-
+                    }
                 }
             }
         }
@@ -590,7 +590,7 @@ public class ExamenMB implements Serializable {
     }
     
     public List<Comunidad> getComunidades() {
-
+//
 //        if (!this.getSectores().isEmpty()) {
 //            List<Comunidad> comuni;
 //            comunidades.clear();
@@ -605,8 +605,8 @@ public class ExamenMB implements Serializable {
 //       comunidades =  ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());
 //       }
 
-         if(ExamenSelect.getIdComunidadResidencia() != null){
-        comunidades = ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());}
+//         if(ExamenSelect.getIdComunidadResidencia() != null){
+//        comunidades = ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());}
         return comunidades;
     }
 
@@ -3964,11 +3964,13 @@ public class ExamenMB implements Serializable {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
                 for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-
-                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("ESCDA")) {
+//                        System.out.println(this.ExamenSelect.getCatalogoList().size());
+                        if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
+                    if ((this.ExamenSelect.getCatalogoList().get(i).getDependencia().equalsIgnoreCase("ESCDA"))) {
                         cat_esc = this.ExamenSelect.getCatalogoList().get(i);
                     }
-
+//                        System.out.println(this.ExamenSelect.getCatalogoList().get(i).getDependencia());
+                        }
                 }
             }
         }
@@ -3976,31 +3978,32 @@ public class ExamenMB implements Serializable {
 //carga ocupaciones
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-
+                if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
                 if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("HSF_OCUPA")) {
                     catalogos = this.ExamenSelect.getCatalogoList().get(i);
                 }
-
+                }
             }
         }
-
+//
 //carga valor etnia
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-
+                 if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
                 if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("ETNIA")) {
                     Valor_Etnia = this.ExamenSelect.getCatalogoList().get(i);
                 }
-
+                 }
             }
         }
-
-//carga procedencia
+//
+////carga procedencia
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-
+                if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
                 if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("PROCDNCIA")) {
                     valor_Procedencia = this.ExamenSelect.getCatalogoList().get(i);
+                }
                 }
             }
         }

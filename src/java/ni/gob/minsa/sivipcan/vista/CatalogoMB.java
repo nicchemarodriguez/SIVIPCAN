@@ -114,6 +114,12 @@ public class CatalogoMB implements Serializable {
     public List<Catalogos> getListaEtnias() {
         if (listaEtnias.isEmpty()) {
             listaEtnias = CatalogoEJB.buscarTodasLasEtnias(Codigo_Etnia);
+            for(int i=0; i<listaEtnias.size(); i++){
+                if(listaEtnias.get(i).getDependencia()== null){
+                    listaEtnias.remove(i);
+                }
+            }
+            
         }
 
         return listaEtnias;
@@ -159,6 +165,11 @@ public class CatalogoMB implements Serializable {
     public List<Catalogos> getListaOcupaciones() {
         if (listaOcupaciones.isEmpty()) {
             listaOcupaciones = CatalogoEJB.buscarTodasLasOcupaciones(Codigo_Ocupacion);
+            for(int i=0; i<listaOcupaciones.size(); i++){
+                if(listaOcupaciones.get(i).getDependencia()== null){
+                    listaOcupaciones.remove(i);
+                }
+            }
         }
 
         return listaOcupaciones;
@@ -172,6 +183,11 @@ public class CatalogoMB implements Serializable {
 
         if (listaEscolaridad.isEmpty()) {
             listaEscolaridad = CatalogoEJB.buscarTodasLasEscolaridades(Codigo_Escolaridad);
+            for(int i=0; i<listaEscolaridad.size(); i++){
+                if(listaEscolaridad.get(i).getDependencia()== null){
+                    listaEscolaridad.remove(i);
+                }
+            }
         }
         return listaEscolaridad;
     }
@@ -183,6 +199,11 @@ public class CatalogoMB implements Serializable {
     public List<Catalogos> getListaProcedencia() {
         if (listaProcedencia.isEmpty()) {
             listaProcedencia = CatalogoEJB.buscarTodasLasProcedencias(Codigo_Procedencia);
+            for(int i=0; i<listaProcedencia.size(); i++){
+                if(listaProcedencia.get(i).getDependencia()== null){
+                    listaProcedencia.remove(i);
+                }
+            }
         }
 
         return listaProcedencia;
