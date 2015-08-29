@@ -3434,7 +3434,12 @@ public class ExamenMB implements Serializable {
 
         BigInteger Edad = new BigInteger(Integer.toString(año));
         this.ExamenSelect.setEdad(Edad);
-
+    
+        
+        
+        
+        
+        
     }
 
     public void cargarSubCategoriaFrotis() {
