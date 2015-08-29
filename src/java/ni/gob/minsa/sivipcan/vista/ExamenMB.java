@@ -3261,7 +3261,7 @@ public class ExamenMB implements Serializable {
 
                         op = 3;
                         break;
-                    case 3:
+                    case 3: 
                         sexo = sis.getCodigoSexo().charAt(5) + "";
                         op = 4;
                         break;
