@@ -114,7 +114,7 @@ public class ExamenMB implements Serializable {
 
     //codigo angelo residencia
     //private List<DivisionPolitica> listaDepartamentos = new ArrayList<DivisionPolitica>();
-//    private List<DivisionPolitica> listaMunicipios = new ArrayList<DivisionPolitica>();
+    private List<DivisionPolitica> listaMunicipios = new ArrayList<DivisionPolitica>();
     private DivisionPolitica departamentoSelect;
     private DivisionPolitica municipioSelect;
     private List<Sector> sectores = new ArrayList<Sector>();
@@ -231,6 +231,11 @@ public class ExamenMB implements Serializable {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{comunidadMB}", ComunidadMB.class);
+
+    private SectorMB SectorMB = (SectorMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{sectorMB}", SectorMB.class);
 
     //------
     private EntidadAdtvaMB entidadAdtvaMB = (EntidadAdtvaMB) FacesContext.getCurrentInstance()
@@ -355,10 +360,10 @@ public class ExamenMB implements Serializable {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
                 for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-                    if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
-                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("METELGANT")) {
-                        metodoAnticonceptivo = this.ExamenSelect.getCatalogoList().get(i);
-                    }
+                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null) {
+                        if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("METELGANT")) {
+                            metodoAnticonceptivo = this.ExamenSelect.getCatalogoList().get(i);
+                        }
                     }
                 }
             }
@@ -580,33 +585,14 @@ public class ExamenMB implements Serializable {
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
         this.municipioSelect = municipioSelect;
     }
-    
-
 
     public void pasarValoresComunidad() {
         System.out.println("estoy enviando el municipio");
         ComunidadMB.setMunicipioSelect(municipioSelect);
         comunidades = ComunidadMB.cargarListaComunidad();
     }
-    
-    public List<Comunidad> getComunidades() {
-//
-//        if (!this.getSectores().isEmpty()) {
-//            List<Comunidad> comuni;
-//            comunidades.clear();
-//            for (int i = 0; this.sectores.size() > i; i++) {
-//                comuni = ExamenEJB.buscarLasComunidadesPorSectores(this.sectores.get(i).getCodigo());
-//                if (!comuni.isEmpty()) {
-//                    comunidades.add(comuni.get(0));
-//                }
-//            }
-//        }
-//       if(ExamenSelect.getIdComunidadResidencia() != null){
-//       comunidades =  ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());
-//       }
 
-//         if(ExamenSelect.getIdComunidadResidencia() != null){
-//        comunidades = ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());}
+    public List<Comunidad> getComunidades() {
         return comunidades;
     }
 
@@ -3925,34 +3911,22 @@ public class ExamenMB implements Serializable {
         Fecha_Seguimiento.setDate(fecha.getDate());
         Fecha_Seguimiento.setMonth(fecha.getMonth());
         Fecha_Seguimiento.setYear(fecha.getYear());
-//        n = 1;
-//        System.out.println(Fecha_Seguimiento + " " + valorObservacion.getIdValor());
+
         if (valorObservacion.getIdValor().equals(BigDecimal.valueOf(64))) {
-//            Fecha_Seguimiento.setDate(fecha.getDate());
-//            Fecha_Seguimiento.setMonth(fecha.getMonth());
             Fecha_Seguimiento.setYear(Fecha_Seguimiento.getYear() + 1);
             setTipoExSegui(null);
         } else if (valorObservacion.getIdValor().equals(BigDecimal.valueOf(65))) {
             Fecha_Seguimiento.setMonth(Fecha_Seguimiento.getMonth() + 1);
-//            Fecha_Seguimiento.setYear(fecha.getYear());
-//            Fecha_Seguimiento.setDate(fecha.getDate());
             setTipoExSegui(null);
         } else if (valorObservacion.getIdValor().equals(BigDecimal.valueOf(66))) {
-//            Fecha_Seguimiento.setMonth(fecha.getMonth());
             Fecha_Seguimiento.setYear(Fecha_Seguimiento.getYear() + 3);
-//            Fecha_Seguimiento.setDate(fecha.getDate());
             setTipoExSegui(null);
         } else if (valorObservacion.getIdValor().equals(BigDecimal.valueOf(67))) {
             Fecha_Seguimiento.setMonth(Fecha_Seguimiento.getMonth() + 4);
-//            Fecha_Seguimiento.setYear(fecha.getYear());
-//            Fecha_Seguimiento.setDate(fecha.getDate());
             setTipoExSegui(null);
         }
         if (valorObservacion.getIdValor().equals(BigDecimal.valueOf(83))) {
-//            Fecha_Seguimiento.setDate(fecha.getDate());
-//            Fecha_Seguimiento.setMonth(fecha.getMonth());
             Fecha_Seguimiento.setYear(Fecha_Seguimiento.getYear() + 1);
-
             setTipoExSegui(CatalogoMB.getListaTipoExamen("Exasivipca|VPH").get(0));
         }
 
@@ -3964,13 +3938,11 @@ public class ExamenMB implements Serializable {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
                 for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-//                        System.out.println(this.ExamenSelect.getCatalogoList().size());
-                        if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
-                    if ((this.ExamenSelect.getCatalogoList().get(i).getDependencia().equalsIgnoreCase("ESCDA"))) {
-                        cat_esc = this.ExamenSelect.getCatalogoList().get(i);
-                    }
-//                        System.out.println(this.ExamenSelect.getCatalogoList().get(i).getDependencia());
+                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null) {
+                        if ((this.ExamenSelect.getCatalogoList().get(i).getDependencia().equalsIgnoreCase("ESCDA"))) {
+                            cat_esc = this.ExamenSelect.getCatalogoList().get(i);
                         }
+                    }
                 }
             }
         }
@@ -3978,10 +3950,10 @@ public class ExamenMB implements Serializable {
 //carga ocupaciones
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-                if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
-                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("HSF_OCUPA")) {
-                    catalogos = this.ExamenSelect.getCatalogoList().get(i);
-                }
+                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null) {
+                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("HSF_OCUPA")) {
+                        catalogos = this.ExamenSelect.getCatalogoList().get(i);
+                    }
                 }
             }
         }
@@ -3989,24 +3961,44 @@ public class ExamenMB implements Serializable {
 //carga valor etnia
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-                 if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
-                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("ETNIA")) {
-                    Valor_Etnia = this.ExamenSelect.getCatalogoList().get(i);
+                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null) {
+                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("ETNIA")) {
+                        Valor_Etnia = this.ExamenSelect.getCatalogoList().get(i);
+                    }
                 }
-                 }
             }
         }
 //
 ////carga procedencia
         if (this.ExamenSelect.getCatalogoList() != null) {
             for (int i = 0; i < this.ExamenSelect.getCatalogoList().size(); i++) {
-                if(this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null){
-                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("PROCDNCIA")) {
-                    valor_Procedencia = this.ExamenSelect.getCatalogoList().get(i);
-                }
+                if (this.ExamenSelect.getCatalogoList().get(i).getDependencia() != null) {
+                    if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("PROCDNCIA")) {
+                        valor_Procedencia = this.ExamenSelect.getCatalogoList().get(i);
+                    }
                 }
             }
         }
+//cargar barrio comarca
+        if (ExamenSelect.getIdComunidadResidencia() != null) {
+            comunidades = ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());
+        }
+
+//cargar municipio
+        Comunidad comunidadTemp = null;
+        if (ExamenSelect.getIdComunidadResidencia() != null) {
+            for (int i = 0; i < comunidades.size(); i++) {
+                if (comunidades.get(i).getComunidadId() == ExamenSelect.getIdComunidadResidencia().getComunidadId()) {
+                    comunidadTemp = comunidades.get(i);
+                    Sector sectorTemp = new Sector();
+                    sectorTemp = SectorMB.buscarSector(comunidadTemp.getSector()).get(0);
+                    municipioSelect = DivisionPoliticaMB.obtenerMunicipioSelect(sectorTemp.getMunicipio()).get(0);
+                    DivisionPoliticaMB.setDepartametoSelect(municipioSelect.getDependencia());
+                    listaMunicipios = DivisionPoliticaMB.getListaMunicipios();
+                }
+            }
+        }
+
     }
 
     public void cargar() {
@@ -4046,12 +4038,7 @@ public class ExamenMB implements Serializable {
             }
         }
 
-        //carga fecha seguimiento
-//        if (n == 1) {
-//            n = 0;
-//            System.out.println(Fecha_Seguimiento);
-//            return Fecha_Seguimiento;
-//        } else 
+
         if (this.ExamenSelect.getFxexuList() != null) {
             FxexuPK nfxexuPk = new FxexuPK(ExamenSelect.getIdExamen(), 4);
             if (!this.ExamenSelect.getFxexuList().isEmpty()) {

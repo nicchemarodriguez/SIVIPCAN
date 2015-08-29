@@ -105,6 +105,7 @@ public class ComunidadMB {
         if (this.getMunicipioSelect() != null) {
             System.out.println("si entre al metodo");
             List<Comunidad> listComunidadTemp;
+            listaComunidad.clear();
             ListaSector = SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
             if (ListaSector != null && !ListaSector.isEmpty()) {
                 for (int i = 0; i < ListaSector.size(); i++) {
@@ -118,15 +119,16 @@ public class ComunidadMB {
     
     public List<Comunidad> cargarListaComunidadSelected(long IdComunidadResidencia) {
         Comunidad comunidadTemp;
-        Sector sectorTemp;
-        DivisionPolitica municipioSelectTemp;
+        Sector sectorTemp = new Sector();
+        DivisionPolitica municipioSelectTemp = new DivisionPolitica();
         
-        comunidadTemp = comunidadEJB.buscarComunidadesPorId(IdComunidadResidencia).get(0);  
+        comunidadTemp = comunidadEJB.buscarComunidadesPorId(IdComunidadResidencia).get(0); 
+        
         sectorTemp = SectorMB.buscarSector(comunidadTemp.getSector()).get(0);
         municipioSelectTemp = DivisionPoliticaMB.obtenerMunicipioSelect(sectorTemp.getMunicipio()).get(0);
         
         if (municipioSelectTemp != null) {
-            System.out.println("si entre al metodo");
+            
             List<Comunidad> listComunidadTemp;
             ListaSector = SectorMB.buscarSectores(municipioSelectTemp.getCodigoNacional());
             if (ListaSector != null && !ListaSector.isEmpty()) {

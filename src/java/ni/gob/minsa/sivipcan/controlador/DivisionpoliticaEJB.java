@@ -36,6 +36,8 @@ public class DivisionpoliticaEJB {
     
     }
     
+    
+    
 
     public List<DivisionPolitica>buscarMunicipios(String codigoMunicipio) {
         Query query = em.createNamedQuery("DivisionPolitica.findByCodigoNacional"); 

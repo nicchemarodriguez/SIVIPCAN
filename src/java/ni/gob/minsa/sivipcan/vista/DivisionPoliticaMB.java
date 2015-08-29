@@ -68,9 +68,15 @@ public class DivisionPoliticaMB implements Serializable{
     }
 
     public List<DivisionPolitica> obtenerMunicipioSelect(String codigoMunicipio){
-        
-        DivisionpoliticaEJB.buscarMunicipios(codigoMunicipio);
-        return null;
+        List<DivisionPolitica> ListaDivisionpoliticaTmp;
+        ListaDivisionpoliticaTmp = DivisionpoliticaEJB.buscarMunicipios(codigoMunicipio);
+        return ListaDivisionpoliticaTmp;
     }
     
+    public List<DivisionPolitica> listaMunicipioSelect(long dependencia){
+        List<DivisionPolitica> ListaDivisionpoliticaTmp;
+        ListaDivisionpoliticaTmp = DivisionpoliticaEJB.buscarMunicipios(dependencia);
+        return ListaDivisionpoliticaTmp;
+    }
+//    
 }
