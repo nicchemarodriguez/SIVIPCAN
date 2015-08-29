@@ -1,0 +1,103 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel id="panel3">
+        <!-- <p:messages id="messages2" showDetail="true" autoUpdate="true" closable="true" />-->
+        <p:messages autoUpdate="true" closable="true"/>
+        <h:panelGrid columns="6" cellpadding="10">
+
+            <h:outputText value="SILAIS que Toma la Muestra: "/>
+            <p:selectOneMenu id="silaisTomaDm" value="#{examenMB.silaisTomaDM}" converter="EntidadAdConverter" required="true" requiredMessage="Debe Seleccionar Silais Que Toma La Muestra"
+                             effect="fade"  style="width:160px" filter="true" 
+                             filterMatchMode="startsWith" editable="false">
+                <f:selectItem itemLabel="Escoje"/>
+                <f:selectItems value="#{examenMB.listaEntidadAdtva}" var="silaisDm" 
+                               itemLabel="#{silaisDm.nombre}" itemValue="#{silaisDm}" />
+                <p:ajax event="change" listener="#{examenMB.rellenoUnidades()}" update="Unidad_SaludTomaDm"/>
+            </p:selectOneMenu>
+
+            <h:outputText value="Unidad de Salud:"/>
+            <p:selectOneMenu id="Unidad_SaludTomaDm" value="#{examenMB.unidadTomaDm}" converter="UnidadConverter" required="true" requiredMessage="Debe Seleccionar Unidad De Salud De Toma De Muestra"
+                             effect="fade" filter="true" filterMatchMode="startsWith" 
+                             style="width:420px" >
+                <f:selectItem itemLabel="Escoje"/>
+                <f:selectItems value="#{examenMB.listaUnidadesTomaDm}" var="unidadesDm"
+                               itemLabel="#{unidadesDm.nombre}" itemValue="#{unidadesDm}" />
+                <p:ajax event="change" listener="#{examenMB.rellenoMunicipio()}" update="MunicipioTomaDm"/>
+            </p:selectOneMenu>
+
+            <h:outputText value="Municipio:"/>
+            <p:inputText readonly="true" id="MunicipioTomaDm" value="#{examenMB.municipioTomaDm.nombre}"  required="true" requiredMessage="Debe Seleccionar Municipio De Toma De Muestra"/>
+
+        </h:panelGrid>
+
+        <p:separator/>
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+            <p:inputText id="medicoN" value="#{examenMB.medicoSelect.nombreCompleto}" 
+                         label="PrimerNombre" readonly="true"/>
+
+            <p:commandButton  process="@this" value="Busqueda medicos"
+                              oncomplete="medicos.show()"/>
+
+            <p:outputLabel for="Tamizaje" value="Tamizaje con Papanicolaou:" />
+            <p:selectOneRadio id="Tamizaje" value="#{examenMB.examenSelect.triaje}">
+                <f:selectItem itemLabel="Triaje" itemValue="Triaje" />
+                <f:selectItem itemLabel="Tamizaje Primario" itemValue="Tamizaje" />                                            
+            </p:selectOneRadio>
+        </h:panelGrid>
+        <p:separator/>
+
+        <h:panelGrid columns="6" cellpadding="10">
+            <p:outputLabel for="procedenciaMuestra" value="Procedencia de la Muestra: " />
+            <p:selectOneMenu id="procedenciaMuestra" value="#{examenMB.valorProcedencia}" converter="converterValores" panelStyle="width:180px" required="true" requiredMessage="Debe Seleccionar La Procedencia De La Muestra"
+                             effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
+                <f:selectItem itemLabel="Escoge" itemValue="" />
+                <f:selectItems value="#{subCategoriaMB.procedencia.valoresList}" var="procedencia" itemLabel="#{procedencia.valor}" 
+                               itemValue="#{procedencia}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="aspectoClinico" value="Aspecto Clinico: " />
+            <p:selectOneMenu id="aspectoClinico"  panelStyle="width:180px" value="#{examenMB.valorAspecto}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Aspecto Clínico"
+                             effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
+                <f:selectItem itemLabel="Escoge" itemValue="" />
+                <f:selectItems value="#{subCategoriaMB.aspectoClinico.valoresList}" var="aspectoClinico" itemLabel="#{aspectoClinico.valor}" 
+                               itemValue="#{aspectoClinico}" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="secrecion" value="Secreción: " />
+            <p:selectOneMenu id="secrecion"  panelStyle="width:180px" value="#{examenMB.valorSecrecion}" converter="converterValores" required="true" requiredMessage="Debe Seleccionar Secreción"
+                             effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
+                <f:selectItem itemLabel="Escoge" itemValue="" />
+                <f:selectItems value="#{subCategoriaMB.secrecion.valoresList}" var="secrecion" itemLabel="#{secrecion.valor}" 
+                               itemValue="#{secrecion}" />
+                <p:ajax update="TipoExamen" listener="#{examenMB.verTipoExamen()}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel for="fechaToma" value="Fecha de Toma:" />
+            <p:calendar id="fechaToma" value="#{examenMB.fecha}" navigator="true" style="text-align: center" readonly="#{facesContext.renderResponse}" 
+                        required="true" requiredMessage="Debe Ingresar Fecha de Toma De La Muestra"
+                        pattern="dd/MM/yyyy" effect="fold" label="fechaToma">
+                <p:ajax event="dateSelect" update="Edad" listener="#{examenMB.calcularEdad}"/>
+            </p:calendar>
+
+            <p:outputLabel for="Nombres" value="Edad: " />   
+            <p:inputText id="Edad" required="true" value="#{examenMB.examenSelect.edad}" requiredMessage="Debe Ingresar Edad"/>  
+            <p:outputLabel for="Nombres" value="Otros Hallazgos: ">  </p:outputLabel>
+            <p:inputTextarea rows="5" cols="30"  maxlength="300" counterTemplate="{0} characters remaining." autoResize="false" />
+        </h:panelGrid> 
+
+        <p:selectOneMenu id="TipoExamen" panelStyle="width:180px" value="#{examenMB.valor_TipoExamen}" converter="myObjectConverter" 
+                         effect="fade" style="width:160px; visibility: hidden" filter="true" filterMatchMode="startsWith" editable="false">
+            <f:selectItems value="#{catalogoMB.listaExamenPAP}" var="pap" itemLabel="#{pap.valor}" 
+                           itemValue="#{pap}" />
+        </p:selectOneMenu>
+        <p:panel>
+            <p:commandButton update=":form:panel  :form:panel3" value="Guardar Datos" actionListener="#{examenMB.guardarOactualizar()}"
+                             icon="ui-icon-document" />                              
+        </p:panel>
+
+    </p:panel>
+</ui:composition>

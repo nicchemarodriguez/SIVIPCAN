@@ -30,12 +30,14 @@ public class CatalogoMB implements Serializable {
     private List<Catalogos> listaProcedencia = new ArrayList<Catalogos>();
     private List<Catalogos> listaTipoExamen = new ArrayList<Catalogos>();
     private List<Catalogos> listaTiposExamen = new ArrayList<Catalogos>();
+    private List<Catalogos> listaExamenPAP = new ArrayList<Catalogos>();
 
     private String Codigo_Etnia = "ETNIA";
     private String Codigo_Ocupacion = "HSF_OCUPA";
     private String Codigo_Escolaridad = "ESCDA";
     private String Codigo_Procedencia = "PROCDNCIA";
     private String Codigo_TipoExamen = "Exasivipca";
+    private String Codigo_ExamenPAP = "Exasivipca|PAP";
     private String Valor_Etnia;
     private String Valor_Ocupacion;
     private String Valor_Escolaridad;
@@ -324,6 +326,13 @@ public class CatalogoMB implements Serializable {
         this.Codigo_TipoExamen = Codigo_TipoExamen;
     }
     
-    
+    public List<Catalogos> getListaExamenPAP() {
+        listaExamenPAP = CatalogoEJB.buscarExamenPAP(Codigo_ExamenPAP);
+        return listaExamenPAP;
+    }
+
+    public void setListaExamenPAP(List<Catalogos> listaExamenPAP) {
+        this.listaExamenPAP = listaExamenPAP;
+    }
 
 }

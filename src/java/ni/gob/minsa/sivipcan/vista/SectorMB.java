@@ -25,6 +25,7 @@ public class SectorMB implements Serializable {
     private SectorEJB sectorEJB;
     private Sector sector = new Sector();
     private List<Sector> listaSector = new ArrayList<Sector>();
+     private List<Sector> listaSectorBusqueda = new ArrayList<Sector>();
     
     public SectorMB() {
     }
@@ -37,6 +38,15 @@ public class SectorMB implements Serializable {
         return sectorEJB;
     }
 
+    public List<Sector> getListaSectorBusqueda() {
+        return listaSectorBusqueda;
+    }
+
+    public void setListaSectorBusqueda(List<Sector> listaSectorBusqueda) {
+        this.listaSectorBusqueda = listaSectorBusqueda;
+    }
+
+    
     public void setSectorEJB(SectorEJB sectorEJB) {
         this.sectorEJB = sectorEJB;
     }
@@ -51,6 +61,7 @@ public class SectorMB implements Serializable {
 
     public List<Sector> getListaSector() {
         listaSector = sectorEJB.buscarTodosLosSectores();
+        
         return listaSector;
     }
 
@@ -59,7 +70,9 @@ public class SectorMB implements Serializable {
     }
     
     public void buscarSectores(String nunicipioSelect){
-    listaSector = sectorEJB.buscarSectoresXmunicipio(nunicipioSelect);
+        System.out.println(nunicipioSelect + "mongol");
+    listaSectorBusqueda = sectorEJB.buscarSectoresXmunicipio(nunicipioSelect);
+     System.out.println(listaSector.size() + "tamano"); 
     }
     
 }

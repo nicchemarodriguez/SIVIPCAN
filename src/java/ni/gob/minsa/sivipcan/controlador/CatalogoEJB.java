@@ -73,4 +73,10 @@ public class CatalogoEJB {
         query.setParameter("codigo", Codigo);
         return query.getResultList();
     }
+     
+     public List<Catalogos> buscarExamenPAP(String Codigo) {           
+        Query query = em.createNamedQuery("Catalogos.findByCodigo");
+        query.setParameter("codigo", Codigo);
+        return query.getResultList();
+    }
 }

@@ -1613,6 +1613,13 @@ public class ExamenEJB {
      return query.getResultList();
     }
     
+    public List<Examen> buscarPrimerParteExamen(Long idExamen)
+    {
+     Query query = em.createNamedQuery("Examen.findByIdExamen");
+     query.setParameter("idExamen", idExamen);
+     return query.getResultList();
+    }
+    
    public Examen crearNuevo(Examen examen) {
         em.persist(examen);
         return examen;
