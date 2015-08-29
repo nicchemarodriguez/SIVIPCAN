@@ -28,9 +28,16 @@ public class ComunidadEJB {
 
     }
     
-    public List<Comunidad> buscarComunidades(long codSector) {
+    public List<Comunidad> buscarComunidades(String codSector) {
         Query query = em.createNamedQuery("Comunidad.findBySector");
         query.setParameter("sector", codSector);
+        return query.getResultList();
+
+    }
+    
+    public List<Comunidad> buscarComunidadesPorId(long IdComunidadResidencia) {
+        Query query = em.createNamedQuery("Comunidad.findByComunidadId");
+        query.setParameter("comunidadId", IdComunidadResidencia);
         return query.getResultList();
 
     }

@@ -34,4 +34,11 @@ public class SectorEJB {
         query.setParameter("municipio", municipioSelect);
         return query.getResultList();
     }
+    
+            
+    public List<Sector> buscarSectoreXcodigo(String codigoSector) {
+        Query query = em.createNamedQuery("Sector.findByCodigo");
+        query.setParameter("codigo", codigoSector);
+        return query.getResultList();
+    }
 }

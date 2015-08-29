@@ -21,7 +21,7 @@
     <managed-bean>
         <managed-bean-name>sectorMB</managed-bean-name>
         <managed-bean-class>ni.gob.minsa.sivipcan.vista.SectorMB</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>entidadAdtvaMB</managed-bean-name>
@@ -47,5 +47,10 @@
         <managed-bean-name>divisionPoliticaMB</managed-bean-name>
         <managed-bean-class>ni.gob.minsa.sivipcan.vista.DivisionPoliticaMB</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>comunidadMB</managed-bean-name>
+        <managed-bean-class>ni.gob.minsa.sivipcan.vista.ComunidadMB</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
 </faces-config>

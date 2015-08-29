@@ -6,11 +6,10 @@
 package ni.gob.minsa.sivipcan.vista;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import ni.gob.minsa.modelo.poblacion.Comunidad;
 import ni.gob.minsa.modelo.poblacion.DivisionPolitica;
@@ -21,10 +20,13 @@ import ni.gob.minsa.sivipcan.controlador.ComunidadEJB;
  *
  * @author WIN 7
  */
-@Named(value = "comunidadMB")
-@Dependent
+@ManagedBean
+@RequestScoped
 public class ComunidadMB {
 
+    /**
+     * Creates a new instance of ComunidadMB
+     */
     @EJB
     private ComunidadEJB comunidadEJB;
     private Comunidad comunidad = new Comunidad();
@@ -37,6 +39,11 @@ public class ComunidadMB {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{sectorMB}", SectorMB.class);
+    
+    private DivisionPoliticaMB DivisionPoliticaMB = (DivisionPoliticaMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{divisionPoliticaMB}", DivisionPoliticaMB.class);
 
     public ComunidadMB() {
     }
@@ -47,14 +54,6 @@ public class ComunidadMB {
 //            SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
 //            ListaSector = SectorMB.getListaSector();
 //        }
-//
-//        if (ListaSector != null && !ListaSector.isEmpty()) {
-//            for (int i = 0; i < ListaSector.size(); i++) {
-//                listaComunidad.addAll((Collection<? extends Comunidad>) comunidadEJB.buscarComunidades(ListaSector.get(i).getSectorId()));
-//            }
-//        }
-
-        //listaComunidad = comunidadEJB.buscarTodo();
         return listaComunidad;
     }
 
@@ -87,21 +86,65 @@ public class ComunidadMB {
     }
 
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
+        System.out.println("estoy recibiendo el municipio");
         this.municipioSelect = municipioSelect;
     }
 
     public List<Sector> getListaSector() {
+        System.out.println("la estoy pidiendo");
+        System.out.println(ListaSector);
         return ListaSector;
     }
 
     public void setListaSector(List<Sector> ListaSector) {
-        
-        if (municipioSelect != null) {
-            SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
-            ListaSector = SectorMB.getListaSector();
-        }
+
         this.ListaSector = ListaSector;
     }
 
+    public List<Comunidad> cargarListaComunidad() {
+        if (this.getMunicipioSelect() != null) {
+            System.out.println("si entre al metodo");
+            List<Comunidad> listComunidadTemp;
+            ListaSector = SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
+            if (ListaSector != null && !ListaSector.isEmpty()) {
+                for (int i = 0; i < ListaSector.size(); i++) {
+                    listComunidadTemp = comunidadEJB.buscarComunidades(ListaSector.get(i).getCodigo());
+                    listaComunidad.addAll(listComunidadTemp);
+                }
+            }           
+        }        
+        return listaComunidad;
+    }
     
+    public List<Comunidad> cargarListaComunidadSelected(long IdComunidadResidencia) {
+        Comunidad comunidadTemp;
+        Sector sectorTemp;
+        DivisionPolitica municipioSelectTemp;
+        
+        comunidadTemp = comunidadEJB.buscarComunidadesPorId(IdComunidadResidencia).get(0);  
+        sectorTemp = SectorMB.buscarSector(comunidadTemp.getSector()).get(0);
+        municipioSelectTemp = DivisionPoliticaMB.obtenerMunicipioSelect(sectorTemp.getMunicipio()).get(0);
+        
+        if (municipioSelectTemp != null) {
+            System.out.println("si entre al metodo");
+            List<Comunidad> listComunidadTemp;
+            ListaSector = SectorMB.buscarSectores(municipioSelectTemp.getCodigoNacional());
+            if (ListaSector != null && !ListaSector.isEmpty()) {
+                for (int i = 0; i < ListaSector.size(); i++) {
+                    listComunidadTemp = comunidadEJB.buscarComunidades(ListaSector.get(i).getCodigo());
+                    listaComunidad.addAll(listComunidadTemp);
+                }
+            }           
+        } 
+
+
+        return listaComunidad;
+    }
+
+    public void prueba() {
+
+        System.out.println(ListaSector);
+
+    }
+
 }

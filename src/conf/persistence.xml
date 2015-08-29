@@ -1,89 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-  <persistence-unit name="PersistenceSivipcan" transaction-type="JTA">
-    <jta-data-source>SIVIPCAN2</jta-data-source>
-    <class>ni.gob.minsa.sivipcan.modelo.CatalogXCateg</class>
-    <class>ni.gob.minsa.sivipcan.modelo.CatalogoXExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Fecha</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Fxexu</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Imagen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.PoblacionCategoria</class>
-    <class>ni.gob.minsa.sivipcan.modelo.PoblacionMeta</class>
-    <class>ni.gob.minsa.sivipcan.modelo.ResultadoExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.SubCategoria</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Valores</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Categoria</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="persistenceCatalogo" transaction-type="JTA">
-    <jta-data-source>general</jta-data-source>
-    <class>ni.gob.minsa.modelo.poblacion.Catalogos</class>
-    <class>ni.gob.minsa.modelo.poblacion.Sector</class>
-    <class>ni.gob.minsa.modelo.estructura.EntidadAdtva</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="PSivipcanLocal" transaction-type="JTA">
-    <jta-data-source>Sivipcan_local</jta-data-source>
-    <class>ni.gob.minsa.sivipcan.modelo.CatalogXCateg</class>
-    <class>ni.gob.minsa.sivipcan.modelo.CatalogoXExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Categoria</class>
-    <class>ni.gob.minsa.sivipcan.modelo.DivpoliticXExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.EntadtvasXExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Fecha</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Fxexu</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Imagen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.PoblacionCategoria</class>
-    <class>ni.gob.minsa.sivipcan.modelo.PoblacionMeta</class>
-    <class>ni.gob.minsa.sivipcan.modelo.ResultadoExamen</class>
-    <class>ni.gob.minsa.sivipcan.modelo.SubCategoria</class>
-    <class>ni.gob.minsa.sivipcan.modelo.Valores</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="PGeneralLocal" transaction-type="JTA">
-    <jta-data-source>General_Local</jta-data-source>
-    <class>ni.gob.minsa.modelo.poblacion.Sector</class>
-    <class>ni.gob.minsa.modelo.estructura.CategoriaUnidad</class>
-    <class>ni.gob.minsa.modelo.estructura.EntidadAdtva</class>
-    <class>ni.gob.minsa.modelo.estructura.Regimen</class>
-    <class>ni.gob.minsa.modelo.estructura.TipoUnidad</class>
-    <class>ni.gob.minsa.modelo.estructura.Unidad</class>
-    <class>ni.gob.minsa.modelo.poblacion.Catalogos</class>
-    <class>ni.gob.minsa.modelo.poblacion.Comunidad</class>
-    <class>ni.gob.minsa.modelo.poblacion.DivisionPolitica</class>
-    <class>ni.gob.minsa.modelo.poblacion.Pais</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties>
-    </properties>
-  </persistence-unit>
-  <persistence-unit name="PSisLocal" transaction-type="JTA">
-    <jta-data-source>Sis_Local</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="PersistenceSis" transaction-type="JTA">
-    <jta-data-source>Sis</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
-  <persistence-unit name="PersistenceGeneral" transaction-type="JTA">
-    <jta-data-source>general</jta-data-source>
-    <class>ni.gob.minsa.modelo.estructura.EntidadAdtva</class>
-    <class>ni.gob.minsa.modelo.estructura.TipoUnidad</class>
-    <class>ni.gob.minsa.modelo.estructura.Unidad</class>
-    <class>ni.gob.minsa.modelo.poblacion.Catalogos</class>
-    <class>ni.gob.minsa.modelo.poblacion.Comunidad</class>
-    <class>ni.gob.minsa.modelo.poblacion.DivisionPolitica</class>
-    <class>ni.gob.minsa.modelo.poblacion.Pais</class>
-    <class>ni.gob.minsa.modelo.poblacion.Sector</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
-  </persistence-unit>
   <persistence-unit name="PerLocal" transaction-type="JTA">
     <jta-data-source>ServidorLocal2</jta-data-source>
     <class>ni.gob.minsa.sivipcan.modelo.Examen</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+  <persistence-unit name="perMinsa" transaction-type="JTA">
+    <jta-data-source>SIVIPCAN2</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

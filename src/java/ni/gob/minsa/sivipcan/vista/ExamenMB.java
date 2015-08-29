@@ -60,7 +60,7 @@ public class ExamenMB implements Serializable {
     private boolean skip;
 
     int n = 0;
-    
+
     private String Estado;
     private Date Fecha_Toma_Muestra_mostrar;
     private String ResultadoFinal;
@@ -77,12 +77,12 @@ public class ExamenMB implements Serializable {
     private Catalogos valor_Procedencia;
     private List<Catalogos> catlista = new ArrayList<Catalogos>();
     private Examen ExamenSelect = new Examen();
-    
+
     private List<Examen> listaExamen = new ArrayList<Examen>();
     private List<Examen> listaExamenPendiente = new ArrayList<Examen>();
     private List<Examen> listaExamenCompleto = new ArrayList<Examen>();
     private List<Examen> listaSRExamen = new ArrayList<Examen>();
-    
+
     private Categoria categoria = new Categoria();
     private Categoria categoriaResultado;
     private SubCategoria subCategoriaFrotis = new SubCategoria();
@@ -121,7 +121,7 @@ public class ExamenMB implements Serializable {
     private List<Comunidad> comunidades = new ArrayList<Comunidad>();
     private Comunidad comunidadSelect;
     private Sector sectorSelect;
-    
+
     /**
      * Obtener unidades de salud y municipio en la pestaña resultado
      */
@@ -160,8 +160,8 @@ public class ExamenMB implements Serializable {
     private int partosi;
     private Date FUR;
 
-  private SisMedicos medicoSelect = new SisMedicos();
-  
+    private SisMedicos medicoSelect = new SisMedicos();
+
     private ResultadoExamen resultadExamen1 = new ResultadoExamen();
     private ResultadoExamen resultadExamen2 = new ResultadoExamen();
     private ResultadoExamen resultadExamen3 = new ResultadoExamen();
@@ -221,12 +221,12 @@ public class ExamenMB implements Serializable {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{catalogoMB}", CatalogoMB.class);
-    
+
     private DivisionPoliticaMB DivisionPoliticaMB = (DivisionPoliticaMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{divisionPoliticaMB}", DivisionPoliticaMB.class);
-    
+
     private ComunidadMB ComunidadMB = (ComunidadMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
@@ -273,7 +273,6 @@ public class ExamenMB implements Serializable {
         this.medicoSelect = medicoSelect;
     }
 
-    
     public ExamenMB(ExamenEJB ExamenEJB, Date fechaNac, boolean skip, String numeroCel, String cedula, Examen examen2, Catalogos catalogos, Catalogos cat_esc, Catalogos Valor_Etnia, Catalogos valor_Procedencia, Categoria categoriaResultado, SubCategoria SubCategoriaFuma, SubCategoria SubCategoriaToma, SubCategoria SubCategoriaEmbarazoActual, Valores valorFuma, Valores valorToma, Valores valorEmbarazoActual, Valores valorFrotis, Valores valorResultado, Categoria Antecedentes, SubCategoria AntecedentesAbiertos, SubCategoria Fuma, SubCategoria Toma, SubCategoria EmbarazoActual, Valores VarFuma, Valores VarToma, Valores VarEmbarazoActual, Valores Gestas, Valores Partos, Valores Cesareaa, Valores IVSA, Valores semanaGestas, Valores menarca, Valores abortos, Valores FURV, int Gestasi, int Abortosi, int Cesareasi, int IVSAi, int Menarcai, int semanaDeGestasi, int partosi, Date FUR, boolean ValordeChecbox, SubCategoria Procedencia, SubCategoria AspectoClinico, SubCategoria Secrecion, Valores valorProcedencia, Valores valorAspecto, Valores valorSecrecion, String nombreCompleto, String[] a, Date fecha, Date Fecha_Metodo_Anticonceptivo, Date Fecha_VPH, Date Fecha_Biopsia, Date fecha_Lectura, Date fecha_Entrega_Usuario, Date Fecha_PosTratamiento, Date Fecha_Seguimiento, Date fecha_IVAA, SisPersonas Persona, SubCategoria observacion, Valores valorObservacion) {
         this.ExamenEJB = ExamenEJB;
         this.fechaNac = fechaNac;
@@ -342,7 +341,7 @@ public class ExamenMB implements Serializable {
         this.valorObservacion = valorObservacion;
     }
 
-   public Catalogos getMetodoAnticonceptivo() {
+    public Catalogos getMetodoAnticonceptivo() {
         return metodoAnticonceptivo;
     }
 
@@ -350,9 +349,8 @@ public class ExamenMB implements Serializable {
         catlista.add(metodoAnticonceptivo);
         this.metodoAnticonceptivo = metodoAnticonceptivo;
     }
-    
-    public void cargarMetodoAnticonceptivo()
-    {
+
+    public void cargarMetodoAnticonceptivo() {
         if (this.ExamenSelect != null) {
 
             if (this.ExamenSelect.getCatalogoList() != null) {
@@ -497,7 +495,7 @@ public class ExamenMB implements Serializable {
     public void setSilaisTomaDM(EntidadAdtva silaisTomaDM) {
         this.silaisTomaDM = silaisTomaDM;
     }
-    
+
     public void cargarSilaisTomaDM() {
         if (this.unidadOcurrencia.getUnidadId() != null) {
 
@@ -513,7 +511,7 @@ public class ExamenMB implements Serializable {
     public void setUnidadTomaDm(Unidad unidadTomaDm) {
         this.unidadTomaDm = unidadTomaDm;
     }
-    
+
     public void cargarUnidadTomaDM() {
         if (this.unidadOcurrencia.getUnidadId() != null) {
 
@@ -580,31 +578,35 @@ public class ExamenMB implements Serializable {
     }
 
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
-        ComunidadMB.setMunicipioSelect(municipioSelect);
         this.municipioSelect = municipioSelect;
     }
+    
 
 
-//    public void cargarBarrioComarca() {
-//
-//        DivisionPolitica m = new DivisionPolitica();
-//
-//        this.setMunicipioSelect(m);
-//
-//    }
-
+    public void pasarValoresComunidad() {
+        System.out.println("estoy enviando el municipio");
+        ComunidadMB.setMunicipioSelect(municipioSelect);
+        comunidades = ComunidadMB.cargarListaComunidad();
+    }
+    
     public List<Comunidad> getComunidades() {
 
-        if (!this.getSectores().isEmpty()) {
-            List<Comunidad> comuni;
-            comunidades.clear();
-            for (int i = 0; this.sectores.size() > i; i++) {
-                comuni = ExamenEJB.buscarLasComunidadesPorSectores(this.sectores.get(i).getCodigo());
-                if (!comuni.isEmpty()) {
-                    comunidades.add(comuni.get(0));
-                }
-            }
-        }
+//        if (!this.getSectores().isEmpty()) {
+//            List<Comunidad> comuni;
+//            comunidades.clear();
+//            for (int i = 0; this.sectores.size() > i; i++) {
+//                comuni = ExamenEJB.buscarLasComunidadesPorSectores(this.sectores.get(i).getCodigo());
+//                if (!comuni.isEmpty()) {
+//                    comunidades.add(comuni.get(0));
+//                }
+//            }
+//        }
+//       if(ExamenSelect.getIdComunidadResidencia() != null){
+//       comunidades =  ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());
+//       }
+
+         if(ExamenSelect.getIdComunidadResidencia() != null){
+        comunidades = ComunidadMB.cargarListaComunidadSelected(ExamenSelect.getIdComunidadResidencia().getComunidadId());}
         return comunidades;
     }
 
@@ -632,13 +634,11 @@ public class ExamenMB implements Serializable {
     public void setSectores(List<Sector> sectores) {
         this.sectores = sectores;
     }
-    
-    
-    /**
-     * 
-     * @return 
-     */
 
+    /**
+     *
+     * @return
+     */
     public EntidadAdtva getSilaisTomaResultado() {
         return silaisTomaResultado;
     }
@@ -654,7 +654,7 @@ public class ExamenMB implements Serializable {
             this.rellenoUnidadesResultado();
         }
     }
-    
+
     public List<EntidadAdtva> getListaEntidadAdtvaResultado() {
         listaEntidadAdtvaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarTodasLasEntidades();
         return listaEntidadAdtvaResultado;
@@ -667,7 +667,7 @@ public class ExamenMB implements Serializable {
     public void rellenoUnidadesResultado() {
         listaUnidadesTomaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarPorUnidades(silaisTomaResultado.getEntidadAdtvaId());
     }
-    
+
     public Unidad getUnidadTomaResultado() {
         return unidadTomaResultado;
     }
@@ -684,7 +684,7 @@ public class ExamenMB implements Serializable {
             // System.out.println(unidadTomaDm.getNombre());
         }
     }
-    
+
     public List<Unidad> getListaUnidadesTomaResultado() {
         return listaUnidadesTomaResultado;
     }
@@ -696,7 +696,7 @@ public class ExamenMB implements Serializable {
     public void rellenoMunicipioResultado() {
         municipioTomaResultado = entidadAdtvaMB.getEntidadAdvEJB().buscarPorMunicipios(unidadTomaResultado.getMunicipio()).get(0);
     }
-    
+
     public DivisionPolitica getMunicipioTomaResultado() {
         return municipioTomaResultado;
     }
@@ -769,9 +769,9 @@ public class ExamenMB implements Serializable {
     }
 
     public void asignarResutados() {
-        
+
         if (this.ExamenSelect.getResultadoExamenList() != null) {
-         //   this.resultadoExamen= this.ExamenSelect.getResultadoExamenList();
+            //   this.resultadoExamen= this.ExamenSelect.getResultadoExamenList();
             System.out.println("Cantidad de datos en lista resultado: " + this.ExamenSelect.getResultadoExamenList().size());
 //            this.resultadoExamen.clear();
 //        this.re1=null;
@@ -852,8 +852,7 @@ public class ExamenMB implements Serializable {
 
                 }
 
-                
-                System.out.println("Termine con antecedentes..." + i );
+                System.out.println("Termine con antecedentes..." + i);
             }
 
         } else {
@@ -968,12 +967,11 @@ public class ExamenMB implements Serializable {
             re14 = new ResultadoExamen();
             re14.setIdCategoria(this.getSecrecion().getIdCategoria());
             re14.setIdSubcategoria(this.Secrecion);
-System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
+            System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 //            re15 = new ResultadoExamen();
 //            re15.setIdCategoria(this.Antecedentes);
 //            re15.setIdSubcategoria(this.getEmbarazoActual());
         }
-        
 
     }
 
@@ -1113,13 +1111,12 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setPartosi(int partosi) {
         this.partosi = partosi;
     }
-    
+
     public void cargarDatosPartos() {
         if (this.re2.getDescripcion() != null) {
             partosi = Integer.parseInt(this.re2.getDescripcion());
         }
     }
-
 
     public Date getFUR() throws ParseException {
         return FUR;
@@ -1232,7 +1229,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setAbortosi(int Abortosi) {
         this.Abortosi = Abortosi;
     }
-    
+
     public void cargarDatosAbortos() {
         if (this.re3.getDescripcion() != null) {
             Abortosi = Integer.parseInt(this.re3.getDescripcion());
@@ -1246,7 +1243,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setCesareasi(int Cesareasi) {
         this.Cesareasi = Cesareasi;
     }
-    
+
     public void cargarDatosCesarias() {
         if (this.re4.getDescripcion() != null) {
             Cesareasi = Integer.parseInt(this.re4.getDescripcion());
@@ -1260,7 +1257,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setIVSAi(int IVSAi) {
         this.IVSAi = IVSAi;
     }
-    
+
     public void cargarDatosIVSA() {
         if (this.re5.getDescripcion() != null) {
             IVSAi = Integer.parseInt(this.re5.getDescripcion());
@@ -1275,7 +1272,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setMenarcai(int Menarcai) {
         this.Menarcai = Menarcai;
     }
-    
+
     public void cargarDatosMenarca() {
         if (this.re8.getDescripcion() != null) {
             Menarcai = Integer.parseInt(this.re8.getDescripcion());
@@ -1289,7 +1286,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setSemanaDeGestasi(int semanaDeGestasi) {
         this.semanaDeGestasi = semanaDeGestasi;
     }
-    
+
     public void cargarDatosSemanasGestas() {
         if (this.re7.getDescripcion() != null) {
             semanaDeGestasi = Integer.parseInt(this.re7.getDescripcion());
@@ -1307,7 +1304,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void cargarDatosGestas() {
         if (this.Gestasi == 0) {
             System.out.println("cargue Gestas...");
-            System.out.println(re1.getIdValor() +" " + re1.getDescripcion());
+            System.out.println(re1.getIdValor() + " " + re1.getDescripcion());
             if (this.re1.getDescripcion() != null) {
                 System.out.println("cargue Gestas... " + re1.getDescripcion());
                 Gestasi = Integer.parseInt(this.re1.getDescripcion());
@@ -1572,7 +1569,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setNuevoPaciente(boolean nuevoPaciente) {
         this.nuevoPaciente = nuevoPaciente;
     }
-    
+
     public void HabilitaandoCampos() {
 
         if (this.valorEmbarazoActual.getValor().equals("Si")) {
@@ -1867,7 +1864,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setListaExamenPendiente(List<Examen> listaExamenPendiente) {
         this.listaExamenPendiente = listaExamenPendiente;
     }
-    
+
     public List<Examen> getListaExamen() {
         HashSet st = new HashSet();
         st.addAll(listaExamen);
@@ -1881,22 +1878,22 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     /**
-     * Esta lista se encargara de filtrar a las personas que tienen mas de 1 examen en la base de datos para que
-     * no muestre mas de una vez a la misma persona
-     * 
+     * Esta lista se encargara de filtrar a las personas que tienen mas de 1
+     * examen en la base de datos para que no muestre mas de una vez a la misma
+     * persona
+     *
      * listaSRExamen = lista Sin Repeticiones de Examen
-     * @return 
+     *
+     * @return
      */
     public List<Examen> getListaSRExamen() {
         Map<String, Examen> limpiarLista = new HashMap<String, Examen>(listaExamen.size());
-        
-        for(Examen examen : listaExamen) 
-        {
+
+        for (Examen examen : listaExamen) {
             limpiarLista.put(examen.getCedula(), examen);
         }
-        
-        for(Entry<String, Examen> examen1 : limpiarLista.entrySet()) 
-        {
+
+        for (Entry<String, Examen> examen1 : limpiarLista.entrySet()) {
             listaSRExamen.add(examen1.getValue());
         }
 //        listaSRExamen.addAll(listaExamen);
@@ -1912,19 +1909,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     /**
-     * Lista que se encarga de mostrar en un datatable cierta información de una persona
-     * cuando ya ha finalizado el registro de su examen
-     * @return 
+     * Lista que se encarga de mostrar en un datatable cierta información de una
+     * persona cuando ya ha finalizado el registro de su examen
+     *
+     * @return
      */
     public List<Examen> getListaExamenCompleto() {
         return listaExamenCompleto;
     }
 
-    public void mostrarExamenCompleto()
-    {
+    public void mostrarExamenCompleto() {
         listaExamenCompleto = ExamenEJB.buscarExamenCompleto(ExamenSelect.getIdExamen());
     }
-    
+
     public void setListaExamenCompleto(List<Examen> listaExamenCompleto) {
         this.listaExamenCompleto = listaExamenCompleto;
     }
@@ -1944,7 +1941,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setListaresultadosExamen(List<ResultadoExamen> listaresultadosExamen) {
         this.listaresultadosExamen = listaresultadosExamen;
     }
-    
+
     public Date getFecha() {
 //        /**
 //         * El número 1 representa el id de Fecha referente a la Toma de Muestra
@@ -2057,7 +2054,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
         listaExamen.clear();
         listaSRExamen.clear();
-        
+
         if (nombreCompleto.isEmpty()) {
             if (!cedula.isEmpty() && fechaNac != null && !numeroCel.isEmpty()) {
 
@@ -2817,11 +2814,11 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 this.pasarValorResutado();
                 this.PasarValoresUnidades();
                 this.ExamenSelect.setResultadoExamenList(resultadoExamen);
-                
+
                 //bloque que agrega la fecha toma
                 System.out.println(this.ExamenSelect.getIdExamen() + " " + FechaMB.getFechaList().get(0).getIdFecha() + " " + fecha);
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(0).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha,medicoSelect);
+                Fxexu nf = new Fxexu(nfpk, fecha, medicoSelect);
                 fechalista.add(nf);
                 ExamenSelect.setFxexuList(fechalista);
 
@@ -2841,7 +2838,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 //bloque que agrega la fecha
                 System.out.println(this.ExamenSelect.getIdExamen() + " " + FechaMB.getFechaList().get(0).getIdFecha() + " " + fecha);
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(0).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha,medicoSelect);
+                Fxexu nf = new Fxexu(nfpk, fecha, medicoSelect);
                 fechalista.add(nf);
 
 //                List<Fxexu> fds = new ArrayList<Fxexu>();
@@ -2880,20 +2877,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     public void guardarResultadoExamen() {
 
-        List<ResultadoExamen> listaTemporal = new ArrayList<ResultadoExamen>(); 
-        
+        List<ResultadoExamen> listaTemporal = new ArrayList<ResultadoExamen>();
+
         try {
             System.out.println(" Numero de Registros por Examen " + this.ExamenSelect.getResultadoExamenList().size());
             if (this.ExamenSelect.getResultadoExamenList() != null) {
                 System.out.println("Valor del Estado " + ExamenSelect.getEstado());
-                
+
                 HashSet st1 = new HashSet();
                 st1.addAll(listaresultadosExamen);
                 listaresultadosExamen.clear();
                 listaresultadosExamen.addAll(st1);
-                
-                if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) 
-                {
+
+                if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) {
                     resultadExamen1.setIdExamen(ExamenSelect);
                     resultadExamen1.setIdCategoria(categoria);
                     resultadExamen1.setIdSubcategoria(subCategoriaFrotis);
@@ -2917,15 +2913,15 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                     this.listaresultadosExamen.add(resultadExamen3);
 
                     ExamenSelect.setEstado(BigInteger.valueOf(2));
-                    
+
                     listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
 
                     FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(1).getIdFecha());
-                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura,null);
+                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura, null);
 
                     FxexuPK nfpk2 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(3).getIdFecha());
-                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento,null);
+                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento, null);
 
                     if (tipoExSegui != null) {
                         nf2.setTipoSeguimiento(tipoExSegui.getCatalogoId());
@@ -2935,7 +2931,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     if (Fecha_PosTratamiento != null) {
                         FxexuPK nfpk3 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(4).getIdFecha());
-                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento,null);
+                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento, null);
                         fechalista.add(nf3);
                     }
 
@@ -2946,21 +2942,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                     ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
-                    
+
                     this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
                     listaTemporal.clear();
-                    
+
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
                     System.out.println("Guardando....");
-                } 
-                else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) 
-                {
+                } else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                     System.out.println("Adentro");
 
                     for (int i = 0; i < ExamenSelect.getResultadoExamenList().size(); i++) {
                         if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 5) {
                             System.out.println("Mas Adentro");
-                             this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
+                            this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(categoria);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(subCategoriaFrotis);
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorFrotis);
@@ -2987,15 +2981,15 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                     }
 
                     System.out.println("Vivo " + this.ExamenSelect.getResultadoExamenList().size());
-                    
+
                     listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
-                    
+
                     FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(1).getIdFecha());
-                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura,null);
+                    Fxexu nf = new Fxexu(nfpk, fecha_Lectura, null);
 
                     FxexuPK nfpk2 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(3).getIdFecha());
-                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento,null);
+                    Fxexu nf2 = new Fxexu(nfpk2, Fecha_Seguimiento, null);
                     if (tipoExSegui != null) {
                         nf2.setTipoSeguimiento(tipoExSegui.getCatalogoId());
                     } else {
@@ -3004,7 +2998,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     if (Fecha_PosTratamiento != null) {
                         FxexuPK nfpk3 = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(4).getIdFecha());
-                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento,null);
+                        Fxexu nf3 = new Fxexu(nfpk3, Fecha_PosTratamiento, null);
                         fechalista.add(nf3);
                     }
 
@@ -3015,7 +3009,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
                     ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                     ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
-                    
+
                     this.ExamenSelect.getResultadoExamenList().addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
                     listaTemporal.clear();
@@ -3028,7 +3022,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
 
         fechalista.clear();
-        
+
         this.asignarResutados();
         this.AsignarUnidades();
         cargar();
@@ -3045,7 +3039,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                 this.ExamenSelect.getResultadoExamenList().clear();
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(2).getIdFecha());
-                Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario,null);
+                Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario, null);
                 fechalista.add(nf);
 
                 ExamenSelect.setFxexuList(fechalista);
@@ -3074,9 +3068,8 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     }
 
     public void expedienteNuevo() {
-        
-        if (ExamenSelect.getEstado() != null) 
-        {
+
+        if (ExamenSelect.getEstado() != null) {
             System.out.println("Examen # " + ExamenSelect.getIdExamen());
             System.out.println("Esty Aqui");
 
@@ -3109,9 +3102,9 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             this.HabilitarTelefono1 = true;
             this.HabilitarTelefono2 = true;
             this.HabilitarExpedienteTemp = true;
-            
+
             cargarCatalogos();
-            
+
             /**
              * Hacemos nulos los campos de Antecedentes Ginecobstetricos
              */
@@ -3163,21 +3156,19 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             listaValoresResultado.clear();
             Fecha_PosTratamiento = null;
             Fecha_Seguimiento = null;
-            
+
             this.asignarResutados();
             this.AsignarUnidades();
 
-        }
-        /**
+        } /**
          * Aqui el codigo se repite para limpiar los campos cuando se estan
          * ingresando los examenes uno por uno ingresando
          */
-        else if (ExamenSelect.getEstado() == null) 
-        {
+        else if (ExamenSelect.getEstado() == null) {
             System.out.println("Examen Nulo " + ExamenSelect.getEstado());
-            
+
             ExamenSelect.setIdExamen(null);
-            
+
             this.cat_esc = null;
             this.catalogos = null;
             this.Valor_Etnia = null;
@@ -3233,11 +3224,10 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
             this.asignarResutados();
             this.AsignarUnidades();
-            
+
 //            this.cargarSubCategoriaFuma();
 //            this.cargarSubCategoriaToma();
 //            this.cargarSubCategoriaEmbarazoActual();
-
             SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
             String codigo = null;
             String Nombres = null;
@@ -3272,8 +3262,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                 switch (op) {
 
                     case 0:
-                        
-                        
+
                         System.out.println("case 0 del wihe numero 2");
                         if (sis.getSegundoNombre() != null && sis.getSegundoApellido() != null) {
 
@@ -3347,9 +3336,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
                         } else if (sis.getSegundoNombre() != null) {
 
                             if (sis.getSegundoNombre().equals(" ")) {
-                                
-                                
-                                
+
                                 System.out.println("pura mierda");
                                 Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
                             } else {
@@ -3479,18 +3466,17 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
-   public void expediente() {
+
+    public void expediente() {
 
         /**
          * cargar datos respectivos cuando una persona ya tiene un examen
          */
-       
-       System.out.println(ExamenSelect.getPrimerNombre());
-       
+        System.out.println(ExamenSelect.getPrimerNombre());
+
         this.asignarResutados();
         this.AsignarUnidades();
-        
+
         cargar();
         cargarCatalogos();
         cargarDatosGestas();
@@ -3514,10 +3500,10 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         cargarValorProcedencia();
         cargarValorAspecto();
         cargarValorSecrecion();
-        
+
         cargarSilaisTomaResultado();
         cargarUnidadTomaResultado();
-        
+
         cargarValoresFrotis();
         cargarValoresResultado();
         cargarSubCategoriaFrotis();
@@ -3525,9 +3511,9 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-   /**
-    * Metodo que calcula la edad de la mujer segun la fecha del examen
-    */
+    /**
+     * Metodo que calcula la edad de la mujer segun la fecha del examen
+     */
     public void calcularEdad(SelectEvent event) {
         SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
 
@@ -3559,21 +3545,17 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
+
     /**
      * Este metodo verifica atraves de estas variables si una persona ya tiene
      * un examen si lo tiene el boton de continuar examen se habilita, si no
      * este se deshabilitara
      */
-   public void verificarPaciente() {
-        for(int i = 0; i < listaSRExamen.size(); i++)
-        {
-            if(listaSRExamen.get(i).getEstado() == BigInteger.valueOf(1) || listaSRExamen.get(i).getEstado() == BigInteger.valueOf(2))
-            {
+    public void verificarPaciente() {
+        for (int i = 0; i < listaSRExamen.size(); i++) {
+            if (listaSRExamen.get(i).getEstado() == BigInteger.valueOf(1) || listaSRExamen.get(i).getEstado() == BigInteger.valueOf(2)) {
                 nuevoPaciente = true;
-            }
-            else 
-            {
+            } else {
                 nuevoPaciente = false;
             }
         }
@@ -3679,7 +3661,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorFuma(Valores valorFuma) {
         this.valorFuma = valorFuma;
     }
-    
+
     /**
      * Metodo para cargar valor fuma
      */
@@ -3699,7 +3681,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorToma(Valores valorToma) {
         this.valorToma = valorToma;
     }
-    
+
     /**
      * Metodo para cargar valor toma
      */
@@ -3717,7 +3699,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorEmbarazoActual(Valores valorEmbarazoActual) {
         this.valorEmbarazoActual = valorEmbarazoActual;
     }
-    
+
     /**
      * Metodo para cargar valor embarazo actual
      */
@@ -3727,7 +3709,6 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
         }
 
     }
-
 
     public SubCategoria getObservacion() {
         int oja = 23;
@@ -3885,7 +3866,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorProcedencia(Valores valorProcedencia) {
         this.valorProcedencia = valorProcedencia;
     }
-    
+
     /**
      * Metodo para cargar valor de procedencia de la muestra
      */
@@ -3902,7 +3883,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorAspecto(Valores valorAspecto) {
         this.valorAspecto = valorAspecto;
     }
-    
+
     /**
      * Metodo para cargar valor aspecto clinico de la muestra
      */
@@ -3919,7 +3900,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setValorSecrecion(Valores valorSecrecion) {
         this.valorSecrecion = valorSecrecion;
     }
-    
+
     /**
      * Metodo para cargar valor secrecion
      */
@@ -3977,8 +3958,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     }
 
-    public void cargarCatalogos()
-    {
+    public void cargarCatalogos() {
         //carga cat. escolaridad
         if (this.ExamenSelect != null) {
 
@@ -4025,7 +4005,7 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
+
     public void cargar() {
 //carga fecha de toma
         if (ExamenSelect.getFxexuList() != null) {
@@ -4105,17 +4085,17 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             }
         }
     }
-    
-    public void limpiarObjetoExamen(){
-       
-   ExamenSelect=null;
-   System.out.println(ExamenSelect);
-   
-   nombreCompleto = null;
-   listaExamen.clear();
-   listaSRExamen.clear();
-   
-   }
+
+    public void limpiarObjetoExamen() {
+
+        ExamenSelect = null;
+        System.out.println(ExamenSelect);
+
+        nombreCompleto = null;
+        listaExamen.clear();
+        listaSRExamen.clear();
+
+    }
 
     public boolean isSkip() {
         return skip;
@@ -4133,12 +4113,10 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
             return event.getNewStep();
         }
     }
-    
+
     public String getEstado() {
-        for(int i = 0; i < listaExamenPendiente.size(); i++)
-        {
-            if(listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(1) || listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(2))
-            {
+        for (int i = 0; i < listaExamenPendiente.size(); i++) {
+            if (listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(1) || listaExamenPendiente.get(i).getEstado() == BigInteger.valueOf(2)) {
                 Estado = listaExamenPendiente.get(i).getEstado() + " /3";
             }
         }
@@ -4148,23 +4126,22 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
     /**
      * Metodo para mostrar la fecha en que se realizo el examen para mostarlo en
      * la interfaz 2do datatable
      */
     public Date getFecha_Toma_Muestra_mostrar() {
-        for(int j = 0; j < listaExamenPendiente.size(); j++)
-        {
+        for (int j = 0; j < listaExamenPendiente.size(); j++) {
             if (this.listaExamenPendiente.get(j).getFxexuList() != null) {
                 for (int i = 0; i < this.listaExamenPendiente.get(j).getFxexuList().size(); i++) {
                     if (listaExamenPendiente.get(j).getFxexuList().get(i).getFxexuPK().getIdFecha() == 1) {
                         Fecha_Toma_Muestra_mostrar = this.listaExamenPendiente.get(j).getFxexuList().get(i).getValor();
                     }
                 }
+            }
         }
-        }
-            
+
         return Fecha_Toma_Muestra_mostrar;
     }
 
@@ -4187,6 +4164,37 @@ System.out.println("sdhjsdjhdsjhsdjhsdhjsd");
 
     public void setResultadoFinal(String ResultadoFinal) {
         this.ResultadoFinal = ResultadoFinal;
+    }
+
+    //////////////////////////////////////////////////////////////////////
+    private String Combo1;
+    private String Combo = "yaaa";
+
+    public String getCombo() {
+        return Combo;
+    }
+
+    public void setCombo(String Combo) {
+        this.Combo = Combo;
+    }
+
+    public String getCombo1() {
+        return Combo1;
+    }
+
+    public void setCombo1(String Combo1) {
+        this.Combo1 = Combo1;
+    }
+
+    public void cambiar() {
+        if (Combo1.equals("1")) {
+            Combo = "escoje";
+        } else if (Combo1.equals("2")) {
+            Combo = "yaaa";
+        } else if (Combo1.equals("3")) {
+            Combo = "porfa";
+        }
+
     }
 
 }
