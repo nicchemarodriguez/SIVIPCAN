@@ -670,7 +670,7 @@ public class ExamenMB implements Serializable {
 
         if (this.getSectorSelect() != null) {
             municipioSelect = ExamenEJB.BuscarMunicipioPorSector(this.sectorSelect.getMunicipio());
-            
+
         }
         return municipioSelect;
     }
@@ -680,12 +680,11 @@ public class ExamenMB implements Serializable {
         this.municipioSelect = municipioSelect;
     }
 
-    public void cargarSectores()
-    {
+    public void cargarSectores() {
         System.out.println("bgdhd" + municipioSelect.getNombre());
         ComunidadMB.setMunicipioSelect(municipioSelect);
     }
-    
+
 //    public void cargarBarrioComarca() {
 //
 //        DivisionPolitica m = new DivisionPolitica();
@@ -2648,14 +2647,14 @@ public class ExamenMB implements Serializable {
                 ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                 this.ExamenSelect = ExamenEJB.buscarID(ExamenSelect.getIdExamen()).get(0);
                 this.asignarResutados();
-               // this.AsignarUnidades();
+                // this.AsignarUnidades();
                 //finaliza bloque que agrega la fecha
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
 
             } else {
 
                 this.pasarValorResutado();
-              //  this.PasarValoresUnidades();
+                //  this.PasarValoresUnidades();
                 this.ExamenSelect.setResultadoExamenList(resultadoExamen);
 
                 //bloque que agrega la fecha
@@ -3313,6 +3312,63 @@ public class ExamenMB implements Serializable {
         }
     }
 
+    public void cargarResultadosXexamenParteUno() throws ParseException {
+        // cargar gestas
+        Gestasi = Integer.parseInt(this.re[0].getDescripcion());
+        //cargar partos
+        partosi = Integer.parseInt(this.re[1].getDescripcion());
+        //caragarAbortos
+        Abortosi = Integer.parseInt(this.re[2].getDescripcion());
+        // cargar cesarias
+        Cesareasi = Integer.parseInt(this.re[3].getDescripcion());
+        //caragar IVSA
+        IVSAi = Integer.parseInt(this.re[4].getDescripcion());
+        //cargar datos menarcas
+           Menarcai = Integer.parseInt(this.re[7].getDescripcion());
+           // cargar semanas gestas
+             semanaDeGestasi = Integer.parseInt(this.re[6].getDescripcion());
+// cargar valor fuma
+                valorFuma = this.re9.getIdValor();
+                //cargar valor toma
+                  valorToma = this.re10.getIdValor();
+                 //cargar embarazo actual
+                   valorEmbarazoActual = this.re11.getIdValor();
+                   //cargar fur
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            FUR = formatter.parse(this.re[5].getDescripcion());
+              //cargar valor procedencia
+                valorProcedencia = re12.getIdValor();
+                //cargar aspecto clinico
+                    valorAspecto = this.re13.getIdValor();
+                    //cargar valor secrecion
+                    
+                    
+                  
+    }
+    
+    public void cargarResultadosXexamenParteDos(){
+        
+      //cargar valores frotis
+         for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
+
+                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdCategoria().getIdCategoria() == 5) {
+                    valorFrotis = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
+                }else  if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
+                    valorResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
+                }else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getDescripcion().equals("Frotis")) {
+                    subCategoriaFrotis = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
+                }else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
+                    subCategoriaResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
+                }
+                    
+            
+         }
+         
+         
+         
+        
+    }
+
     public void expediente() {
 
         /**
@@ -3325,36 +3381,37 @@ public class ExamenMB implements Serializable {
         cargarDepartamentoSelect();
         cargar();
         cargarCatalogos();
-        cargarDatosGestas();
-        cargarDatosPartos();
-        cargarDatosAbortos();
-        cargarDatosCesarias();
-        cargarDatosIVSA();
-        cargarDatosMenarca();
-        cargarDatosSemanasGestas();
+       // cargarDatosGestas();
+     //   cargarDatosPartos();
+     //   cargarDatosAbortos();
+      //  cargarDatosCesarias();
+     //   cargarDatosIVSA();
+      //  cargarDatosMenarca();
+    //    cargarDatosSemanasGestas();
         this.cargarValorFuma();
-        cargarValorToma();
-        cargarValorEmbarazoActual();
+     //   cargarValorToma();
+     //   cargarValorEmbarazoActual();
         this.cargarMetodoAnticonceptivo();
-        try {
-            cargarFUR();
-        } catch (ParseException ex) {
+      /*  try {
+         //   cargarFUR();
+      //  } catch (ParseException ex) {
             Logger.getLogger(ExamenMB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        
         cargarSilaisTomaDM();
         cargarUnidadTomaDM();
-        cargarValorProcedencia();
-        cargarValorAspecto();
-        cargarValorSecrecion();
+      //  cargarValorProcedencia();
+      //  cargarValorAspecto();
+      //  cargarValorSecrecion();
 
         cargarSilaisTomaResultado();
         cargarUnidadTomaResultado();
 
-        cargarValoresFrotis();
+   /*     cargarValoresFrotis();
         cargarValoresResultado();
         cargarSubCategoriaFrotis();
         cargarSubCategoriaResultado();
-
+*/
         /**
          * Esta Comparacion compara si el examen de una persona se encuentra en
          * el primer paso, de ser asi la interfaz se mostrara en la 4ta ventana,
@@ -3723,7 +3780,7 @@ public class ExamenMB implements Serializable {
                 }
             }
         }
-                            
+
         // 5 representa el id de Fecha referente a la fecha de POST_TRATAMIENTO
         if (this.ExamenSelect.getFxexuList() != null) {
             FxexuPK nfxexuPk = new FxexuPK(ExamenSelect.getIdExamen(), 5);
