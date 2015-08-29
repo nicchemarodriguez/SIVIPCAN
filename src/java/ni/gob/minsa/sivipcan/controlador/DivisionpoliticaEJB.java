@@ -20,7 +20,7 @@ import ni.gob.minsa.modelo.poblacion.DivisionPolitica;
 @Stateless
 public class DivisionpoliticaEJB {
 
-    @PersistenceContext(unitName = "PerLocal")
+    @PersistenceContext(unitName = "PerDa")
     private EntityManager em;
     
     public List<DivisionPolitica>buscardepartamentos() {

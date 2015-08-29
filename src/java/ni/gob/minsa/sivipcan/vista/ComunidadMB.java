@@ -83,25 +83,44 @@ public class ComunidadMB {
     }
 
     public DivisionPolitica getMunicipioSelect() {
+       System.out.println("sergio peluche  " + municipioSelect.getNombre());
         return municipioSelect;
     }
 
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
+        System.out.println("bbdndnsmmasn biennnnnnn  " + municipioSelect.getNombre());
+       
+            System.out.println("Aki si funciona");
+          
+          //  ListaSector = SectorMB.getListaSector();
+      //  System.out.println("aqui tambien esta bien"+ ListaSector.size());
+            SectorMB.buscarSectores(municipioSelect.getCodigoNacional());  
+            
+      
         this.municipioSelect = municipioSelect;
     }
 
     public List<Sector> getListaSector() {
+        System.out.println("Nulo");
+        
+     //   cargarSector();
+        ListaSector = SectorMB.getListaSectorBusqueda();
+        System.out.println("aqui tambien esta bien"+ ListaSector.size());
+        if(ListaSector.isEmpty()){
+            System.out.println("lista vacia idiota");
+        }
         return ListaSector;
     }
 
-    public void setListaSector(List<Sector> ListaSector) {
-        
-        if (municipioSelect != null) {
-            SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
-            ListaSector = SectorMB.getListaSector();
-        }
+    public void setListaSector(List<Sector> ListaSector) 
+    {
         this.ListaSector = ListaSector;
     }
 
-    
+    public void cargarSector()
+    {
+        //  System.out.println("sergio peluche  " + municipioSelect.getNombre());
+       
+        System.out.println("Nulo numero 2");
+    }
 }

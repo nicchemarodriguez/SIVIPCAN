@@ -20,7 +20,7 @@ import ni.gob.minsa.sivipcan.modelo.Fecha;
 @Stateless
 public class FechaEJB {
 
-    @PersistenceContext(unitName = "PerLocal")
+    @PersistenceContext(unitName = "PerDa")
     private EntityManager em;
      
    

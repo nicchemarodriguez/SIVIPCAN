@@ -22,7 +22,7 @@ import ni.gob.minsa.modelo.poblacion.Comunidad;
 @Stateless
 public class CatalogoEJB {
 
-     @PersistenceContext(unitName = "PerLocal")
+     @PersistenceContext(unitName = "PerDa")
     private EntityManager em;
     
      public List<Catalogos> buscarTodasLasEtnias( String Codigo) {
@@ -69,6 +69,12 @@ public class CatalogoEJB {
     }
     
      public List<Catalogos> buscarTipoExamen(String Codigo) {           
+        Query query = em.createNamedQuery("Catalogos.findByCodigo");
+        query.setParameter("codigo", Codigo);
+        return query.getResultList();
+    }
+     
+     public List<Catalogos> buscarExamenPAP(String Codigo) {           
         Query query = em.createNamedQuery("Catalogos.findByCodigo");
         query.setParameter("codigo", Codigo);
         return query.getResultList();

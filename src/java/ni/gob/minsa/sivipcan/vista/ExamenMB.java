@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ni.gob.minsa.sivipcan.vista;
 
 import java.io.Serializable;
@@ -55,12 +54,9 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ExamenMB implements Serializable {
 
-    
-    
-    
     @EJB
     private ExamenEJB ExamenEJB;
-    
+
     private Date fechaNac;
     private boolean skip;
 
@@ -69,6 +65,9 @@ public class ExamenMB implements Serializable {
     private String Estado;
     private Date Fecha_Toma_Muestra_mostrar;
     private String ResultadoFinal;
+    private String NumeroLamina;
+    private String TipoExamenMostrar;
+    private String Ventana = "DtsGnrals";
 
     private String numeroCel;
     private String cedula;
@@ -80,6 +79,7 @@ public class ExamenMB implements Serializable {
     private Catalogos cat_esc;
     private Catalogos Valor_Etnia;
     private Catalogos valor_Procedencia;
+    private Catalogos valor_TipoExamen;
     private List<Catalogos> catlista = new ArrayList<Catalogos>();
     private Examen ExamenSelect = new Examen();
 
@@ -87,6 +87,7 @@ public class ExamenMB implements Serializable {
     private List<Examen> listaExamenPendiente = new ArrayList<Examen>();
     private List<Examen> listaExamenCompleto = new ArrayList<Examen>();
     private List<Examen> listaSRExamen = new ArrayList<Examen>();
+    private List<Examen> listaPrimerParteExamen = new ArrayList<Examen>();
 
     private Categoria categoria = new Categoria();
 
@@ -131,8 +132,8 @@ public class ExamenMB implements Serializable {
     private int Gestasi;
     private int Abortosi;
     private int Cesareasi;
-    private int IVSAi;
-    private int Menarcai;
+    private int IVSAi = 9;
+    private int Menarcai = 9;
     private int semanaDeGestasi;
     private int partosi;
     private Date FUR;
@@ -143,18 +144,19 @@ public class ExamenMB implements Serializable {
     private Valores valorFrotis;
     private SubCategoria subCategoriaResultado = new SubCategoria();
     private Valores valorResultado;
-   private CategoriaMB CategoriaMB = (CategoriaMB) FacesContext.getCurrentInstance()
+    private CategoriaMB CategoriaMB = (CategoriaMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{categoriaMB}", CategoriaMB.class);
-  private SubCategoriaMB SubCategoriaMB= (SubCategoriaMB) FacesContext.getCurrentInstance()
+    private SubCategoriaMB SubCategoriaMB = (SubCategoriaMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{subCategoriaMB}", SubCategoriaMB.class);
-    private ValoresMB ValoresMB= (ValoresMB) FacesContext.getCurrentInstance()
+    private ValoresMB ValoresMB = (ValoresMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
-                    "#{valoresMB}", ValoresMB.class);;
+                    "#{valoresMB}", ValoresMB.class);
+    ;
     
     
     
@@ -177,12 +179,9 @@ public class ExamenMB implements Serializable {
     //--
     
     private ResultadoExamen[] re;
-    
-//--
 
+//--
     private SisMedicos medicoSelect = new SisMedicos();
-    
-    
 
     private ResultadoExamen resultadExamen1 = new ResultadoExamen();
     private ResultadoExamen resultadExamen2 = new ResultadoExamen();
@@ -224,7 +223,8 @@ public class ExamenMB implements Serializable {
     private boolean HabilitarTelefono1 = false;
     private boolean HabilitarTelefono2 = false;
     private boolean ValordeChecbox;
-    private boolean nuevoPaciente;
+    private boolean nuevoPaciente = false;
+    private boolean continuarPaciente = false;
 
     //declaraciones para fecha
     private List<Fxexu> fechalista = new ArrayList<Fxexu>();
@@ -237,12 +237,12 @@ public class ExamenMB implements Serializable {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{catalogoMB}", CatalogoMB.class);
-    
+
     private DivisionPoliticaMB DivisionPoliticaMB = (DivisionPoliticaMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{divisionPoliticaMB}", DivisionPoliticaMB.class);
-    
+
     private ComunidadMB ComunidadMB = (ComunidadMB) FacesContext.getCurrentInstance()
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
@@ -647,10 +647,9 @@ public class ExamenMB implements Serializable {
 
     public DivisionPolitica getDepartamentoSelect() {
 
-        if (this.getMunicipioSelect() != null) {
-            departamentoSelect = this.municipioSelect.getDependencia();
-        }
-
+//        if (this.getMunicipioSelect() != null) {
+//            departamentoSelect = this.municipioSelect.getDependencia();
+//        }
         return departamentoSelect;
     }
 
@@ -659,20 +658,34 @@ public class ExamenMB implements Serializable {
         this.departamentoSelect = departamentoSelect;
     }
 
+    public void cargarDepartamentoSelect() {
+        if (this.getMunicipioSelect() != null) {
+
+            departamentoSelect = this.municipioSelect.getDependencia();
+
+        }
+    }
+
     public DivisionPolitica getMunicipioSelect() {
 
         if (this.getSectorSelect() != null) {
             municipioSelect = ExamenEJB.BuscarMunicipioPorSector(this.sectorSelect.getMunicipio());
+            
         }
         return municipioSelect;
     }
 
     public void setMunicipioSelect(DivisionPolitica municipioSelect) {
-        ComunidadMB.setMunicipioSelect(municipioSelect);
+
         this.municipioSelect = municipioSelect;
     }
 
-
+    public void cargarSectores()
+    {
+        System.out.println("bgdhd" + municipioSelect.getNombre());
+        ComunidadMB.setMunicipioSelect(municipioSelect);
+    }
+    
 //    public void cargarBarrioComarca() {
 //
 //        DivisionPolitica m = new DivisionPolitica();
@@ -680,7 +693,6 @@ public class ExamenMB implements Serializable {
 //        this.setMunicipioSelect(m);
 //
 //    }
-
     public List<Comunidad> getComunidades() {
 
         if (!this.getSectores().isEmpty()) {
@@ -793,77 +805,105 @@ public class ExamenMB implements Serializable {
 
     //Codigo Angelo para Antecedentes Ginecobtetrico
     public void pasarValorResutado() {
-        
-        
 
         System.out.println(this.ExamenSelect.getIdExamen());
 
-        this.re1.setDescripcion(String.valueOf(this.Gestasi));
-        this.re2.setDescripcion(String.valueOf(this.partosi));
-        this.re3.setDescripcion(String.valueOf(this.Abortosi));
-        this.re4.setDescripcion(String.valueOf(this.Cesareasi));
-        this.re5.setDescripcion(String.valueOf(this.IVSAi));
+//        this.re1.setDescripcion(String.valueOf(this.Gestasi));
+//        this.re2.setDescripcion(String.valueOf(this.partosi));
+//        this.re3.setDescripcion(String.valueOf(this.Abortosi));
+//        this.re4.setDescripcion(String.valueOf(this.Cesareasi));
+//        this.re5.setDescripcion(String.valueOf(this.IVSAi));
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        this.re6.setDescripcion(formatter.format(this.FUR));
+//        System.out.println(formatter.format(this.FUR));
+//        this.re7.setDescripcion(String.valueOf(this.semanaDeGestasi));
+//        this.re8.setDescripcion(String.valueOf(this.Menarcai));
+//
+//        this.re9.setIdValor(this.valorFuma);
+//        System.out.println(this.valorFuma.getValor());
+//        //this.re10.getResultadoExamenPK().setIdValor(this.pk10.getIdValor());
+//        this.re10.setIdValor(this.valorToma);
+//        //this.re11.getResultadoExamenPK().setIdValor(this.pk11.getIdValor());
+//        this.re11.setIdValor(this.valorEmbarazoActual);
+//        this.re12.setIdValor(this.valorProcedencia);
+//        this.re13.setIdValor(this.valorAspecto);
+//        this.re14.setIdValor(this.valorSecrecion);
+//
+//        System.out.println("resset");
+//        this.re1.setIdExamen(this.ExamenSelect);
+//        this.re2.setIdExamen(this.ExamenSelect);
+//        this.re3.setIdExamen(this.ExamenSelect);
+//        this.re4.setIdExamen(this.ExamenSelect);
+//        this.re5.setIdExamen(this.ExamenSelect);
+//        this.re6.setIdExamen(this.ExamenSelect);
+//        this.re7.setIdExamen(this.ExamenSelect);
+//        this.re8.setIdExamen(this.ExamenSelect);
+//        this.re9.setIdExamen(this.ExamenSelect);
+//        this.re10.setIdExamen(this.ExamenSelect);
+//        this.re11.setIdExamen(this.ExamenSelect);
+//        this.re12.setIdExamen(this.ExamenSelect);
+//        this.re13.setIdExamen(this.ExamenSelect);
+//        this.re14.setIdExamen(this.ExamenSelect);
+//
+//        this.resultadoExamen.add(this.re1);
+//        this.resultadoExamen.add(this.re2);
+//        this.resultadoExamen.add(this.re3);
+//        this.resultadoExamen.add(this.re4);
+//        this.resultadoExamen.add(this.re5);
+//        this.resultadoExamen.add(this.re6);
+//        this.resultadoExamen.add(this.re7);
+//        this.resultadoExamen.add(this.re8);
+//        this.resultadoExamen.add(this.re9);
+//        this.resultadoExamen.add(this.re10);
+//        this.resultadoExamen.add(this.re11);
+//        this.resultadoExamen.add(this.re12);
+//        this.resultadoExamen.add(this.re13);
+//        this.resultadoExamen.add(this.re14);
+//        System.out.println("addadd");
+//        System.out.println(this.resultadoExamen.size());
+//
+//        //this.ExamenSelect.setResultadoExamenList(this.resultadoExamen);
+//        System.out.println("ya en lista");
+        this.re[0].setDescripcion(String.valueOf(this.Gestasi));
+        this.re[1].setDescripcion(String.valueOf(this.partosi));
+        this.re[2].setDescripcion(String.valueOf(this.Abortosi));
+        this.re[3].setDescripcion(String.valueOf(this.Cesareasi));
+        this.re[4].setDescripcion(String.valueOf(this.IVSAi));
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        this.re6.setDescripcion(formatter.format(this.FUR));
-        System.out.println(formatter.format(this.FUR));
-        this.re7.setDescripcion(String.valueOf(this.semanaDeGestasi));
-        this.re8.setDescripcion(String.valueOf(this.Menarcai));
+        this.re[5].setDescripcion(formatter.format(this.FUR));
+        this.re[6].setDescripcion(String.valueOf(this.semanaDeGestasi));
+        this.re[7].setDescripcion(String.valueOf(this.Menarcai));
 
-        this.re9.setIdValor(this.valorFuma);
-        System.out.println(this.valorFuma.getValor());
-        //this.re10.getResultadoExamenPK().setIdValor(this.pk10.getIdValor());
-        this.re10.setIdValor(this.valorToma);
-        //this.re11.getResultadoExamenPK().setIdValor(this.pk11.getIdValor());
-        this.re11.setIdValor(this.valorEmbarazoActual);
-        this.re12.setIdValor(this.valorProcedencia);
-        this.re13.setIdValor(this.valorAspecto);
-        this.re14.setIdValor(this.valorSecrecion);
+        this.re[8].setIdValor(valorFuma);
+        this.re[9].setIdValor(this.valorToma);
+        this.re[10].setIdValor(this.valorEmbarazoActual);
+        this.re[11].setIdValor(this.valorProcedencia);
+        this.re[12].setIdValor(this.valorAspecto);
+        this.re[13].setIdValor(this.valorSecrecion);
 
         System.out.println("resset");
-        this.re1.setIdExamen(this.ExamenSelect);
-        this.re2.setIdExamen(this.ExamenSelect);
-        this.re3.setIdExamen(this.ExamenSelect);
-        this.re4.setIdExamen(this.ExamenSelect);
-        this.re5.setIdExamen(this.ExamenSelect);
-        this.re6.setIdExamen(this.ExamenSelect);
-        this.re7.setIdExamen(this.ExamenSelect);
-        this.re8.setIdExamen(this.ExamenSelect);
-        this.re9.setIdExamen(this.ExamenSelect);
-        this.re10.setIdExamen(this.ExamenSelect);
-        this.re11.setIdExamen(this.ExamenSelect);
-        this.re12.setIdExamen(this.ExamenSelect);
-        this.re13.setIdExamen(this.ExamenSelect);
-        this.re14.setIdExamen(this.ExamenSelect);
 
-        this.resultadoExamen.add(this.re1);
-        this.resultadoExamen.add(this.re2);
-        this.resultadoExamen.add(this.re3);
-        this.resultadoExamen.add(this.re4);
-        this.resultadoExamen.add(this.re5);
-        this.resultadoExamen.add(this.re6);
-        this.resultadoExamen.add(this.re7);
-        this.resultadoExamen.add(this.re8);
-        this.resultadoExamen.add(this.re9);
-        this.resultadoExamen.add(this.re10);
-        this.resultadoExamen.add(this.re11);
-        this.resultadoExamen.add(this.re12);
-        this.resultadoExamen.add(this.re13);
-        this.resultadoExamen.add(this.re14);
+        for (int i = 0; i < 14; i++) {
+            this.re[i].setIdExamen(this.ExamenSelect);
+            this.resultadoExamen.add(this.re[i]);
+            System.out.println("listo");
+        }
+
         System.out.println("addadd");
         System.out.println(this.resultadoExamen.size());
 
         //this.ExamenSelect.setResultadoExamenList(this.resultadoExamen);
         System.out.println("ya en lista");
+
     }
 
     public void asignarResutados() {
         //--tamaño de arreglo solo para antecedentes y descripcion de la muestra
-        
-       
 
         if (this.ExamenSelect.getResultadoExamenList() != null) {
             //--asignar tamaño de areglo para todos los resultados
-               re= new ResultadoExamen[this.ExamenSelect.getResultadoExamenList().size()];
+            System.out.println("Cantidad de datos en lista resultado antes: " + this.ExamenSelect.getResultadoExamenList().size());
+            re = new ResultadoExamen[this.ExamenSelect.getResultadoExamenList().size()];
             //--
             System.out.println("Cantidad de datos en lista resultado: " + this.ExamenSelect.getResultadoExamenList().size());
 
@@ -883,23 +923,14 @@ public class ExamenMB implements Serializable {
             java.math.BigDecimal v11 = new java.math.BigDecimal(String.valueOf(11));
             java.math.BigDecimal v12 = new java.math.BigDecimal(String.valueOf(12));
             java.math.BigDecimal v13 = new java.math.BigDecimal(String.valueOf(22));
-            
-            
+
             for (int i = 0; this.ExamenSelect.getResultadoExamenList().size() > i; i++) {
-                
-                
-                
-                
-                
-                
-           
-              
 
                 if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v1)) {
                     re[0] = this.ExamenSelect.getResultadoExamenList().get(i);
 
                 } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v2)) {
-                   re[1] = this.ExamenSelect.getResultadoExamenList().get(i);
+                    re[1] = this.ExamenSelect.getResultadoExamenList().get(i);
 
                 } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v3)) {
                     re[2] = this.ExamenSelect.getResultadoExamenList().get(i);
@@ -918,7 +949,6 @@ public class ExamenMB implements Serializable {
 
                 } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdValor().getIdValor().equals(v8)) {
                     re[7] = this.ExamenSelect.getResultadoExamenList().get(i);
-                    
 
                 } else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdSubcategoria().equals(v7)) {
                     re[8] = this.ExamenSelect.getResultadoExamenList().get(i);
@@ -947,21 +977,25 @@ public class ExamenMB implements Serializable {
             }
 
         } else {
-              re= new ResultadoExamen[15];
+            re = new ResultadoExamen[15];
             //---------------
             /**
-             * ciclo para asignar valores por defecto para los resutados de anteGinec y descripcion de la muestra
+             * ciclo para asignar valores por defecto para los resutados de
+             * anteGinec y descripcion de la muestra
              */
-            for(int i=0;i<8;i++){
-               re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
-               re[i].setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
-                  }
-            for(int i=8;i<11;i++){   
-            re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
-                 }
-            for(int i=11;i<14;i++){
+            for (int i = 0; i < 8; i++) {
+                re[i] = new ResultadoExamen();
+                re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
+                re[i].setIdSubcategoria(this.SubCategoriaMB.getAntecedentesAbiertos());
+            }
+            for (int i = 8; i < 11; i++) {
+                re[i] = new ResultadoExamen();
+                re[i].setIdCategoria(this.CategoriaMB.getAntecedentes());
+            }
+            for (int i = 11; i < 14; i++) {
+                re[i] = new ResultadoExamen();
                 re[i].setIdCategoria(this.SubCategoriaMB.getSecrecion().getIdCategoria());
-                     }
+            }
             //---------------       
             //Gestas----------------------
             re[0].setIdValor(this.ValoresMB.getGestas());
@@ -989,9 +1023,17 @@ public class ExamenMB implements Serializable {
             re[11].setIdSubcategoria(this.SubCategoriaMB.getProcedencia());
             re[12].setIdSubcategoria(this.SubCategoriaMB.getAspectoClinico());
             re[13].setIdSubcategoria(this.SubCategoriaMB.getSecrecion());
-            
+
         }
 
+    }
+
+    public ResultadoExamen[] getRe() {
+        return re;
+    }
+
+    public void setRe(ResultadoExamen[] re) {
+        this.re = re;
     }
 
     public ResultadoExamen getRe9() {
@@ -1100,9 +1142,10 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosPartos() {
-        if (this.re2.getDescripcion() != null) {
-            partosi = Integer.parseInt(this.re2.getDescripcion());
+        if (this.re[1].getDescripcion() != null) {
+            partosi = Integer.parseInt(this.re[1].getDescripcion());
         }
+
     }
 
     public Date getFUR() throws ParseException {
@@ -1114,9 +1157,9 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarFUR() throws ParseException {
-        if (this.re6.getDescripcion() != null) {
+        if (this.re[5].getDescripcion() != null) {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            FUR = formatter.parse(this.re6.getDescripcion());
+            FUR = formatter.parse(this.re[5].getDescripcion());
         }
     }
 
@@ -1129,8 +1172,8 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosAbortos() {
-        if (this.re3.getDescripcion() != null) {
-            Abortosi = Integer.parseInt(this.re3.getDescripcion());
+        if (this.re[2].getDescripcion() != null) {
+            Abortosi = Integer.parseInt(this.re[2].getDescripcion());
         }
     }
 
@@ -1143,8 +1186,8 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosCesarias() {
-        if (this.re4.getDescripcion() != null) {
-            Cesareasi = Integer.parseInt(this.re4.getDescripcion());
+        if (this.re[3].getDescripcion() != null) {
+            Cesareasi = Integer.parseInt(this.re[3].getDescripcion());
         }
     }
 
@@ -1157,8 +1200,8 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosIVSA() {
-        if (this.re5.getDescripcion() != null) {
-            IVSAi = Integer.parseInt(this.re5.getDescripcion());
+        if (this.re[4].getDescripcion() != null) {
+            IVSAi = Integer.parseInt(this.re[4].getDescripcion());
 
         }
     }
@@ -1172,8 +1215,8 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosMenarca() {
-        if (this.re8.getDescripcion() != null) {
-            Menarcai = Integer.parseInt(this.re8.getDescripcion());
+        if (this.re[7].getDescripcion() != null) {
+            Menarcai = Integer.parseInt(this.re[7].getDescripcion());
         }
     }
 
@@ -1186,8 +1229,8 @@ public class ExamenMB implements Serializable {
     }
 
     public void cargarDatosSemanasGestas() {
-        if (this.re7.getDescripcion() != null) {
-            semanaDeGestasi = Integer.parseInt(this.re7.getDescripcion());
+        if (this.re[6].getDescripcion() != null) {
+            semanaDeGestasi = Integer.parseInt(this.re[6].getDescripcion());
         }
     }
 
@@ -1202,10 +1245,10 @@ public class ExamenMB implements Serializable {
     public void cargarDatosGestas() {
         if (this.Gestasi == 0) {
             System.out.println("cargue Gestas...");
-            System.out.println(re1.getIdValor() + " " + re1.getDescripcion());
-            if (this.re1.getDescripcion() != null) {
-                System.out.println("cargue Gestas... " + re1.getDescripcion());
-                Gestasi = Integer.parseInt(this.re1.getDescripcion());
+            System.out.println(re[0].getIdValor() + " " + re[0].getDescripcion());
+            if (this.re[0].getDescripcion() != null) {
+                System.out.println("cargue Gestas... " + re[0].getDescripcion());
+                Gestasi = Integer.parseInt(this.re[0].getDescripcion());
             }
         }
     }
@@ -1345,6 +1388,14 @@ public class ExamenMB implements Serializable {
 
     public void setNuevoPaciente(boolean nuevoPaciente) {
         this.nuevoPaciente = nuevoPaciente;
+    }
+
+    public boolean isContinuarPaciente() {
+        return continuarPaciente;
+    }
+
+    public void setContinuarPaciente(boolean continuarPaciente) {
+        this.continuarPaciente = continuarPaciente;
     }
 
     public void HabilitaandoCampos() {
@@ -1630,6 +1681,19 @@ public class ExamenMB implements Serializable {
 
     public void setExamenSelect(Examen ExamenSelect) {
         this.ExamenSelect = ExamenSelect;
+    }
+
+    /**
+     * Esta Lista retorna la primer parte del examen realizado.
+     *
+     * @return
+     */
+    public List<Examen> getListaPrimerParteExamen() {
+        return listaPrimerParteExamen;
+    }
+
+    public void setListaPrimerParteExamen(List<Examen> listaPrimerParteExamen) {
+        this.listaPrimerParteExamen = listaPrimerParteExamen;
     }
 
     public List<Examen> getListaExamenPendiente(long Codigo) {
@@ -2568,10 +2632,12 @@ public class ExamenMB implements Serializable {
                 this.ExamenSelect = ExamenEJB.crearNuevo(this.ExamenSelect);
 
                 this.pasarValorResutado();
-                this.PasarValoresUnidades();
+                //this.PasarValoresUnidades();
 
+                System.out.println("resultado es " + resultadoExamen.size());
                 this.ExamenSelect.setResultadoExamenList(resultadoExamen);
 
+                System.out.println("resultado es " + ExamenSelect.getResultadoExamenList().size());
                 //bloque que agrega la fecha toma
                 System.out.println(this.ExamenSelect.getIdExamen() + " " + FechaMB.getFechaList().get(0).getIdFecha() + " " + fecha);
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(0).getIdFecha());
@@ -2582,14 +2648,14 @@ public class ExamenMB implements Serializable {
                 ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                 this.ExamenSelect = ExamenEJB.buscarID(ExamenSelect.getIdExamen()).get(0);
                 this.asignarResutados();
-                this.AsignarUnidades();
+               // this.AsignarUnidades();
                 //finaliza bloque que agrega la fecha
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
 
             } else {
 
                 this.pasarValorResutado();
-                this.PasarValoresUnidades();
+              //  this.PasarValoresUnidades();
                 this.ExamenSelect.setResultadoExamenList(resultadoExamen);
 
                 //bloque que agrega la fecha
@@ -2623,6 +2689,7 @@ public class ExamenMB implements Serializable {
         this.AsignarUnidades();
         cargar();
         cargarCatalogos();
+        listaPrimerParteExamen = ExamenEJB.buscarPrimerParteExamen(ExamenSelect.getIdExamen());
     }
 
     public Examen nuevaMiembro() {
@@ -2660,14 +2727,6 @@ public class ExamenMB implements Serializable {
                     resultadExamen2.setIdValor(valorResultado);
 
                     this.listaresultadosExamen.add(resultadExamen2);
-
-                    resultadExamen3.setIdExamen(ExamenSelect);
-                    resultadExamen3.setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
-                    resultadExamen3.setIdSubcategoria(this.SubCategoriaMB.getObservacion());
-                    resultadExamen3.setIdValor(valorObservacion);
-                    resultadExamen3.setDescripcion(this.datosAbiertos_Recomendaciones);
-
-                    this.listaresultadosExamen.add(resultadExamen3);
 
                     ExamenSelect.setEstado(BigInteger.valueOf(2));
 
@@ -2725,15 +2784,6 @@ public class ExamenMB implements Serializable {
                             this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorResultado);
                             this.resultadoExamen.add(this.ExamenSelect.getResultadoExamenList().get(i));
                             System.out.println("Modificando Resultado..... ");
-                        } else if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 8) {
-                            System.out.println("Mas Adentro Observacion");
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(this.SubCategoriaMB.getObservacion());
-                            this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorObservacion);
-                            this.ExamenSelect.getResultadoExamenList().get(i).setDescripcion(datosAbiertos_Recomendaciones);
-                            this.resultadoExamen.add(this.ExamenSelect.getResultadoExamenList().get(i));
-                            System.out.println("Modificando Observaciones..... ");
                         }
                     }
 
@@ -2795,6 +2845,16 @@ public class ExamenMB implements Serializable {
         try {
             if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                 this.ExamenSelect.getResultadoExamenList().clear();
+
+                resultadExamen3.setIdExamen(ExamenSelect);
+                resultadExamen3.setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
+                resultadExamen3.setIdSubcategoria(this.SubCategoriaMB.getObservacion());
+                resultadExamen3.setIdValor(valorObservacion);
+                resultadExamen3.setDescripcion(this.datosAbiertos_Recomendaciones);
+
+                this.listaresultadosExamen.add(resultadExamen3);
+                this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
+
                 FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(2).getIdFecha());
                 Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario, null);
                 fechalista.add(nf);
@@ -2804,6 +2864,31 @@ public class ExamenMB implements Serializable {
                 ExamenSelect.setEstado(BigInteger.valueOf(3));
                 ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Actualizó Exitosamente", ""));
+            }
+
+            if (ExamenSelect.getEstado() == BigInteger.valueOf(3)) {
+                for (int i = 0; i < ExamenSelect.getResultadoExamenList().size(); i++) {
+                    if (ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 8) {
+                        System.out.println("Mas Adentro Observacion");
+                        this.ExamenSelect.getResultadoExamenList().get(i).setIdExamen(ExamenSelect);
+                        this.ExamenSelect.getResultadoExamenList().get(i).setIdCategoria(this.CategoriaMB.getCategoriaObservacion());
+                        this.ExamenSelect.getResultadoExamenList().get(i).setIdSubcategoria(this.SubCategoriaMB.getObservacion());
+                        this.ExamenSelect.getResultadoExamenList().get(i).setIdValor(valorObservacion);
+                        this.ExamenSelect.getResultadoExamenList().get(i).setDescripcion(datosAbiertos_Recomendaciones);
+                        this.resultadoExamen.add(this.ExamenSelect.getResultadoExamenList().get(i));
+                        System.out.println("Modificando Observaciones..... ");
+                    }
+                }
+
+                FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(2).getIdFecha());
+                Fxexu nf = new Fxexu(nfpk, fecha_Entrega_Usuario, null);
+                fechalista.add(nf);
+
+                ExamenSelect.setFxexuList(fechalista);
+
+                this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
+                ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
+                ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
             }
 
         } catch (Exception e) {
@@ -2840,6 +2925,8 @@ public class ExamenMB implements Serializable {
             ex.setDireccionActual(ExamenSelect.getDireccionActual());
             ex.setNumeroExpediente(ExamenSelect.getNumeroExpediente());
             ex.setIdPersona(ExamenSelect.getIdPersona());
+            ex.setTelefono(ExamenSelect.getTelefono());
+            ex.setTelefono2(ExamenSelect.getTelefono2());
             ex.setIdComunidadResidencia(ExamenSelect.getIdComunidadResidencia());
             ex.setCatalogoList(ExamenSelect.getCatalogoList());
 //            ex.setIdComunidadResidencia(null);
@@ -2861,6 +2948,7 @@ public class ExamenMB implements Serializable {
             this.HabilitarExpedienteTemp = true;
 
             cargarCatalogos();
+            cargarDepartamentoSelect();
 
             /**
              * Hacemos nulos los campos de Antecedentes Ginecobstetricos
@@ -2871,8 +2959,6 @@ public class ExamenMB implements Serializable {
             this.partosi = 0;
             Menarcai = 0;
             semanaDeGestasi = 0;
-
-
 
             valorEmbarazoActual = null;
             valorFuma = null;
@@ -2891,7 +2977,7 @@ public class ExamenMB implements Serializable {
             listaUnidadesTomaDm.clear();
             municipioTomaDm = null;
             listaUnidadesTomaDm.clear();
-          //  Procedencia = null;
+            //  Procedencia = null;
             valorProcedencia = null;
             //AspectoClinico = null;
             valorAspecto = null;
@@ -2908,7 +2994,7 @@ public class ExamenMB implements Serializable {
             this.ValoresMB.getListaValoresFrotis().clear();
             subCategoriaResultado = new SubCategoria();
             valorResultado = null;
-             this.ValoresMB.getListaValoresResultado().clear();
+            this.ValoresMB.getListaValoresResultado().clear();
             valorObservacion = new Valores();
             this.ValoresMB.getListaValoresResultado().clear();
             Fecha_PosTratamiento = null;
@@ -2916,6 +3002,8 @@ public class ExamenMB implements Serializable {
 
             this.asignarResutados();
             this.AsignarUnidades();
+
+            this.Ventana = "DtsGnrals";
 
         } /**
          * Aqui el codigo se repite para limpiar los campos cuando se estan
@@ -2944,8 +3032,7 @@ public class ExamenMB implements Serializable {
             Menarcai = 0;
             semanaDeGestasi = 0;
 
-          //  Categorias.clear();
-
+            //  Categorias.clear();
             valorEmbarazoActual = null;
             valorFuma = null;
             valorToma = null;
@@ -2970,7 +3057,7 @@ public class ExamenMB implements Serializable {
             fecha_Lectura = null;
             subCategoriaFrotis = new SubCategoria();
             valorFrotis = null;
-          //  listaValoresFrotis.clear();
+            //  listaValoresFrotis.clear();
             subCategoriaResultado = new SubCategoria();
             valorResultado = null;
             //listaValoresResultado.clear();
@@ -2981,6 +3068,7 @@ public class ExamenMB implements Serializable {
 
             this.asignarResutados();
             this.AsignarUnidades();
+            cargarDepartamentoSelect();
 
 //            this.cargarSubCategoriaFuma();
 //            this.cargarSubCategoriaToma();
@@ -3221,6 +3309,7 @@ public class ExamenMB implements Serializable {
                 }
 
             }
+            this.Ventana = "DtsGnrals";
         }
     }
 
@@ -3233,7 +3322,7 @@ public class ExamenMB implements Serializable {
 
         this.asignarResutados();
         this.AsignarUnidades();
-
+        cargarDepartamentoSelect();
         cargar();
         cargarCatalogos();
         cargarDatosGestas();
@@ -3265,6 +3354,19 @@ public class ExamenMB implements Serializable {
         cargarValoresResultado();
         cargarSubCategoriaFrotis();
         cargarSubCategoriaResultado();
+
+        /**
+         * Esta Comparacion compara si el examen de una persona se encuentra en
+         * el primer paso, de ser asi la interfaz se mostrara en la 4ta ventana,
+         * en caso en que el examen se encuentre en el 2do paso aparecera la
+         * ultima interfaz al usuario, de manera que este no tendra que navegar
+         * desde la primer pestaña para poder llegar a la que desea.
+         */
+        if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) {
+            this.Ventana = "NumLam";
+        } else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
+            this.Ventana = "Recomendns";
+        }
 
     }
 
@@ -3303,22 +3405,28 @@ public class ExamenMB implements Serializable {
         }
     }
 
+    public void pacienteExistente() {
+        if (ExamenSelect.getEstado() == null) {
+            nuevoPaciente = true;
+        }
+    }
+
     /**
      * Este metodo verifica atraves de estas variables si una persona ya tiene
      * un examen si lo tiene el boton de continuar examen se habilita, si no
      * este se deshabilitara
      */
-    public void verificarPaciente() {
-        for (int i = 0; i < listaSRExamen.size(); i++) {
-            if (listaSRExamen.get(i).getEstado() == BigInteger.valueOf(1) || listaSRExamen.get(i).getEstado() == BigInteger.valueOf(2)) {
-                nuevoPaciente = true;
-            } else {
-                nuevoPaciente = false;
-            }
+    public void verificarPaciente(SelectEvent event) {
+        Examen examenPaciente;
+        examenPaciente = (Examen) event.getObject();
+        if (examenPaciente.getEstado() == BigInteger.valueOf(1) || examenPaciente.getEstado() == BigInteger.valueOf(2)) {
+            nuevoPaciente = true;
+            continuarPaciente = true;
+        } else {
+            nuevoPaciente = true;
+            continuarPaciente = false;
         }
     }
-
-  
 
     public Catalogos getTipoExSegui() {
         return tipoExSegui;
@@ -3377,8 +3485,9 @@ public class ExamenMB implements Serializable {
         this.valorObservacion = valorObservacion;
     }
 
-   
-
+    /**
+     * Categoria Frotis id = 5
+     */
     public void cargarValoresFrotis() {
         if (this.ExamenSelect.getResultadoExamenList() != null) {
             for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
@@ -3391,6 +3500,9 @@ public class ExamenMB implements Serializable {
         }
     }
 
+    /**
+     * Categoria Resultado id = 6
+     */
     public void cargarValoresResultado() {
         if (this.ExamenSelect.getResultadoExamenList() != null) {
             for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
@@ -3412,8 +3524,6 @@ public class ExamenMB implements Serializable {
             }
         }
     }
-
-  
 
     /**
      * Metodo para cargar valor de procedencia de la muestra
@@ -3441,6 +3551,15 @@ public class ExamenMB implements Serializable {
             valorSecrecion = this.re14.getIdValor();
 
         }
+    }
+
+    public Catalogos getValor_TipoExamen() {
+        return valor_TipoExamen;
+    }
+
+    public void setValor_TipoExamen(Catalogos valor_TipoExamen) {
+        catlista.add(valor_TipoExamen);
+        this.valor_TipoExamen = valor_TipoExamen;
     }
 
     /**
@@ -3604,7 +3723,7 @@ public class ExamenMB implements Serializable {
                 }
             }
         }
-
+                            
         // 5 representa el id de Fecha referente a la fecha de POST_TRATAMIENTO
         if (this.ExamenSelect.getFxexuList() != null) {
             FxexuPK nfxexuPk = new FxexuPK(ExamenSelect.getIdExamen(), 5);
@@ -3698,4 +3817,62 @@ public class ExamenMB implements Serializable {
         this.ResultadoFinal = ResultadoFinal;
     }
 
+    public String getNumeroLamina() {
+        return NumeroLamina;
+    }
+
+    public void setNumeroLamina(String NumeroLamina) {
+        this.NumeroLamina = NumeroLamina;
+    }
+
+    public void generarNumeroLamina() {
+        String codigoIsoDepto;
+        String codigoExamen;
+        String digitosAnio;
+        Date FechaActual = new Date();
+
+        codigoIsoDepto = departamentoSelect.getCodigoIso();
+        codigoExamen = String.valueOf(ExamenSelect.getIdExamen());
+
+        SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
+        String con = fd.format(FechaActual);
+        digitosAnio = con.charAt(8) + "" + con.charAt(9);
+
+        this.NumeroLamina = codigoIsoDepto + codigoExamen + digitosAnio;
+    }
+
+    public String getVentana() {
+        return Ventana;
+    }
+
+    public void setVentana(String Ventana) {
+        this.Ventana = Ventana;
+    }
+
+    public void verTipoExamen() {
+        valor_TipoExamen = CatalogoMB.getListaExamenPAP().get(0);
+        System.out.println("Soy el Examen " + valor_TipoExamen.getCatalogoId() + " " + valor_TipoExamen.getValor());
+    }
+
+    public String getTipoExamenMostrar() {
+        for (int i = 0; i < listaExamenPendiente.size(); i++) {
+            if (!listaExamenPendiente.get(i).getCatalogoList().isEmpty()) {
+                for (int j = 0; j < listaExamenPendiente.get(i).getCatalogoList().size(); j++) {
+                    if (listaExamenPendiente.get(i).getCatalogoList().get(j).getDependencia().equals("Exasivipca")) {
+                        TipoExamenMostrar = listaExamenPendiente.get(i).getCatalogoList().get(j).getValor();
+                    }
+                }
+            }
+        }
+
+        return TipoExamenMostrar;
+    }
+
+    public void setTipoExamenMostrar(String TipoExamenMostrar) {
+        this.TipoExamenMostrar = TipoExamenMostrar;
+    }
+
+    public void resetearVentana() {
+        this.Ventana = "DtsGnrals";
+    }
 }

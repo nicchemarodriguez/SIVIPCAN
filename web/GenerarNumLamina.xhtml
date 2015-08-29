@@ -1,0 +1,15 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel>
+        <p:messages/>
+        <h:panelGrid columns="2" cellpadding="10">
+            <p:commandButton value="Generar Número de Lámina" process="@this" actionListener="#{examenMB.generarNumeroLamina()}" update="NumeroLamina2"/>
+            <p:inputText id="NumeroLamina2" value="#{examenMB.numeroLamina}" required="true" requiredMessage="El Campo No Puede Quedar Vacio"/>
+        </h:panelGrid>
+    </p:panel>
+
+
+</ui:composition>

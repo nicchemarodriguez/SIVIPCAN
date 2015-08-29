@@ -169,6 +169,8 @@ public class CategoriaMB implements Serializable {
     public void cargarVariablesCategorias(){
         //categorias
       Categorias = CategoriaEJB.CargarTodasLasCategorias();
+      if (this.getCategorias().isEmpty())
+            System.out.println("vacio dundo");
     //lista de categorias Observacion
         listacategoriasObservacion = CategoriaEJB.buscarSubCategoriaObservacion();
     // AntGinec

@@ -34,7 +34,7 @@ import ni.gob.minsa.sivipcan.modelo.Valores;
 @Stateless
 public class ExamenEJB {
 
-   @PersistenceContext(unitName = "PerLocal")
+   @PersistenceContext(unitName = "PerDa")
     private EntityManager em;
      
    
@@ -1607,6 +1607,13 @@ public class ExamenEJB {
     }
     
     public List<Examen> buscarExamenCompleto(Long idExamen)
+    {
+     Query query = em.createNamedQuery("Examen.findByIdExamen");
+     query.setParameter("idExamen", idExamen);
+     return query.getResultList();
+    }
+    
+    public List<Examen> buscarPrimerParteExamen(Long idExamen)
     {
      Query query = em.createNamedQuery("Examen.findByIdExamen");
      query.setParameter("idExamen", idExamen);

@@ -1,0 +1,103 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel id="panel4">
+        <p:messages/>
+        <h:panelGrid columns="6" cellpadding="10">
+            <h:outputText value="SILAIS que Lee la Muestra: "/>
+            <p:selectOneMenu id="silaisTomaResultado" value="#{examenMB.silaisTomaResultado}" converter="EntidadAdConverter" required="true" requiredMessage="Debe Seleccionar Silais Que Toma La Muestra"
+                             effect="fade"  style="width:160px" filter="true" 
+                             filterMatchMode="startsWith" editable="false">
+                <f:selectItem itemLabel="Escoje"/>
+                <f:selectItems value="#{examenMB.listaEntidadAdtvaResultado}" var="silaisResultado" 
+                               itemLabel="#{silaisResultado.nombre}" itemValue="#{silaisResultado}" />
+                <p:ajax event="change" listener="#{examenMB.rellenoUnidadesResultado()}" update="Unidad_SaludTomaResultado"/>
+            </p:selectOneMenu>
+
+            <h:outputText value="Unidad de Salud:"/>
+            <p:selectOneMenu id="Unidad_SaludTomaResultado" value="#{examenMB.unidadTomaResultado}" converter="UnidadConverter" required="true" requiredMessage="Debe Seleccionar Unidad De Salud De Toma De Muestra"
+                             effect="fade" filter="true" filterMatchMode="startsWith" 
+                             style="width:420px" >
+                <f:selectItem itemLabel="Escoje"/>
+                <f:selectItems value="#{examenMB.listaUnidadesTomaResultado}" var="unidadesResultado"
+                               itemLabel="#{unidadesResultado.nombre}" itemValue="#{unidadesResultado}" />
+                <p:ajax event="change" listener="#{examenMB.rellenoMunicipioResultado()}" update="MunicipioTomaResultado"/>
+            </p:selectOneMenu>
+
+            <h:outputText value="Municipio:"/>
+            <p:inputText readonly="true" id="MunicipioTomaResultado" value="#{examenMB.municipioTomaResultado.nombre}"  required="true" requiredMessage="Debe Seleccionar Municipio De Toma De Muestra"/>
+
+        </h:panelGrid>
+
+        <p:separator/>
+
+        <h:panelGrid columns="6" cellpadding="10">
+            <p:commandButton process="@this" value="Busqueda de Médico" oncomplete="TABDIALOG.show()" />
+            <p:inputText id="medicoLee"/>
+            <p:outputLabel for="Fecha_Lectura" value="Fecha de Lectura:" />
+            <p:calendar id="Fecha_Lectura" value="#{examenMB.fecha_Lectura}" navigator="true" pattern="dd/MM/yyyy" effect="fold" required="true" requiredMessage="Debe Ingresar Fecha De Lectura">
+                <p:ajax event="dateSelect"/>
+            </p:calendar>
+            <p:outputLabel for="NumeroLamina" value="Numero de Lámina:" />
+            <p:inputText id="NumeroLamina" value="#{examenMB.numeroLamina}" required="true" requiredMessage="Debe Ingresar Número De Lámina"/>
+        </h:panelGrid>
+
+        <h:panelGrid columns="6" cellpadding="10">
+
+            <p:panel header="Clasificación de Tipos de Frotis" style="text-align: center">
+                <h:panelGrid columns="3" cellpadding="10">
+                    <h:outputText value="Frotis:"/>
+                    <p:selectOneMenu id="Frotis" value="#{examenMB.subCategoriaFrotis}" converter="converterSub" editable="false"
+                                     style="width:160px; text-align: justify" required="true" requiredMessage="Debe Seleccionar Frotis" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Escoje"/>
+                        <f:selectItems value="#{subCategoriaMB.categoria.subCategoriaList}" var="subCategoria"
+                                       itemLabel="#{subCategoria.valor}" itemValue="#{subCategoria}"/>
+                        <p:ajax listener="#{valoresMB.cargarlistaValoresFrotis(examenMB.subCategoriaFrotis)}" update=":form:RazonFrotis"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneListbox id="RazonFrotis" value="#{examenMB.valorFrotis}" converter="converterValores" var="valor"
+                                        required="true" requiredMessage="Debe Seleccionar Tipo De Frotis" style="height: 200px; width: 200px; text-align: justify">
+                        <f:selectItems value="#{valoresMB.listaValoresFrotis}" var="valores" 
+                                       itemLabel="#{valores.valor}" itemValue="#{valores}"/>
+                        <p:column>
+                            <h:outputText value="#{valor.valor}" />
+                            <p:separator style="visibility: hidden"/>
+                        </p:column>
+                    </p:selectOneListbox>
+
+                </h:panelGrid>
+            </p:panel>
+
+            <p:panel header="Clasificacion Por Tipos de Resultado" style="text-align: center" >
+                <h:panelGrid columns="3" cellpadding="10">
+                    <h:outputText value="Resultado:"/>
+                    <p:selectOneMenu id="Resultado" value="#{examenMB.subCategoriaResultado}" converter="converterSub" editable="false"
+                                     required="true" requiredMessage="Debe Seleccionar El Resultado" style="width:160px; text-align: justify" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Escoje"/>
+                        <f:selectItems  value="#{categoriaMB.categoriaResultado.subCategoriaList}" var="subCategoria1"
+                                        itemLabel="#{subCategoria1.valor}" itemValue="#{subCategoria1}"/>
+                        <p:ajax listener="#{valoresMB.cargarListaValoresResultados(examenMB.subCategoriaResultado)}" update=":form:Tipo_Resultado"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneListbox id="Tipo_Resultado" value="#{examenMB.valorResultado}" converter="converterValores" var="valor"
+                                        required="true" requiredMessage="Debe Seleccionar El Tipo de Resultado" style="height: 200px; width: 200px; text-align: justify">
+                        <f:selectItems value="#{valoresMB.listaValoresResultado}" var="valores" 
+                                       itemLabel="#{valores.valor}" itemValue="#{valores}"/>
+                        <p:column>
+                            <h:outputText value="#{valor.valor}" />
+                            <p:separator style="visibility: hidden"/>
+                        </p:column>
+                    </p:selectOneListbox>
+                </h:panelGrid>
+            </p:panel>
+        </h:panelGrid>
+        
+        <p:panel>
+            <p:commandButton value="Guardar" actionListener="#{examenMB.guardarResultadoExamen()}"  icon="ui-icon-document"/>
+        </p:panel>
+        
+    </p:panel>
+
+</ui:composition>
