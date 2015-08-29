@@ -3328,20 +3328,20 @@ public class ExamenMB implements Serializable {
            // cargar semanas gestas
              semanaDeGestasi = Integer.parseInt(this.re[6].getDescripcion());
 // cargar valor fuma
-                valorFuma = this.re9.getIdValor();
+                valorFuma = this.re[8].getIdValor();
                 //cargar valor toma
-                  valorToma = this.re10.getIdValor();
+                  valorToma = this.re[9].getIdValor();
                  //cargar embarazo actual
-                   valorEmbarazoActual = this.re11.getIdValor();
+                   valorEmbarazoActual = this.re[10].getIdValor();
                    //cargar fur
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             FUR = formatter.parse(this.re[5].getDescripcion());
               //cargar valor procedencia
-                valorProcedencia = re12.getIdValor();
+                valorProcedencia = re[11].getIdValor();
                 //cargar aspecto clinico
-                    valorAspecto = this.re13.getIdValor();
+                    valorAspecto = this.re[12].getIdValor();
                     //cargar valor secrecion
-                    
+                    this.valorSecrecion= this.re[13].getIdValor();
                     
                   
     }
@@ -3369,7 +3369,7 @@ public class ExamenMB implements Serializable {
         
     }
 
-    public void expediente() {
+    public void expediente() throws ParseException {
 
         /**
          * cargar datos respectivos cuando una persona ya tiene un examen
@@ -3381,37 +3381,22 @@ public class ExamenMB implements Serializable {
         cargarDepartamentoSelect();
         cargar();
         cargarCatalogos();
-       // cargarDatosGestas();
-     //   cargarDatosPartos();
-     //   cargarDatosAbortos();
-      //  cargarDatosCesarias();
-     //   cargarDatosIVSA();
-      //  cargarDatosMenarca();
-    //    cargarDatosSemanasGestas();
-        this.cargarValorFuma();
-     //   cargarValorToma();
-     //   cargarValorEmbarazoActual();
+    
+      
+   
         this.cargarMetodoAnticonceptivo();
-      /*  try {
-         //   cargarFUR();
-      //  } catch (ParseException ex) {
-            Logger.getLogger(ExamenMB.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+    
         
         cargarSilaisTomaDM();
         cargarUnidadTomaDM();
-      //  cargarValorProcedencia();
-      //  cargarValorAspecto();
-      //  cargarValorSecrecion();
+    
 
         cargarSilaisTomaResultado();
         cargarUnidadTomaResultado();
+        
+        cargarResultadosXexamenParteUno();
 
-   /*     cargarValoresFrotis();
-        cargarValoresResultado();
-        cargarSubCategoriaFrotis();
-        cargarSubCategoriaResultado();
-*/
+ 
         /**
          * Esta Comparacion compara si el examen de una persona se encuentra en
          * el primer paso, de ser asi la interfaz se mostrara en la 4ta ventana,
@@ -3421,15 +3406,15 @@ public class ExamenMB implements Serializable {
          */
         if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) {
             this.Ventana = "NumLam";
+            
         } else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
             this.Ventana = "Recomendns";
+            cargarResultadosXexamenParteDos();
         }
 
     }
 
-    /**
-     * Metodo que calcula la edad de la mujer segun la fecha del examen
-     */
+
     public void calcularEdad(SelectEvent event) {
         SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
 
@@ -3493,122 +3478,20 @@ public class ExamenMB implements Serializable {
         this.tipoExSegui = tipoExSegui;
     }
 
-    /**
-     * Metodo para cargar valor fuma
-     */
-    public void cargarValorFuma() {
-        if (this.re9.getIdValor() != null) {
-            System.out.println("cargue Fuma...");
-            System.out.println("cargue Fuma... " + re9.getIdValor().getValor());
-            valorFuma = this.re9.getIdValor();
-        }
+  
 
-    }
-
-    /**
-     * Metodo para cargar valor toma
-     */
-    public void cargarValorToma() {
-        if (this.re10.getIdValor() != null) {
-            valorToma = this.re10.getIdValor();
-        }
-
-    }
-
-    /**
-     * Metodo para cargar valor embarazo actual
-     */
-    public void cargarValorEmbarazoActual() {
-        if (this.re11.getIdValor() != null) {
-            valorEmbarazoActual = this.re11.getIdValor();
-        }
-
-    }
-
-    public Valores getValorObservacion() {
-//        if (this.ExamenSelect.getResultadoExamenList() != null) {
-//            for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
-//
-//                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 8) {
-//                    valorObservacion = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
-//                }
-//
-//            }
-//        }
-        return valorObservacion;
-    }
+   
 
     public void setValorObservacion(Valores valorObservacion) {
         this.valorObservacion = valorObservacion;
     }
 
-    /**
-     * Categoria Frotis id = 5
-     */
-    public void cargarValoresFrotis() {
-        if (this.ExamenSelect.getResultadoExamenList() != null) {
-            for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
+   
 
-                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria().getIdCategoria().getIdCategoria() == 5) {
-                    valorFrotis = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
-                }
 
-            }
-        }
-    }
-
-    /**
-     * Categoria Resultado id = 6
-     */
-    public void cargarValoresResultado() {
-        if (this.ExamenSelect.getResultadoExamenList() != null) {
-            for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
-
-                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
-                    valorResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
-                }
-
-            }
-        }
-    }
-
-    public void cargarSubCategoriaResultado() {
-        if (this.ExamenSelect.getResultadoExamenList() != null) {
-            for (int i = 0; i < this.ExamenSelect.getResultadoExamenList().size(); i++) {
-                if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
-                    subCategoriaResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
-                }
-            }
-        }
-    }
-
-    /**
-     * Metodo para cargar valor de procedencia de la muestra
-     */
-    public void cargarValorProcedencia() {
-        if (this.re12.getIdValor() != null) {
-            valorProcedencia = re12.getIdValor();
-        }
-    }
-
-    /**
-     * Metodo para cargar valor aspecto clinico de la muestra
-     */
-    public void cargarValorAspecto() {
-        if (this.re13.getIdValor() != null) {
-            valorAspecto = this.re13.getIdValor();
-        }
-    }
-
-    /**
-     * Metodo para cargar valor secrecion
-     */
-    public void cargarValorSecrecion() {
-        if (this.re14.getIdValor() != null) {
-            valorSecrecion = this.re14.getIdValor();
-
-        }
-    }
+   
+  
+   
 
     public Catalogos getValor_TipoExamen() {
         return valor_TipoExamen;
