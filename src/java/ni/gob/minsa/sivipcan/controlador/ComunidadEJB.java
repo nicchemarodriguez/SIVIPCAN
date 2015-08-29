@@ -19,7 +19,7 @@ import ni.gob.minsa.modelo.poblacion.Comunidad;
 @Stateless
 public class ComunidadEJB {
 
-    @PersistenceContext(unitName = "PerDa")
+    @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
 
     public List<Comunidad> buscarTodo() {

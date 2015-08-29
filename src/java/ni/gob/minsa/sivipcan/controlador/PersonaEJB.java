@@ -22,7 +22,7 @@ import ni.gob.minsa.modelo.persona.SisPersonas;
 public class PersonaEJB {
 
     //local: PSisLocal
-    @PersistenceContext(unitName = "PerDa")
+    @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
 
     public List<SisPersonas> buscarTodasLasPersonas() {

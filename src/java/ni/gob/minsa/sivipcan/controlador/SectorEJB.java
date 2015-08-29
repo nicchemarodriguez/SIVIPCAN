@@ -22,7 +22,7 @@ import ni.gob.minsa.modelo.poblacion.Sector;
 @Stateless
 public class SectorEJB {
 
-    @PersistenceContext(unitName = "PerDa")
+    @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
 
     public List<Sector> buscarTodosLosSectores( ) {

@@ -34,7 +34,7 @@ import ni.gob.minsa.sivipcan.modelo.Valores;
 @Stateless
 public class ExamenEJB {
 
-   @PersistenceContext(unitName = "PerDa")
+   @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
      
    

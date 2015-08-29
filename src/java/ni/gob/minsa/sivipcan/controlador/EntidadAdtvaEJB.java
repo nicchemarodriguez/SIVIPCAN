@@ -21,7 +21,7 @@ import ni.gob.minsa.modelo.poblacion.Sector;
 @Stateless
 public class EntidadAdtvaEJB {
 
-    @PersistenceContext(unitName = "PerDa")
+    @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
     
     public List<EntidadAdtva> buscarTodasLasEntidades( ) {

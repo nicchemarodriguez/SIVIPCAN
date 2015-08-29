@@ -22,7 +22,7 @@ import ni.gob.minsa.modelo.poblacion.Comunidad;
 @Stateless
 public class CatalogoEJB {
 
-     @PersistenceContext(unitName = "PerDa")
+     @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
     
      public List<Catalogos> buscarTodasLasEtnias( String Codigo) {

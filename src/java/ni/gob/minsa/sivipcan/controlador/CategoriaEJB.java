@@ -19,7 +19,7 @@ import ni.gob.minsa.sivipcan.modelo.Categoria;
 @Stateless
 public class CategoriaEJB {
 
-    @PersistenceContext(unitName = "PerDa")
+    @PersistenceContext(unitName = "PerLocal")
     private EntityManager em;
 
     public List<Categoria> buscarTodasLasSubcategorias() {
