@@ -29,9 +29,9 @@ public class DivisionpoliticaEJB {
     
     }
     
-    public List<DivisionPolitica>buscarMunicipios(long id) {
-        Query query = em.createNamedQuery("DivisionPolitica.findMunicipios"); 
-        query.setParameter("dependencia", id);
+    public List<DivisionPolitica>buscarMunicipios(String codigoMunicipio) {
+        Query query = em.createNamedQuery("DivisionPolitica.findByCodigoNacional"); 
+        query.setParameter("codigoNacional", codigoMunicipio);
         return query.getResultList();
     
     }

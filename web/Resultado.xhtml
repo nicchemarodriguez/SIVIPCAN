@@ -52,7 +52,7 @@
                     <p:selectOneMenu id="Frotis" value="#{examenMB.subCategoriaFrotis}" converter="converterSub" editable="false"
                                      style="width:160px; text-align: justify" required="true" requiredMessage="Debe Seleccionar Frotis" filter="true" filterMatchMode="startsWith">
                         <f:selectItem itemLabel="Escoje"/>
-                        <f:selectItems value="#{subCategoriaMB.categoria.subCategoriaList}" var="subCategoria"
+                        <f:selectItems value="#{categoriaMB.categoria.subCategoriaList}" var="subCategoria"
                                        itemLabel="#{subCategoria.valor}" itemValue="#{subCategoria}"/>
                         <p:ajax listener="#{valoresMB.cargarlistaValoresFrotis(examenMB.subCategoriaFrotis)}" update=":form:RazonFrotis"/>
                     </p:selectOneMenu>

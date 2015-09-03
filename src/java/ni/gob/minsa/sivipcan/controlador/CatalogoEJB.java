@@ -26,6 +26,7 @@ public class CatalogoEJB {
     private EntityManager em;
     
      public List<Catalogos> buscarTodasLasEtnias( String Codigo) {
+    
         Query query = em.createNamedQuery("Catalogos.findByCodigo");
         query.setParameter("codigo",'%'+Codigo+'%');
         return query.getResultList();

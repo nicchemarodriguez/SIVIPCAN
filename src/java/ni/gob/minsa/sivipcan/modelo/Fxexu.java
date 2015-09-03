@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Fxexu.findByCodigoSanitario", query = "SELECT f FROM Fxexu f WHERE f.medicoId = :medicoId"),
     @NamedQuery(name = "Fxexu.findByIdUsuario", query = "SELECT f FROM Fxexu f WHERE f.idUsuario = :idUsuario")})
 public class Fxexu implements Serializable {
+   
 
 //    @ManyToOne
 //    @JoinColumn(name = "CATALOGO_ID")
@@ -172,6 +173,8 @@ public class Fxexu implements Serializable {
     public void setTipoSeguimiento(Long tipoSeguimiento) {
         this.tipoSeguimiento = tipoSeguimiento;
     }
+
+  
 
    
 }

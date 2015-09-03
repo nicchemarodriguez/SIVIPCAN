@@ -5,14 +5,15 @@
 
     <p:panel id="panel5">
         <p:messages autoUpdate="true" closable="true"/>
+        <!--
         <h:panelGrid columns="2" cellpadding="10">
             <p:outputLabel for="observacionesReco" value="Observaciones: " />
-            <p:selectOneMenu id="observacionesReco" value="#{examenMB.valorObservacion}" converter="converterValores" panelStyle="width:180px" 
+            <p:selectOneMenu id="observacionesReco" value="{examenMB.valorObservacion}" converter="converterValores" panelStyle="width:180px" 
                              required="true" requiredMessage="Debe Seleccionar La Observación" effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith" editable="false">
                 <f:selectItem itemLabel="Escoge" noSelectionOption="true" />
-                <f:selectItems value="#{subCategoriaMB.observacion.valoresList}"  var="observaciones" itemLabel="#{observaciones.valor}" 
-                               itemValue="#{observaciones}"/>
-                <p:ajax update="Seguimiento" listener="#{examenMB.calcularFechaSeguiniento()}"/>
+                <f:selectItems value="{subCategoriaMB.observacion.valoresList}"  var="observaciones" itemLabel="#{observaciones.valor}" 
+                               itemValue="{observaciones}"/>
+                <p:ajax update="Seguimiento" listener="{examenMB.calcularFechaSeguiniento()}"/>
             </p:selectOneMenu>
 
             <h:outputText value="Otras Observaciones:"/>
@@ -20,23 +21,23 @@
                              counterTemplate="{0} characters remaining." autoResize="false" />
 
             <p:outputLabel for="Fecha_PosTratamiento" value="Fecha Postratamiento: " />
-            <p:calendar id="Fecha_PosTratamiento" value="#{examenMB.fecha_PosTratamiento}" 
+            <p:calendar id="Fecha_PosTratamiento" value="{examenMB.fecha_PosTratamiento}" 
                         navigator="true" pattern="dd/MM/yyyy" effect="fold">
                 <p:ajax event="dateSelect"/>
             </p:calendar>
             <p:outputLabel value="Fecha Seguimiento: " />
-            <p:calendar id="Seguimiento"  value="#{examenMB.fecha_Seguimiento}" 
+            <p:calendar id="Seguimiento"  value="{examenMB.fecha_Seguimiento}" 
                         navigator="true" pattern="dd/MM/yyyy" effect="fold" required="true" requiredMessage="Debe Seleccionar Fecha De Seguimiento"/>
 
             <p:separator/>
             
             <p:outputLabel for="Fecha_Entrega_Usuario" value="Fecha de Entrega a Usuario: " />
-            <p:calendar id="Fecha_Entrega_Usuario" value="#{examenMB.fecha_Entrega_Usuario}"  
+            <p:calendar id="Fecha_Entrega_Usuario" value="{examenMB.fecha_Entrega_Usuario}"  
                         navigator="true" pattern="dd/MM/yyyy" effect="fold" >
                 <p:ajax event="dateSelect"/>
             </p:calendar>
         </h:panelGrid>
-
+-->
         <p:panel>
             <p:commandButton value="Guardar" actionListener="#{examenMB.mostrarExamenCompleto()}" 
                              oncomplete="confirmation.show()" update=":frm:confirmacion :frm:finalizar" icon="ui-icon-document"/>

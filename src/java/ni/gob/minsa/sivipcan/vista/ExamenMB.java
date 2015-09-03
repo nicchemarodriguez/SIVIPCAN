@@ -104,6 +104,7 @@ public class ExamenMB implements Serializable {
   
     private DivisionPolitica departamentoSelect;
     private DivisionPolitica municipioSelect;
+    private List<DivisionPolitica> listaMunicipios = new ArrayList<DivisionPolitica>();
     private List<Sector> sectores = new ArrayList<Sector>();
     private List<Comunidad> comunidades = new ArrayList<Comunidad>();
     private Comunidad comunidadSelect;
@@ -159,6 +160,7 @@ public class ExamenMB implements Serializable {
     //--
     
     private ResultadoExamen[] re;
+    private ResultadoExamen[] re2;
 
 //--
     private SisMedicos medicoSelect = new SisMedicos();
@@ -235,6 +237,11 @@ public class ExamenMB implements Serializable {
             .getApplication()
             .evaluateExpressionGet(FacesContext.getCurrentInstance(),
                     "#{personaMB}", PersonaMB.class);
+    
+    private SectorMB SectorMB = (SectorMB) FacesContext.getCurrentInstance()
+            .getApplication()
+            .evaluateExpressionGet(FacesContext.getCurrentInstance(),
+                    "#{sectorMB}", SectorMB.class);
     private SisPersonas Persona;
     private List<SisPersonas> listaPersonas = new ArrayList<SisPersonas>();
 
@@ -245,13 +252,7 @@ public class ExamenMB implements Serializable {
     public ExamenMB() {
     }
 
-    public SisMedicos getMedicoSelect() {
-        return medicoSelect;
-    }
-
-    public void setMedicoSelect(SisMedicos medicoSelect) {
-        this.medicoSelect = medicoSelect;
-    }
+  
 
     public ExamenMB(ExamenEJB ExamenEJB, Date fechaNac, boolean skip, String numeroCel, String cedula, Examen examen2, Catalogos catalogos, Catalogos cat_esc, Catalogos Valor_Etnia, Catalogos valor_Procedencia, Categoria categoriaResultado, SubCategoria SubCategoriaFuma, SubCategoria SubCategoriaToma, SubCategoria SubCategoriaEmbarazoActual, Valores valorFuma, Valores valorToma, Valores valorEmbarazoActual, Valores valorFrotis, Valores valorResultado, Categoria Antecedentes, SubCategoria AntecedentesAbiertos, SubCategoria Fuma, SubCategoria Toma, SubCategoria EmbarazoActual, Valores VarFuma, Valores VarToma, Valores VarEmbarazoActual, Valores Gestas, Valores Partos, Valores Cesareaa, Valores IVSA, Valores semanaGestas, Valores menarca, Valores abortos, Valores FURV, int Gestasi, int Abortosi, int Cesareasi, int IVSAi, int Menarcai, int semanaDeGestasi, int partosi, Date FUR, boolean ValordeChecbox, SubCategoria Procedencia, SubCategoria AspectoClinico, SubCategoria Secrecion, Valores valorProcedencia, Valores valorAspecto, Valores valorSecrecion, String nombreCompleto, String[] a, Date fecha, Date Fecha_Metodo_Anticonceptivo, Date Fecha_VPH, Date Fecha_Biopsia, Date fecha_Lectura, Date fecha_Entrega_Usuario, Date Fecha_PosTratamiento, Date Fecha_Seguimiento, Date fecha_IVAA, SisPersonas Persona, SubCategoria observacion, Valores valorObservacion) {
         this.ExamenEJB = ExamenEJB;
@@ -292,6 +293,22 @@ public class ExamenMB implements Serializable {
     }
 
     //--
+      public SisMedicos getMedicoSelect() {
+        return medicoSelect;
+    }
+
+    public void setMedicoSelect(SisMedicos medicoSelect) {
+        this.medicoSelect = medicoSelect;
+    }
+    
+    public ResultadoExamen[] getRe2() {
+        return re2;
+    }
+
+    public void setRe2(ResultadoExamen[] re2) {
+        this.re2 = re2;
+    }
+    
     public Valores getValorFuma() {
         return valorFuma;
     }
@@ -519,6 +536,12 @@ public class ExamenMB implements Serializable {
             this.ExamenSelect.getUnidadesXExamenList().addAll(this.unidadesExamen);
         }
     }
+    
+//    public void pasarValoresComunidad() {
+//        System.out.println("estoy enviando el municipio");
+//        ComunidadMB.setMunicipioSelect(municipioSelect);
+//        comunidades = ComunidadMB.cargarListaComunidad();
+//    }
 
     public List<UnidadesXExamen> getUnidadesExamen() {
         return unidadesExamen;
@@ -769,66 +792,10 @@ public class ExamenMB implements Serializable {
     }
 
     //Codigo Angelo para Antecedentes Ginecobtetrico
+    
     public void pasarValorResutado() {
 
         System.out.println(this.ExamenSelect.getIdExamen());
-
-//        this.re1.setDescripcion(String.valueOf(this.Gestasi));
-//        this.re2.setDescripcion(String.valueOf(this.partosi));
-//        this.re3.setDescripcion(String.valueOf(this.Abortosi));
-//        this.re4.setDescripcion(String.valueOf(this.Cesareasi));
-//        this.re5.setDescripcion(String.valueOf(this.IVSAi));
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        this.re6.setDescripcion(formatter.format(this.FUR));
-//        System.out.println(formatter.format(this.FUR));
-//        this.re7.setDescripcion(String.valueOf(this.semanaDeGestasi));
-//        this.re8.setDescripcion(String.valueOf(this.Menarcai));
-//
-//        this.re9.setIdValor(this.valorFuma);
-//        System.out.println(this.valorFuma.getValor());
-//        //this.re10.getResultadoExamenPK().setIdValor(this.pk10.getIdValor());
-//        this.re10.setIdValor(this.valorToma);
-//        //this.re11.getResultadoExamenPK().setIdValor(this.pk11.getIdValor());
-//        this.re11.setIdValor(this.valorEmbarazoActual);
-//        this.re12.setIdValor(this.valorProcedencia);
-//        this.re13.setIdValor(this.valorAspecto);
-//        this.re14.setIdValor(this.valorSecrecion);
-//
-//        System.out.println("resset");
-//        this.re1.setIdExamen(this.ExamenSelect);
-//        this.re2.setIdExamen(this.ExamenSelect);
-//        this.re3.setIdExamen(this.ExamenSelect);
-//        this.re4.setIdExamen(this.ExamenSelect);
-//        this.re5.setIdExamen(this.ExamenSelect);
-//        this.re6.setIdExamen(this.ExamenSelect);
-//        this.re7.setIdExamen(this.ExamenSelect);
-//        this.re8.setIdExamen(this.ExamenSelect);
-//        this.re9.setIdExamen(this.ExamenSelect);
-//        this.re10.setIdExamen(this.ExamenSelect);
-//        this.re11.setIdExamen(this.ExamenSelect);
-//        this.re12.setIdExamen(this.ExamenSelect);
-//        this.re13.setIdExamen(this.ExamenSelect);
-//        this.re14.setIdExamen(this.ExamenSelect);
-//
-//        this.resultadoExamen.add(this.re1);
-//        this.resultadoExamen.add(this.re2);
-//        this.resultadoExamen.add(this.re3);
-//        this.resultadoExamen.add(this.re4);
-//        this.resultadoExamen.add(this.re5);
-//        this.resultadoExamen.add(this.re6);
-//        this.resultadoExamen.add(this.re7);
-//        this.resultadoExamen.add(this.re8);
-//        this.resultadoExamen.add(this.re9);
-//        this.resultadoExamen.add(this.re10);
-//        this.resultadoExamen.add(this.re11);
-//        this.resultadoExamen.add(this.re12);
-//        this.resultadoExamen.add(this.re13);
-//        this.resultadoExamen.add(this.re14);
-//        System.out.println("addadd");
-//        System.out.println(this.resultadoExamen.size());
-//
-//        //this.ExamenSelect.setResultadoExamenList(this.resultadoExamen);
-//        System.out.println("ya en lista");
         this.re[0].setDescripcion(String.valueOf(this.Gestasi));
         this.re[1].setDescripcion(String.valueOf(this.partosi));
         this.re[2].setDescripcion(String.valueOf(this.Abortosi));
@@ -862,7 +829,9 @@ public class ExamenMB implements Serializable {
 
     }
 
-    public void asignarResutados() {
+    
+    
+    public void cargarValoresResutados() {
         //--tamaño de arreglo solo para antecedentes y descripcion de la muestra
 
         if (this.ExamenSelect.getResultadoExamenList() != null) {
@@ -940,9 +909,15 @@ public class ExamenMB implements Serializable {
 
                 System.out.println("Termine con antecedentes..." + i);
             }
+                    
+            
+            
+            
 
         } else {
-            re = new ResultadoExamen[15];
+            
+              re = new ResultadoExamen[15];            
+           
             //---------------
             /**
              * ciclo para asignar valores por defecto para los resutados de
@@ -1698,7 +1673,7 @@ public class ExamenMB implements Serializable {
 
                 examen2 = new Examen();
                 examen2.setIdExamen(x);
-                examen2.setIdPersona(listaPersonas.get(i).getPersonaId());
+            //    examen2.setIdPersona(listaPersonas.get(i).getPersonaId());
                 examen2.setPrimerNombre(listaPersonas.get(i).getPrimerNombre());
                 examen2.setPrimerApellido(listaPersonas.get(i).getPrimerApellido());
                 examen2.setSegundoNombre(listaPersonas.get(i).getSegundoNombre());
@@ -2471,7 +2446,7 @@ public class ExamenMB implements Serializable {
 
                 ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                 this.ExamenSelect = ExamenEJB.buscarID(ExamenSelect.getIdExamen()).get(0);
-                this.asignarResutados();
+                this.cargarValoresResutados();
                 // this.AsignarUnidades();
                 //finaliza bloque que agrega la fecha
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
@@ -2509,7 +2484,7 @@ public class ExamenMB implements Serializable {
 //        catlista.clear();
 //        cat_esc = null;
 //        catalogos = null;
-        this.asignarResutados();
+        this.cargarValoresResutados();
         this.AsignarUnidades();
         cargar();
         cargarCatalogos();
@@ -2525,21 +2500,31 @@ public class ExamenMB implements Serializable {
 
     public void guardarResultadoExamen() {
 
+        
+        
+        
+        
+        
+        
         List<ResultadoExamen> listaTemporal = new ArrayList<ResultadoExamen>();
 
         try {
-            System.out.println(" Numero de Registros por Examen " + this.ExamenSelect.getResultadoExamenList().size());
-            if (this.ExamenSelect.getResultadoExamenList() != null) {
-                System.out.println("Valor del Estado " + ExamenSelect.getEstado());
+            
+            
+            
 
+            
+            
                 HashSet st1 = new HashSet();
                 st1.addAll(listaresultadosExamen);
                 listaresultadosExamen.clear();
                 listaresultadosExamen.addAll(st1);
 
                 if (ExamenSelect.getEstado() == BigInteger.valueOf(1)) {
+                    
+                    
                     resultadExamen1.setIdExamen(ExamenSelect);
-                    resultadExamen1.setIdCategoria(categoria);
+                    resultadExamen1.setIdCategoria(this.CategoriaMB.getCategoria());
                     resultadExamen1.setIdSubcategoria(subCategoriaFrotis);
                     resultadExamen1.setIdValor(valorFrotis);
 
@@ -2549,12 +2534,16 @@ public class ExamenMB implements Serializable {
                     resultadExamen2.setIdCategoria(this.CategoriaMB.getCategoriaResultado());
                     resultadExamen2.setIdSubcategoria(subCategoriaResultado);
                     resultadExamen2.setIdValor(valorResultado);
-
                     this.listaresultadosExamen.add(resultadExamen2);
-
+                    
+                    
+                    
+                    System.out.println(this.listaresultadosExamen.size()+"...cantidad de elementos en la lista");
+                    System.out.println(this.listaresultadosExamen.get(0).getIdValor().getValor()+"...estado del primer elemento de la lista");
+                    System.out.println(this.listaresultadosExamen.get(1).getIdValor().getValor()+"...estado del segundo elemento de la lista");
+                    
                     ExamenSelect.setEstado(BigInteger.valueOf(2));
-
-                    listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
+                //    listaTemporal.addAll(this.ExamenSelect.getResultadoExamenList());
                     this.ExamenSelect.setResultadoExamenList(listaresultadosExamen);
 
                     FxexuPK nfpk = new FxexuPK(this.ExamenSelect.getIdExamen(), FechaMB.getFechaList().get(1).getIdFecha());
@@ -2578,16 +2567,17 @@ public class ExamenMB implements Serializable {
                     fechalista.add(nf);
                     fechalista.add(nf2);
 
-                    ExamenSelect.setFxexuList(fechalista);
+                   // ExamenSelect.setFxexuList(fechalista);
 
                     ExamenSelect = ExamenEJB.actualizar(ExamenSelect);
                     ExamenSelect = ExamenEJB.RefrescarObjetoExamen(ExamenSelect);
 
-                    this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
-                    listaTemporal.clear();
+                   // this.ExamenSelect.getResultadoExamenList().addAll(listaTemporal);
+                  //  listaTemporal.clear();
 
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Guardó Exitosamente", ""));
                     System.out.println("Guardando....");
+                    
                 } else if (ExamenSelect.getEstado() == BigInteger.valueOf(2)) {
                     System.out.println("Adentro");
 
@@ -2646,7 +2636,7 @@ public class ExamenMB implements Serializable {
                     listaTemporal.clear();
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro Se Actualizó Exitosamente", ""));
                 }
-            }
+            
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "No se Guardó", ""));
@@ -2654,7 +2644,7 @@ public class ExamenMB implements Serializable {
 
         fechalista.clear();
 
-        this.asignarResutados();
+        this.cargarValoresResutados();
         this.AsignarUnidades();
         cargar();
         cargarCatalogos();
@@ -2722,7 +2712,7 @@ public class ExamenMB implements Serializable {
         fechalista.clear();
         cargar();
         cargarCatalogos();
-        this.asignarResutados();
+        this.cargarValoresResutados();
         this.AsignarUnidades();
 //        cargarValoresFrotis();
 //        cargarValoresResultado();
@@ -2734,407 +2724,409 @@ public class ExamenMB implements Serializable {
     }
 
     public void expedienteNuevo() {
-
-        if (ExamenSelect.getEstado() != null) {
-            System.out.println("Examen # " + ExamenSelect.getIdExamen());
-            System.out.println("Esty Aqui");
-
-            Examen ex = new Examen();
-            ex.setPrimerNombre(ExamenSelect.getPrimerNombre());
-            ex.setSegundoNombre(ExamenSelect.getSegundoNombre());
-            ex.setPrimerApellido(ExamenSelect.getPrimerApellido());
-            ex.setSegundoApellido(ExamenSelect.getSegundoApellido());
-            ex.setCedula(ExamenSelect.getCedula());
-            ex.setFechaNacimiento(ExamenSelect.getFechaNacimiento());
-            ex.setDireccionActual(ExamenSelect.getDireccionActual());
-            ex.setNumeroExpediente(ExamenSelect.getNumeroExpediente());
-            ex.setIdPersona(ExamenSelect.getIdPersona());
-            ex.setTelefono(ExamenSelect.getTelefono());
-            ex.setTelefono2(ExamenSelect.getTelefono2());
-            ex.setIdComunidadResidencia(ExamenSelect.getIdComunidadResidencia());
-            ex.setCatalogoList(ExamenSelect.getCatalogoList());
-//            ex.setIdComunidadResidencia(null);
-
-            /**
-             * Hacemos al examen seleccionado el cual contiene los registros a
-             * guardar nulo
-             */
-            ExamenSelect = null;
-
-            /**
-             * al examen se le asigna un nuevo objeto para guardar otro examen
-             * similar
-             */
-            ExamenSelect = ex;
-
-            this.HabilitarTelefono1 = true;
-            this.HabilitarTelefono2 = true;
-            this.HabilitarExpedienteTemp = true;
-
-            cargarCatalogos();
-            cargarDepartamentoSelect();
-
-            /**
-             * Hacemos nulos los campos de Antecedentes Ginecobstetricos
-             */
-            this.Gestasi = 0;
-            this.Abortosi = 0;
-            this.Cesareasi = 0;
-            this.partosi = 0;
-            Menarcai = 0;
-            semanaDeGestasi = 0;
-
-            valorEmbarazoActual = null;
-            valorFuma = null;
-            valorToma = null;
-
-            FUR = null;
-            metodoAnticonceptivo = null;
-            CatalogoMB.getListaTipoMetodo().clear();
-
-            /**
-             * Hacemos nulos los campos de descripcion de la muestra
-             */
-            silaisTomaDM = null;
-            listaEntidadAdtva.clear();
-            unidadTomaDm = null;
-            listaUnidadesTomaDm.clear();
-            municipioTomaDm = null;
-            listaUnidadesTomaDm.clear();
-            //  Procedencia = null;
-            valorProcedencia = null;
-            //AspectoClinico = null;
-            valorAspecto = null;
-            //Secrecion = null;
-            valorSecrecion = null;
-            fecha = null;
-
-            /**
-             * Hacemos Nulos los campos de Resultado
-             */
-            fecha_Lectura = null;
-            subCategoriaFrotis = new SubCategoria();
-            valorFrotis = null;
-            this.ValoresMB.getListaValoresFrotis().clear();
-            subCategoriaResultado = new SubCategoria();
-            valorResultado = null;
-            this.ValoresMB.getListaValoresResultado().clear();
-            valorObservacion = new Valores();
-            this.ValoresMB.getListaValoresResultado().clear();
-            Fecha_PosTratamiento = null;
-            Fecha_Seguimiento = null;
-
-            this.asignarResutados();
-            this.AsignarUnidades();
-
-            this.Ventana = "DtsGnrals";
-
-        } /**
-         * Aqui el codigo se repite para limpiar los campos cuando se estan
-         * ingresando los examenes uno por uno ingresando
-         */
-        else if (ExamenSelect.getEstado() == null) {
-            System.out.println("Examen Nulo " + ExamenSelect.getEstado());
-
-            ExamenSelect.setIdExamen(null);
-
-            this.cat_esc = null;
-            this.catalogos = null;
-            this.Valor_Etnia = null;
-            this.valor_Procedencia = null;
-            this.departamentoSelect = null;
-            //listaDepartamentos.clear();
-            this.municipioSelect = null;
-//            listaMunicipios.clear();
-            sectores.clear();
-            this.sectorSelect = null;
-
-            this.Gestasi = 0;
-            this.Abortosi = 0;
-            this.Cesareasi = 0;
-            this.partosi = 0;
-            Menarcai = 0;
-            semanaDeGestasi = 0;
-
-            //  Categorias.clear();
-            valorEmbarazoActual = null;
-            valorFuma = null;
-            valorToma = null;
-
-            FUR = null;
-            metodoAnticonceptivo = null;
-
-            silaisTomaDM = null;
-            listaEntidadAdtva.clear();
-            unidadTomaDm = null;
-            listaUnidadesTomaDm.clear();
-            municipioTomaDm = null;
-            listaUnidadesTomaDm.clear();
-            //Procedencia = null;
-            valorProcedencia = null;
-            //AspectoClinico = null;
-            valorAspecto = null;
-            //Secrecion = null;
-            valorSecrecion = null;
-            fecha = null;
-
-            fecha_Lectura = null;
-            subCategoriaFrotis = new SubCategoria();
-            valorFrotis = null;
-            //  listaValoresFrotis.clear();
-            subCategoriaResultado = new SubCategoria();
-            valorResultado = null;
-            //listaValoresResultado.clear();
-            valorObservacion = new Valores();
-            //listaValoresResultado.clear();
-            Fecha_PosTratamiento = null;
-            Fecha_Seguimiento = null;
-
-            this.asignarResutados();
-            this.AsignarUnidades();
-            cargarDepartamentoSelect();
-
-//            this.cargarSubCategoriaFuma();
-//            this.cargarSubCategoriaToma();
-//            this.cargarSubCategoriaEmbarazoActual();
-            SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
-            String codigo = null;
-            String Nombres = null;
-            String codigoGenerado = null;
-            String sexo = null;
-            String fechaNaci = null;
-            int increment;
-            boolean listo = false;
-            int op = 0;
-
-            /**
-             * Habilitando Los Campos de Nombres Y apellidos
-             */
-            this.HabilitarPrimerNombre = true;
-            this.HabilitarSegundoNombre = true;
-            this.HabilitarPrimerApellido = true;
-            this.HabilitarSegundoApellido = true;
-            this.HabilitarCedula = true;
-            this.HabilitarFechaNacimiento = true;
-            this.HabilitarComboEscolaridad = true;
-            this.HabilitarComboOcupacion = true;
-            this.HabilitarComboEtnia = true;
-            this.HabilitarComboProcedencia = true;
-            this.HabilitarTelefono1 = true;
-            this.HabilitarTelefono2 = true;
-            this.HabilitarExpedienteTemp = true;
-            this.HabilitarComboComunidad = true;
-            this.HabilitarComboBarrio = true;
-            System.out.println("en el metodo 2 de generar expediente");
-            while (listo == false) {
-
-                switch (op) {
-
-                    case 0:
-
-                        System.out.println("case 0 del wihe numero 2");
-                        if (sis.getSegundoNombre() != null && sis.getSegundoApellido() != null) {
-
-                            if (sis.getSegundoNombre().equals(" ") && sis.getSegundoApellido().equals(" ")) {
-                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
-
-                            } else if (sis.getSegundoNombre().equals(" ")) {
-                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
-
-                            } else if (sis.getSegundoApellido().equals(" ")) {
-                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
-                                String[] b;
-                                int i = 0;
-                                b = new String[st.countTokens()];
-                                while (st.hasMoreTokens()) {
-                                    b[i] = st.nextElement().toString();
-                                    i++;
-                                }
-
-                                if (b.length == 3) {
-                                    System.out.println("en el 3");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                } else if (b.length == 2) {
-                                    System.out.println("en el 2");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                } else {
-                                    System.out.println("en el 1");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                }
-
-                            } else {
-                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
-                                String[] b;
-                                int i = 0;
-                                b = new String[st.countTokens()];
-                                while (st.hasMoreTokens()) {
-                                    b[i] = st.nextElement().toString();
-                                    i++;
-                                }
-
-                                if (b.length == 3) {
-                                    System.out.println("en el 3");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
-                                    op = 1;
-                                    break;
-
-                                } else if (b.length == 2) {
-                                    System.out.println("en el 2");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
-                                    op = 1;
-                                    break;
-
-                                } else {
-                                    System.out.println("en el 1");
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
-                                    op = 1;
-                                    break;
-
-                                }
-                            }
-
-                        } else if (sis.getSegundoNombre() != null) {
-
-                            if (sis.getSegundoNombre().equals(" ")) {
-
-                                System.out.println("pura mierda");
-                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
-                            } else {
-
-                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
-                                String[] b;
-                                int i = 0;
-                                b = new String[st.countTokens()];
-                                while (st.hasMoreTokens()) {
-                                    b[i] = st.nextElement().toString();
-                                    i++;
-                                }
-                                if (b.length == 3) {
-                                    System.out.println("en el 3 DE SOLO NOMBRE" + b.length);
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                } else if (b.length == 2) {
-                                    System.out.println("en el 2 DE SOLO NOMBRE" + b.length);
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                } else {
-                                    System.out.println("en el 1 DE SOLO NOMBRE" + b.length);
-                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
-                                    op = 1;
-                                    break;
-
-                                }
-                            }
-
-                        } else if (sis.getSegundoApellido() != null) {
-
-                            if (sis.getSegundoApellido().equals(" ")) {
-                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
-
-                            } else {
-
-                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
-                                op = 1;
-                                break;
-                            }
-                        } else {
-                            Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
-                            op = 1;
-                            break;
-                        }
-
-                    case 1:
-                        System.out.println("se fue");
-                        if (sis.getCodigoMunicipioNacimiento() != null) {
-                            if (entidadAdtvaMB.getListaCSEdeMunicipios(sis.getCodigoMunicipioNacimiento()).get(0).getCodigoCse() != null) {
-
-                                codigo = entidadAdtvaMB.getListaCSEdeMunicipios(sis.getCodigoMunicipioNacimiento()).get(0).getCodigoCse().toString();
-                                op = 2;
-                                break;
-
-                            } else {
-                                codigo = "800";
-                                op = 2;
-                                break;
-                            }
-                        } else {
-                            codigo = "800";
-                            op = 2;
-                            break;
-
-                        }
-
-                    case 2:
-                        SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
-                        String con = fd.format(sis.getFechaNacimiento());
-                        fechaNaci = con.charAt(0) + "" + con.charAt(1) + "" + con.charAt(3)
-                                + "" + con.charAt(4) + "" + con.charAt(8) + "" + con.charAt(9);
-                        System.out.println(sis.getFechaNacimiento());
-
-                        op = 3;
-                        break;
-                    case 3:
-                        sexo = sis.getCodigoSexo().charAt(5) + "";
-                        op = 4;
-                        break;
-                    case 4:
-
-                        String temCod = codigo + Nombres + sexo + fechaNaci;
-                        int tam = ExamenEJB.porCodExpediente(temCod).size();
-
-                        if (tam > 0) {
-
-                            int i;
-                            List<Examen> lis = ExamenEJB.porCodExpediente(temCod);
-                            for (i = 0; tam > i; i++) {
-
-                                if (lis.get(i).getIdPersona() == sis.getPersonaId()) {
-                                    System.out.println("si se encontro coincidencia");
-                                    this.ExamenSelect.setNumeroExpediente(lis.get(i).getNumeroExpediente());
-                                } else {
-                                }
-                            }
-
-                            if (this.ExamenSelect.getNumeroExpediente().equals("")) {
-                                increment = tam + 1;
-                                codigoGenerado = codigo + Nombres + sexo + fechaNaci + "0" + increment;
-                                this.ExamenSelect.setNumeroExpediente(codigoGenerado);
-                                listo = true;
-                                break;
-                            } else {
-                                System.out.println("no se entro al if");
-                                listo = true;
-                                break;
-                            }
-
-                        } else {
-
-                            increment = 1;
-                            codigoGenerado = codigo + Nombres + sexo + fechaNaci + "0" + increment;
-                            listo = true;
-                            this.ExamenSelect.setNumeroExpediente(codigoGenerado);
-                            System.out.println("no se encotro coincidencia");
-                            break;
-                        }
-
-                }
-
-            }
-            this.Ventana = "DtsGnrals";
-        }
+//
+//        if (ExamenSelect.getEstado() != null) {
+//            System.out.println("Examen # " + ExamenSelect.getIdExamen());
+//            System.out.println("Esty Aqui");
+//
+//            Examen ex = new Examen();
+//            ex.setPrimerNombre(ExamenSelect.getPrimerNombre());
+//            ex.setSegundoNombre(ExamenSelect.getSegundoNombre());
+//            ex.setPrimerApellido(ExamenSelect.getPrimerApellido());
+//            ex.setSegundoApellido(ExamenSelect.getSegundoApellido());
+//            ex.setCedula(ExamenSelect.getCedula());
+//            ex.setFechaNacimiento(ExamenSelect.getFechaNacimiento());
+//            ex.setDireccionActual(ExamenSelect.getDireccionActual());
+//            ex.setNumeroExpediente(ExamenSelect.getNumeroExpediente());
+//          //  ex.setIdPersona(ExamenSelect.getIdPersona());
+//            ex.setTelefono(ExamenSelect.getTelefono());
+//            ex.setTelefono2(ExamenSelect.getTelefono2());
+//            ex.setIdComunidadResidencia(ExamenSelect.getIdComunidadResidencia());
+//            ex.setCatalogoList(ExamenSelect.getCatalogoList());
+////            ex.setIdComunidadResidencia(null);
+//
+//            /**
+//             * Hacemos al examen seleccionado el cual contiene los registros a
+//             * guardar nulo
+//             */
+//            ExamenSelect = null;
+//            
+//            
+//
+//            /**
+//             * al examen se le asigna un nuevo objeto para guardar otro examen
+//             * similar
+//             */
+//            ExamenSelect = ex;
+//
+//            this.HabilitarTelefono1 = true;
+//            this.HabilitarTelefono2 = true;
+//            this.HabilitarExpedienteTemp = true;
+//
+//            cargarCatalogos();
+//            cargarDepartamentoSelect();
+//
+//            /**
+//             * Hacemos nulos los campos de Antecedentes Ginecobstetricos
+//             */
+//            this.Gestasi = 0;
+//            this.Abortosi = 0;
+//            this.Cesareasi = 0;
+//            this.partosi = 0;
+//            Menarcai = 0;
+//            semanaDeGestasi = 0;
+//
+//            valorEmbarazoActual = null;
+//            valorFuma = null;
+//            valorToma = null;
+//
+//            FUR = null;
+//            metodoAnticonceptivo = null;
+//            CatalogoMB.getListaTipoMetodo().clear();
+//
+//            /**
+//             * Hacemos nulos los campos de descripcion de la muestra
+//             */
+//            silaisTomaDM = null;
+//            listaEntidadAdtva.clear();
+//            unidadTomaDm = null;
+//            listaUnidadesTomaDm.clear();
+//            municipioTomaDm = null;
+//            listaUnidadesTomaDm.clear();
+//            //  Procedencia = null;
+//            valorProcedencia = null;
+//            //AspectoClinico = null;
+//            valorAspecto = null;
+//            //Secrecion = null;
+//            valorSecrecion = null;
+//            fecha = null;
+//
+//            /**
+//             * Hacemos Nulos los campos de Resultado
+//             */
+//            fecha_Lectura = null;
+//            subCategoriaFrotis = new SubCategoria();
+//            valorFrotis = null;
+//            this.ValoresMB.getListaValoresFrotis().clear();
+//            subCategoriaResultado = new SubCategoria();
+//            valorResultado = null;
+//            this.ValoresMB.getListaValoresResultado().clear();
+//            valorObservacion = new Valores();
+//            this.ValoresMB.getListaValoresResultado().clear();
+//            Fecha_PosTratamiento = null;
+//            Fecha_Seguimiento = null;
+//
+//            this.cargarValoresResutados();
+//            this.AsignarUnidades();
+//
+//            this.Ventana = "DtsGnrals";
+//
+//        } /**
+//         * Aqui el codigo se repite para limpiar los campos cuando se estan
+//         * ingresando los examenes uno por uno ingresando
+//         */
+//        else if (ExamenSelect.getEstado() == null) {
+//            System.out.println("Examen Nulo " + ExamenSelect.getEstado());
+//
+//            ExamenSelect.setIdExamen(null);
+//
+//            this.cat_esc = null;
+//            this.catalogos = null;
+//            this.Valor_Etnia = null;
+//            this.valor_Procedencia = null;
+//            this.departamentoSelect = null;
+//            //listaDepartamentos.clear();
+//            this.municipioSelect = null;
+////            listaMunicipios.clear();
+//            sectores.clear();
+//            this.sectorSelect = null;
+//
+//            this.Gestasi = 0;
+//            this.Abortosi = 0;
+//            this.Cesareasi = 0;
+//            this.partosi = 0;
+//            Menarcai = 0;
+//            semanaDeGestasi = 0;
+//
+//            //  Categorias.clear();
+//            valorEmbarazoActual = null;
+//            valorFuma = null;
+//            valorToma = null;
+//
+//            FUR = null;
+//            metodoAnticonceptivo = null;
+//
+//            silaisTomaDM = null;
+//            listaEntidadAdtva.clear();
+//            unidadTomaDm = null;
+//            listaUnidadesTomaDm.clear();
+//            municipioTomaDm = null;
+//            listaUnidadesTomaDm.clear();
+//            //Procedencia = null;
+//            valorProcedencia = null;
+//            //AspectoClinico = null;
+//            valorAspecto = null;
+//            //Secrecion = null;
+//            valorSecrecion = null;
+//            fecha = null;
+//
+//            fecha_Lectura = null;
+//            subCategoriaFrotis = new SubCategoria();
+//            valorFrotis = null;
+//            //  listaValoresFrotis.clear();
+//            subCategoriaResultado = new SubCategoria();
+//            valorResultado = null;
+//            //listaValoresResultado.clear();
+//            valorObservacion = new Valores();
+//            //listaValoresResultado.clear();
+//            Fecha_PosTratamiento = null;
+//            Fecha_Seguimiento = null;
+//
+//            this.cargarValoresResutados();
+//            this.AsignarUnidades();
+//            cargarDepartamentoSelect();
+//
+////            this.cargarSubCategoriaFuma();
+////            this.cargarSubCategoriaToma();
+////            this.cargarSubCategoriaEmbarazoActual();
+//         //   SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
+//            String codigo = null;
+//            String Nombres = null;
+//            String codigoGenerado = null;
+//            String sexo = null;
+//            String fechaNaci = null;
+//            int increment;
+//            boolean listo = false;
+//            int op = 0;
+//
+//            /**
+//             * Habilitando Los Campos de Nombres Y apellidos
+//             */
+//            this.HabilitarPrimerNombre = true;
+//            this.HabilitarSegundoNombre = true;
+//            this.HabilitarPrimerApellido = true;
+//            this.HabilitarSegundoApellido = true;
+//            this.HabilitarCedula = true;
+//            this.HabilitarFechaNacimiento = true;
+//            this.HabilitarComboEscolaridad = true;
+//            this.HabilitarComboOcupacion = true;
+//            this.HabilitarComboEtnia = true;
+//            this.HabilitarComboProcedencia = true;
+//            this.HabilitarTelefono1 = true;
+//            this.HabilitarTelefono2 = true;
+//            this.HabilitarExpedienteTemp = true;
+//            this.HabilitarComboComunidad = true;
+//            this.HabilitarComboBarrio = true;
+//            System.out.println("en el metodo 2 de generar expediente");
+//            while (listo == false) {
+//
+//                switch (op) {
+//
+//                    case 0:
+//
+//                        System.out.println("case 0 del wihe numero 2");
+//                        if (sis.getSegundoNombre() != null && sis.getSegundoApellido() != null) {
+//
+//                            if (sis.getSegundoNombre().equals(" ") && sis.getSegundoApellido().equals(" ")) {
+//                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
+//
+//                            } else if (sis.getSegundoNombre().equals(" ")) {
+//                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
+//
+//                            } else if (sis.getSegundoApellido().equals(" ")) {
+//                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
+//                                String[] b;
+//                                int i = 0;
+//                                b = new String[st.countTokens()];
+//                                while (st.hasMoreTokens()) {
+//                                    b[i] = st.nextElement().toString();
+//                                    i++;
+//                                }
+//
+//                                if (b.length == 3) {
+//                                    System.out.println("en el 3");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                } else if (b.length == 2) {
+//                                    System.out.println("en el 2");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                } else {
+//                                    System.out.println("en el 1");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                }
+//
+//                            } else {
+//                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
+//                                String[] b;
+//                                int i = 0;
+//                                b = new String[st.countTokens()];
+//                                while (st.hasMoreTokens()) {
+//                                    b[i] = st.nextElement().toString();
+//                                    i++;
+//                                }
+//
+//                                if (b.length == 3) {
+//                                    System.out.println("en el 3");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
+//                                    op = 1;
+//                                    break;
+//
+//                                } else if (b.length == 2) {
+//                                    System.out.println("en el 2");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
+//                                    op = 1;
+//                                    break;
+//
+//                                } else {
+//                                    System.out.println("en el 1");
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
+//                                    op = 1;
+//                                    break;
+//
+//                                }
+//                            }
+//
+//                        } else if (sis.getSegundoNombre() != null) {
+//
+//                            if (sis.getSegundoNombre().equals(" ")) {
+//
+//                                System.out.println("pura mierda");
+//                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
+//                            } else {
+//
+//                                StringTokenizer st = new StringTokenizer(sis.getSegundoNombre());
+//                                String[] b;
+//                                int i = 0;
+//                                b = new String[st.countTokens()];
+//                                while (st.hasMoreTokens()) {
+//                                    b[i] = st.nextElement().toString();
+//                                    i++;
+//                                }
+//                                if (b.length == 3) {
+//                                    System.out.println("en el 3 DE SOLO NOMBRE" + b.length);
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[2].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                } else if (b.length == 2) {
+//                                    System.out.println("en el 2 DE SOLO NOMBRE" + b.length);
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[1].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                } else {
+//                                    System.out.println("en el 1 DE SOLO NOMBRE" + b.length);
+//                                    Nombres = sis.getPrimerNombre().charAt(0) + "" + b[0].charAt(0) + "" + sis.getPrimerApellido().charAt(0) + "9";
+//                                    op = 1;
+//                                    break;
+//
+//                                }
+//                            }
+//
+//                        } else if (sis.getSegundoApellido() != null) {
+//
+//                            if (sis.getSegundoApellido().equals(" ")) {
+//                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
+//
+//                            } else {
+//
+//                                Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "" + sis.getSegundoApellido().charAt(0);
+//                                op = 1;
+//                                break;
+//                            }
+//                        } else {
+//                            Nombres = sis.getPrimerNombre().charAt(0) + "9" + sis.getPrimerApellido().charAt(0) + "9";
+//                            op = 1;
+//                            break;
+//                        }
+//
+//                    case 1:
+//                        System.out.println("se fue");
+//                        if (sis.getCodigoMunicipioNacimiento() != null) {
+//                            if (entidadAdtvaMB.getListaCSEdeMunicipios(sis.getCodigoMunicipioNacimiento()).get(0).getCodigoCse() != null) {
+//
+//                                codigo = entidadAdtvaMB.getListaCSEdeMunicipios(sis.getCodigoMunicipioNacimiento()).get(0).getCodigoCse().toString();
+//                                op = 2;
+//                                break;
+//
+//                            } else {
+//                                codigo = "800";
+//                                op = 2;
+//                                break;
+//                            }
+//                        } else {
+//                            codigo = "800";
+//                            op = 2;
+//                            break;
+//
+//                        }
+//
+//                    case 2:
+//                        SimpleDateFormat fd = new SimpleDateFormat("dd/MM/yyyy");
+//                        String con = fd.format(sis.getFechaNacimiento());
+//                        fechaNaci = con.charAt(0) + "" + con.charAt(1) + "" + con.charAt(3)
+//                                + "" + con.charAt(4) + "" + con.charAt(8) + "" + con.charAt(9);
+//                        System.out.println(sis.getFechaNacimiento());
+//
+//                        op = 3;
+//                        break;
+//                    case 3:
+//                        sexo = sis.getCodigoSexo().charAt(5) + "";
+//                        op = 4;
+//                        break;
+//                    case 4:
+//
+//                        String temCod = codigo + Nombres + sexo + fechaNaci;
+//                        int tam = ExamenEJB.porCodExpediente(temCod).size();
+//
+//                        if (tam > 0) {
+//
+//                            int i;
+//                            List<Examen> lis = ExamenEJB.porCodExpediente(temCod);
+//                            for (i = 0; tam > i; i++) {
+//
+//                                if (lis.get(i).getIdPersona() == sis.getPersonaId()) {
+//                                    System.out.println("si se encontro coincidencia");
+//                                    this.ExamenSelect.setNumeroExpediente(lis.get(i).getNumeroExpediente());
+//                                } else {
+//                                }
+//                            }
+//
+//                            if (this.ExamenSelect.getNumeroExpediente().equals("")) {
+//                                increment = tam + 1;
+//                                codigoGenerado = codigo + Nombres + sexo + fechaNaci + "0" + increment;
+//                                this.ExamenSelect.setNumeroExpediente(codigoGenerado);
+//                                listo = true;
+//                                break;
+//                            } else {
+//                                System.out.println("no se entro al if");
+//                                listo = true;
+//                                break;
+//                            }
+//
+//                        } else {
+//
+//                            increment = 1;
+//                            codigoGenerado = codigo + Nombres + sexo + fechaNaci + "0" + increment;
+//                            listo = true;
+//                            this.ExamenSelect.setNumeroExpediente(codigoGenerado);
+//                            System.out.println("no se encotro coincidencia");
+//                            break;
+//                        }
+//
+//                }
+//
+//            }
+//            this.Ventana = "DtsGnrals";
+//        }
     }
     public void cargarResultadosXexamenParteUno() throws ParseException {
         // cargar gestas
@@ -3180,10 +3172,9 @@ public class ExamenMB implements Serializable {
                     valorFrotis = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
                 }else  if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
                     valorResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdValor();
+                    subCategoriaResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
                 }else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getDescripcion().equals("Frotis")) {
                     subCategoriaFrotis = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
-                }else if (this.ExamenSelect.getResultadoExamenList().get(i).getIdCategoria().getIdCategoria() == 6) {
-                    subCategoriaResultado = this.ExamenSelect.getResultadoExamenList().get(i).getIdSubcategoria();
                 }
                     
             
@@ -3201,7 +3192,7 @@ public class ExamenMB implements Serializable {
          */
         System.out.println(ExamenSelect.getPrimerNombre());
 
-        this.asignarResutados();
+     
         this.AsignarUnidades();
         cargarDepartamentoSelect();
         cargar();
@@ -3219,8 +3210,12 @@ public class ExamenMB implements Serializable {
         cargarSilaisTomaResultado();
         cargarUnidadTomaResultado();
         
+        
+        
+        //--
+        this.cargarValoresResutados();
         cargarResultadosXexamenParteUno();
-
+        //--
  
         /**
          * Esta Comparacion compara si el examen de una persona se encuentra en
@@ -3241,12 +3236,12 @@ public class ExamenMB implements Serializable {
 
 
     public void calcularEdad(SelectEvent event) {
-        SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
+       // SisPersonas sis = PersonaMB.ParaExpediente(ExamenSelect.getIdPersona());
 
         Calendar FechaNacimiento = Calendar.getInstance();
         Calendar FechaActual = Calendar.getInstance();
 
-        FechaNacimiento.setTime(sis.getFechaNacimiento());
+       // FechaNacimiento.setTime(sis.getFechaNacimiento());
         FechaActual.setTime(fecha);
 
         int año = FechaActual.get(Calendar.YEAR) - FechaNacimiento.get(Calendar.YEAR);
@@ -3278,6 +3273,7 @@ public class ExamenMB implements Serializable {
     public void verificarPaciente(SelectEvent event) {
         Examen examenPaciente;
         examenPaciente = (Examen) event.getObject();
+      
         if (examenPaciente.getEstado() == BigInteger.valueOf(1) || examenPaciente.getEstado() == BigInteger.valueOf(2)) {
             nuevoPaciente = true;
             continuarPaciente = true;
@@ -3409,6 +3405,20 @@ public class ExamenMB implements Serializable {
 
                 if (this.ExamenSelect.getCatalogoList().get(i).getDependencia().equals("PROCDNCIA")) {
                     valor_Procedencia = this.ExamenSelect.getCatalogoList().get(i);
+                }
+            }
+        }
+        //cargar municipio
+        Comunidad comunidadTemp = null;
+        if (ExamenSelect.getIdComunidadResidencia() != null) {
+            for (int i = 0; i < comunidades.size(); i++) {
+                if (comunidades.get(i).getComunidadId() == ExamenSelect.getIdComunidadResidencia().getComunidadId()) {
+                    comunidadTemp = comunidades.get(i);
+                    Sector sectorTemp = new Sector();
+                    sectorTemp = SectorMB.buscarSectores(comunidadTemp.getSector()).get(0);
+                    municipioSelect = DivisionPoliticaMB.obtenerMunicipioSelect(sectorTemp.getMunicipio()).get(0);
+                    DivisionPoliticaMB.setDepartametoSelect(municipioSelect.getDependencia());
+                    listaMunicipios = DivisionPoliticaMB.getListaMunicipios();
                 }
             }
         }

@@ -112,8 +112,8 @@
                                              rowsPerPageTemplate="5,10,15" lazy="true" emptyMessage="No hay Datos en La Base de Datos" selectionMode="single" selection="#{examenMB.examenSelect}" 
                                              rowKey="#{persona.idExamen}">
 
-                                    <p:ajax event="rowSelect" update=":frm:TAB2 :frm:tbPersonaPendiente :frm:botonesConfirmacion" 
-                                            oncomplete="TABDIALOG.hide(); TABDIALOG2.show()" listener="#{examenMB.pacienteExistente()}"/>
+                                    <p:ajax  event="rowSelect" update=":frm:TAB2 :frm:tbPersonaPendiente :frm:botonesConfirmacion" 
+                                             oncomplete="TABDIALOG.hide(); TABDIALOG2.show()" listener="#{examenMB.pacienteExistente()}"/>
 
                                     <p:column headerText="1er Nombre"> 
                                         <p:outputLabel value="#{persona.primerNombre}"/>
@@ -154,12 +154,13 @@
 
                         <p:dialog id="TAB2" header="Pacientes"   widgetVar="TABDIALOG2" resizable="false" modal="true" closable="true">
 
-                            <p:dataTable id="tbPersonaPendiente"   var="examen" value="#{examenMB.getListaExamenPendiente(examenMB.examenSelect.idPersona)}" 
+                            <p:dataTable id="tbPersonaPendiente"   var="examen" 
                                          paginator="true" rows="10" rowsPerPageTemplate="5,10,15" emptyMessage="Este Paciente No Tiene Examenes"
                                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                          lazy="true" selectionMode="single" selection="#{examenMB.examenSelect}" rowKey="#{examen.idExamen}">
 
-                                <p:ajax update=":frm:cmbContinuar :frm:cmbAgregarNuevo" event="rowSelect" listener="#{examenMB.verificarPaciente}"/>
+                                <p:ajax update=":frm:cmbContinuar :frm:cmbAgregarNuevo "  event="rowSelect" listener="#{examenMB.verificarPaciente}"/>
+                      
 
                                 <p:column headerText="Examen #" style="text-align: center">
                                     <h:outputLabel value="#{examen.idExamen}" />
@@ -182,14 +183,17 @@
                             </p:dataTable>
 
                             <p:panel id="botonesConfirmacion" style="text-align: center">
-                                <p:commandButton id="cmbContinuar" disabled="#{!examenMB.continuarPaciente}" value="Continuar Registro" process="@this" icon="ui-icon-document" oncomplete="TABDIALOG2.hide()" 
+                                <p:commandButton id="cmbContinuar"  value="Continuar Registro" process="@this" icon="ui-icon-document" oncomplete="TABDIALOG2.hide()" 
                                                  actionListener="#{examenMB.expediente()}" update=":form:panel :form:panel2 :form:panel3 :form:principal"/>
 
-                                <p:commandButton id="cmbAgregarNuevo" value="Registrar Nuevo" disabled="#{!examenMB.nuevoPaciente}" process="@this" icon="ui-icon-document"
-                                                 oncomplete="TABDIALOG2.hide()" actionListener="#{examenMB.expedienteNuevo()}" update=":form:panel :form:G1 :form:panel3 :form:principal" />
+                                <p:commandButton  id="cmbAgregarNuevo" value="Registrar Nuevo" process="@this" icon="ui-icon-document"
+                                                 oncomplete="TABDIALOG2.hide()" actionListener="#{examenMB.expedienteNuevo()}" update=":frm:TAB  :form:panel :form:G1 :form:panel3 :form:principal" />
 
                             </p:panel>
+                            
                         </p:dialog>
+                        
+                        
 
                         <p:dialog id="tab3" widgetVar="primerParte" header="Paciente" resizable="false" modal="true">
                             <p:outputLabel value="El Registro Se Ha Guardado Exitosamente" style="text-decoration: navy"/>
@@ -230,6 +234,18 @@
                             <p:commandButton value="No"  process="@this" oncomplete="confirmation.hide()" icon="ui-icon-close" />
                         </p:confirmDialog>
 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <p:dialog id="medicos" header="Medicos"   widgetVar="medicos" resizable="false" modal="true" closable="true">
 
                             <h:panelGrid columns="6" style="width: 450px ; height: 50px" >
@@ -250,7 +266,7 @@
                                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                                          lazy="true" selectionMode="single" selection="#{examenMB.medicoSelect}" rowKey="#{medicos.codigosanitario}">
 
-                                <p:ajax event="rowSelect" update=":form:medicoN" oncomplete="medicos.hide()"/>
+                                <p:ajax event="rowSelect"  oncomplete="medicos.hide()"/>
 
                                 <p:column headerText="Codigo #" style="text-align: center">
                                     <h:outputLabel value="#{medicos.codigosanitario}" />

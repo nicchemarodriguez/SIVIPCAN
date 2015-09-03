@@ -46,7 +46,7 @@ import ni.gob.minsa.modelo.poblacion.Sector;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Examen.findAll", query = "SELECT e FROM Examen e"),
-    @NamedQuery(name = "Examen.findByIdPersona", query = "SELECT e FROM Examen e WHERE e.idPersona = :idPersona"),
+    
     @NamedQuery(name = "Examen.findByNumeroExpediente", query = "SELECT e FROM Examen e WHERE e.numeroExpediente LIKE :numeroExpediente"),
     @NamedQuery(name = "Examen.findByNumeroExpedienteTemp", query = "SELECT e FROM Examen e WHERE e.numeroExpedienteTemp = :numeroExpedienteTemp"),
     @NamedQuery(name = "Examen.findByIdExamen", query = "SELECT e FROM Examen e WHERE e.idExamen = :idExamen"),
@@ -510,7 +510,6 @@ import ni.gob.minsa.modelo.poblacion.Sector;
     
     
     
-     @NamedQuery(name = "Examen.findExamenPendiente", query = "SELECT e FROM Examen e WHERE e.idPersona = :idPersona AND e.estado != :estado1"),
     
      
      
@@ -525,12 +524,12 @@ import ni.gob.minsa.modelo.poblacion.Sector;
     @NamedQuery(name = "Examen.findByCedula", query = "SELECT e FROM Examen e WHERE e.cedula = :cedula"),
     @NamedQuery(name = "Examen.findByEstado", query = "SELECT e FROM Examen e WHERE e.estado = :estado")})
 public class Examen implements Serializable {
+    
+    @JoinColumn(name = "ID_PACIENTE", referencedColumnName = "ID_PACIENTE", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Paciente idPaciente;
 
-    private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_PERSONA", nullable = false)
-    private long idPersona;
+   
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -619,9 +618,9 @@ public class Examen implements Serializable {
         this.idExamen = idExamen;
     }
 
-    public Examen(Long idExamen, long idPersona, String numeroExpediente, String primerNombre, String primerApellido, String direccionActual, BigInteger edad, Date fechaNacimiento, String cedula) {
+    public Examen(Long idExamen,  String numeroExpediente, String primerNombre, String primerApellido, String direccionActual, BigInteger edad, Date fechaNacimiento, String cedula) {
         this.idExamen = idExamen;
-        this.idPersona = idPersona;
+        
         this.numeroExpediente = numeroExpediente;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
@@ -631,9 +630,7 @@ public class Examen implements Serializable {
         this.cedula = cedula;
     }
 
-    public long getIdPersona() {
-        return idPersona;
-    }
+    
 
     public List<Catalogos> getCatalogoList() {
         return catalogoList;
@@ -644,9 +641,6 @@ public class Examen implements Serializable {
     }
     
 
-    public void setIdPersona(long idPersona) {
-        this.idPersona = idPersona;
-    }
 
     public String getNumeroExpediente() {
         return numeroExpediente;
@@ -847,6 +841,16 @@ public class Examen implements Serializable {
     @Override
     public String toString() {
         return "ni.gob.minsa.sivipcan.modelo.Examen[ idExamen=" + idExamen + " ]";
+    }
+
+  
+
+    public Paciente getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
   

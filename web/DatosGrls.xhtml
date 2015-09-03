@@ -113,7 +113,7 @@
             <p:selectOneMenu id="Comarca" value="#{examenMB.examenSelect.idComunidadResidencia}" converter="converterComunidad" style="width:160px" 
                              filter="true" filterMatchMode="startsWith" editable="false">
                 <f:selectItem itemLabel="Escoje"/>
-                <f:selectItems value="#{comunidadMB.listaSector}" var="comunidades" 
+                <f:selectItems value="#{examenMB.comunidades}" var="comunidades" 
                                itemLabel="#{comunidades.nombre}" itemValue="#{comunidades}" />
                 <p:ajax  update="Comarca" />
             </p:selectOneMenu>

@@ -38,6 +38,7 @@ import ni.gob.minsa.modelo.poblacion.Catalogos;
     @NamedQuery(name = "Categoria.findByIdCategoria", query = "SELECT c FROM Categoria c WHERE c.idCategoria = :idCategoria"),
     @NamedQuery(name = "Categoria.findByDescripcion", query = "SELECT c FROM Categoria c WHERE c.descripcion = :descripcion")})
 public class Categoria implements Serializable {
+
    
     private static final long serialVersionUID = 1L;
     @Id
@@ -142,6 +143,8 @@ public class Categoria implements Serializable {
     public String toString() {
         return "ni.gob.minsa.sivipcan.modelo.Categoria[ idCategoria=" + idCategoria + " ]";
     }
+
+  
 
   
     

@@ -42,6 +42,7 @@ import ni.gob.minsa.modelo.estructura.Unidad;
     @NamedQuery(name = "UnidadesXExamen.findByDepartamento", query = "SELECT u FROM UnidadesXExamen u WHERE u.departamento = :departamento"),
     @NamedQuery(name = "UnidadesXExamen.findByIdUxe", query = "SELECT u FROM UnidadesXExamen u WHERE u.idUxe = :idUxe")})
 public class UnidadesXExamen implements Serializable {
+
    
     @Size(max = 20)
     @Column(name = "EVENTO", length = 20)
@@ -171,6 +172,8 @@ public class UnidadesXExamen implements Serializable {
     public void setEvento(String evento) {
         this.evento = evento;
     }
+
+
 
   
     

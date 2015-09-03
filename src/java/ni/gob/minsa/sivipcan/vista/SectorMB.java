@@ -69,10 +69,11 @@ public class SectorMB implements Serializable {
         this.listaSector = listaSector;
     }
     
-    public void buscarSectores(String nunicipioSelect){
-        System.out.println(nunicipioSelect + "mongol");
-    listaSectorBusqueda = sectorEJB.buscarSectoresXmunicipio(nunicipioSelect);
-     System.out.println(listaSector.size() + "tamano"); 
+    
+    
+    public List<Sector> buscarSectores(String nunicipioSelect){
+    listaSector = sectorEJB.buscarSectoresXmunicipio(nunicipioSelect);
+    return listaSector;
     }
     
 }

@@ -33,10 +33,8 @@ public class SectorEJB {
     }
     
     public List<Sector> buscarSectoresXmunicipio(String municipioSelect) {
-        System.out.println(municipioSelect + "caro");
         Query query = em.createNamedQuery("Sector.findByMunicipio");
         query.setParameter("municipio", municipioSelect);
-         System.out.println( query.getResultList().size() + "si funciona");  
         return query.getResultList();
     }
 }

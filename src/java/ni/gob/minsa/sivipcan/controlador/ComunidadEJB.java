@@ -28,7 +28,7 @@ public class ComunidadEJB {
 
     }
     
-    public List<Comunidad> buscarComunidades(long codSector) {
+    public List<Comunidad> buscarComunidades(String codSector) {
         Query query = em.createNamedQuery("Comunidad.findBySector");
         query.setParameter("sector", codSector);
         return query.getResultList();

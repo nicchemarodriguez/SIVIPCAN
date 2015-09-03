@@ -40,6 +40,22 @@ public class ComunidadMB {
 
     public ComunidadMB() {
     }
+    
+    public List<Comunidad> cargarListaComunidad() {
+        if (this.getMunicipioSelect() != null) {
+            System.out.println("si entre al metodo");
+            List<Comunidad> listComunidadTemp;
+            listaComunidad.clear();
+            ListaSector = SectorMB.buscarSectores(municipioSelect.getCodigoNacional());
+            if (ListaSector != null && !ListaSector.isEmpty()) {
+                for (int i = 0; i < ListaSector.size(); i++) {
+                    listComunidadTemp = comunidadEJB.buscarComunidades(ListaSector.get(i).getCodigo());
+                    listaComunidad.addAll(listComunidadTemp);
+                }
+            }           
+        }        
+        return listaComunidad;
+    }
 
     public List<Comunidad> getListaComunidad() {
 
